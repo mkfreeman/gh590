@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Lecture 1</title>
+
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+		if( window.location.search.match( /print-pdf/gi ) ) {
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = 'css/print/pdf.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		}
+	</script>
+
+
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+			<h2>Lecture 1 (technical): What is a website?</h2>
+			</section>
+			
+			<section>
+			<h3>Outline</h3>
+				<ul>
+					<li class="fragment">Overview</li>
+					<li class="fragment">Elements of a webpage (HTML)</li>
+					<li class="fragment">Styles of a webpage (CSS)</li>
+					<li class="fragment">Group exercises</li>
+					<li class="fragment">Indiviual exercises</li>
+				</ul>
+			</section>
+			<section>
+				<section>
+					<h3>Overview</h3>
+					<ul>
+						<li class="fragment">Web browsers retrieve and present information they are directed to via URLs</li>
+						<li class="fragment">The protocol for handeling the information is dictated by the URL prefix (ie, HTTP, file:///, etc.)</li>
+						<li class="fragment">Page elements (text, images, etc.) are assembled into a tree structure calle the Document Object Module (DOM)</li>
+						<li class="fragment">These elements can be inspected using the browser (rt. click)</li>
+					</ul>
+				</section>
+				<section>
+					<h3>DOM from previous slide</h3>
+					<img class="stretch fragment" src="../reveal/lib/imgs/dom.png"></img>
+				</section>
+			</section>
+				<section>
+					<section>
+						<h3>Elements of a webpage</h3>
+					</section>
+					<section>
+						<h3>HTML</h3>
+						<ul>
+						<li class="fragment">HyperText Markup Language</li>
+						<li class="fragment">Uses <code>&lttags&gt</code> to instruct the browser how to represent elements</li>
+						<li class="fragment">Elements begin with an opening <code>&lttag&gt</code>, have some content, and close with a closing <code>&lt/tag&gt</code></li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Common HTML Elements</h3>
+						<ul>
+							<li class="fragment"><code>&ltdiv&gt</code>: Division of a page, used to group elements</li>
+							<li class="fragment"><code>&ltul&gt</code>: An unorder list (order list is <code>&ltol&gt</code>) </li>
+							<li class="fragment"><code>&ltli&gt</code>: A list element (such as this one)</li>
+							<li class="fragment"><code>&ltsvg&gt</code>:Scalable Vector Graphic, used as a container for graphical elements</li>
+							<li class="fragment"><code>&ltcircle&gt</code>:A circle element, such as a point on a scatterplot</li>
+							<li class="fragment"><code>&ltrect&gt</code>:A rectangle element, such as a bar on a bar chart</li>
+						</ul>
+					</section>
+					
+					<section>
+						<h3>All you have to do is learn how to arrange these shape and text elements on a page</h3>
+					</section>
+					
+					<section>
+						<h3>HTML Element Attributes</h3>
+						<ul>
+						<li class="fragment">HTML elements can be assigned a variety of attributes (based on type) which dictate their representation and behavior</li>
+						<li class="fragment">These attributes can be assigned within the tag</li>
+						<pre class="fragment"><code data-trim><circle r="15"></circle></code></pre>
+						<li class="fragment">Elements can be assigned a <i>class</i> for grouping and styling <pre><code><text class="big">Hello</text></code></pre> </li>
+						<li class="fragment">Elements can also be assigned a unique ID for reference and styling <pre><code><text id="title-text">Title</text></code></pre></li>
+						
+						</ul>
+					</section>
+					<section>
+						<iframe class="stretch" src="http://jsbin.com/cobil/5/embed"></iframe>
+					</section>
+			</section>
+			<section>
+				<section>
+					<h3>Styles of a webpage</h3>
+				</section>
+				<section>
+					<h3>CSS</h3>
+					<ul>
+						<li class="fragment">Cascading Style Sheets</li>
+						<li class="fragment">Styles dictate how HTML elements are displayed</li>
+						<li class="fragment">Styles can be assigned to:</li>
+						<ul>
+							<li class="fragment">A <i>type</i> of element (i.e., all <code>&ltcircle&gt</code> elements)</li>
+							<li class="fragment">A <i>class</i>  (i.e., all <code>&ltcircle class="big"&gt</code> elements)</li>
+							<li class="fragment">An individual element by id (i.e., the one <code>&ltcircle id="my-circle"&gt</code> element)</li>
+							<li class="fragment">Any combination of these (i.e., circles with certain class)</li>
+						</ul>
+						<li class="fragment">Styles are inherited from parent objects (hence, <i>cascading</i>)</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Syntax</h3>
+					<ul>
+						<li class="fragment">CSS selects by ID using "#", by class using ".", or by listing the type of element (i.e., circle)</li>
+						<li class="fragment">Style attributes are defined within {} for a selection, and each and with a semicolon</li>
+						<pre class="fragment"><code data-trim>
+circle{
+  color:blue;
+}
+
+.circle-class{
+  stroke:2px;
+}
+
+#my-circle{
+  visibility:hidden;
+}
+						</pre></code>
+					</ul>
+				</section>
+				<section>
+					<iframe class="stretch" src="http://jsbin.com/cobil/4/embed"></iframe>
+				</section>
+
+			</section>
+				
+			
+			
+		</div>
+	</div>
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+
+
+	<script>
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, 
+			transition: Reveal.getQueryHash().transition || 'default',
+			dependencies: [
+				{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

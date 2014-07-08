@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Lecture 1</title>
+
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+		if( window.location.search.match( /print-pdf/gi ) ) {
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = 'css/print/pdf.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		}
+	</script>
+
+
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+			<h2>Interactive Data Visualization for Global Health</h2>
+			</section>
+			
+			<section>
+			<h3>Day 1 outline</h3>
+				<ul>
+					<li class="fragment">Three questions</li>
+					<li class="fragment">Course overview</li>
+					<li class="fragment">Technology tour</li>
+					<li class="fragment">Getting started</li>
+				</ul>
+			</section>
+			
+			
+			<section>
+				<h3>Three questions</h3>
+				<ul>
+					<li class="fragment">Why visualization?</li>
+					<li class="fragment">Why <i>interactive</i> visualization?</li>
+					<li class="fragment">Why interactive visualization for <i>global health</i>?</li>
+				</ul>
+			</section>
+			<section>
+				<section>
+					<h3>Why visualization?</h3>
+				</section>
+				<section>
+					<h4>Florence Nightengale</h4>
+					<blockquote>
+						&ldquo;to affect thro’ the eyes what we fail to convey to the public through their word-proof ears.&rdquo;
+					</blockquote>
+				</section>
+				<section>
+					<img src="http://www.uh.edu/engines/coxcombchart.jpg"></img>
+				</section>
+				<section>
+					<h3>Leveraging pre-attentive cognition<h3>
+				</section>
+				<section>
+					<h3>How many 3's are there?</h3>
+					<img  src = "http://www.mu-sigma.com/analytics/thought_leadership/images/preattentive.jpg"></img>
+				</section>
+				<section>
+					<h3>How many 3's are there?</h3>
+					<img src = "http://www.mu-sigma.com/analytics/thought_leadership/images/preattentive1.jpg"></img>
+				</section>	
+				<section>
+				<h3>A more complex example</h3>
+				<img src = "https://blog.scraperwiki.com/wp-content/uploads/2013/03/anscombesdata.png"></img>
+				</section>
+				<section>
+					<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Anscombe%27s_quartet_3.svg/800px-Anscombe%27s_quartet_3.svg.png"></img>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Why <i>interactive </i> &nbsp visualization?</h3>
+				</section>
+				<section>
+				<h4>Retrieve information</h4>
+				</section>
+				<section>
+					<iframe class="stretch" src="http://nvd3.org/examples/scatter.html"></iframe>
+				</section>
+				<section>
+					<h4>Data Exploration
+				</section>
+				<section>
+					<iframe class="stretch" src="http://mbostock.github.io/d3/talk/20111116/iris-splom.html"></iframe>
+				</section>
+				<section>
+					<h4>Broaden Reach</h4>
+				</section>
+				<section>
+					<iframe class="stretch" src="http://ihmeuw.org/1zl9"></iframe>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Why interactive visualization for <i>global health</i> ?</h3>
+				</section>
+				<section>
+					<h4>Health & public health trend discovery</h4>
+				</section>
+				<section>
+					<img class="stretch" src="http://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Snow-cholera-map-1.jpg/823px-Snow-cholera-map-1.jpg"></img>
+				</section>
+				<section>
+					<h4>Health data exploration</h4>
+				</section>
+				<section>
+					<iframe class="stretch" src="http://vizhub.healthdata.org/gbd-compare/"></iframe>
+				</section>
+				<section>
+					<h4>Health data communication</h4>
+				</section>
+				<section>
+					<img class="stretch" src="http://www.foodtechconnect.com/wp-content/uploads/2012/04/Screen-Shot-2012-11-08-at-2.54.16-PM.png"></img>
+				</section>
+			</section>
+			<section>
+				<section>
+				<h3>Course goals</h3>
+				<p class="fragment">Provide students with the <i>conceptual</i> and <i>technical</i> skills necessary to design and build interactive data visualizations</p>
+				</section>
+				<section>
+					<h3>Conceptual skills</h3>
+					<ul>
+						<li class="fragment">Develop a process for answering specific questions with visualizations</li>
+						<li class="fragment">Identify best graphical layouts for different data types</li>
+						<li class="fragment">Best practices for encoding variables with graphical properties</li>
+				
+					</ul>
+				</section>
+				<section>
+					<h3>Technical skills</h3>
+					<ul>
+						<li class="fragment">Build interactive visualizations using D3.js</li>
+						<li class="fragment">Publish visualizations on the web</li>
+						<li class="fragment">Independently solve technical challenges encountered</li>
+					</ul>
+				</section>
+				</section>
+				<section>
+					<section>
+						<h3>Course structure</h3>
+					</section>
+					<section>
+						<h3>Daily process</h3>
+						<ul>
+							<li class="fragment">Conceptual lecture (20-30 mins)</li>
+							<li class="fragment">Conceptual exercise (20-30 mins)</li>
+							<li class="fragment">Group technical exercise(s) (1-2 hours)</li>
+							<li class="fragment">Individual technical exercise (1-2 hours)</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Evaluation</h3>
+						<ul>
+							<li class="fragment">Class participation: 20%</li>
+							<li class="fragment">Homework assignments: 40%</li>
+							<li class="fragment">Final project: 40%</li>
+						</ul>
+					</section>
+				</section>
+				
+			<section>
+				<h3>Technology/resources tour</h3>
+			</section>
+			<section>
+				<section>
+					<h3>Stack overflow</h3>
+					<ul>
+						<li class="fragment">An online question forum for programming questions</li>
+						<li class="fragment">Course purpose: find answers to your/common questions</li>
+					</ul>
+				</section>
+				<section>
+					<img class="stretch" src="../reveal/lib/imgs/stackoverflow.png"></iframe>
+				</section>
+				<section>
+					<h3>Github</h3>
+						<ul>
+						<li class="fragment">"Web-based hosting service for software development projects that use the Git revision control system" -wiki</li>
+						<li class="fragment">Widely used for version control and code sharing</li>
+						<li class="fragment">Course purpose: publishing web-pages</li>
+						</ul>
+				</section>
+				<section>
+					<img class="stretch" src="../reveal/lib/imgs/github.png"></iframe>
+				</section>
+				<section>
+					<h3>JS Bin</h3>
+						<ul>
+						<li class="fragment">"An integrated development environment (IDE) that is hosted in a browser" -wiki</li>
+						<li class="fragment">Popular for posing questions, sharing examples</li>
+						<li class="fragment">Course purpose: embedded simple examples</li>
+						</ul>
+				</section>
+				<section>
+					<iframe class="stretch" src="http://jsbin.com/"></iframe>
+				</section>
+				<section>
+					<h3>Local web servers(MAMP/WAMP)</h3>
+					<ul>
+						
+						<li class="fragment">Running a local web server allows your browser to interpret certain file types (ie, .csv files)</li>
+						<li class="fragment">Free software (MAMP/WAMP) or simple python commands can set this up easily</li>
+					</ul>
+				</section>
+			</section>
+		<section>
+			<h3>Questions?</h3>
+		</section>
+		</div>
+	</div>
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+
+
+	<script>
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, 
+			transition: Reveal.getQueryHash().transition || 'default',
+			dependencies: [
+				{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>
