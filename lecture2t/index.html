@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Lecture 2t</title>
+
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+		if( window.location.search.match( /print-pdf/gi ) ) {
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = 'css/print/pdf.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		}
+	</script>
+
+
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+			<h2>Lecture 2 (technical): Introduciton to JavaScript</h2>
+			</section>
+			
+			<section>
+			<h3>Outline</h3>
+				<ul>
+					<li class="fragment">Overview</li>
+					<li class="fragment">JavaScript Variables</li>
+					<li class="fragment">Manipulating HTML Elements</li>
+					<li class="fragment">Group Exercises</li>
+					<li class="fragment">Indiviual Exercises</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Overview</h3>
+				<ul>
+					<li class="fragment">JavaScript (JS) can be used to create, manipulate, and remove HTML elements</li>
+					<li class="fragment">Most of the code you write will be JS</li>
+					<li class="fragment">JS inspired by functional programming</li>
+						<ul>
+							<li class="fragment">Supports logical operators(if, else, etc.)</li>
+							<li class="fragment">Many mathematical operators (+, -, *, /) are similar</li>
+						</ul>
+				</ul>	
+			</section>
+			<section>
+				<section>
+				<h3>JavaScript Variables</h3>
+				</section>
+				<section>
+					<p>There are various data types used in Javascript</p>
+					<ul>
+						<li class="fragment">Numeric: a single quantitative value</li>
+						<pre class="fragment"><code data-trim>var x = 13</code></pre>
+						<li class="fragment">String: a string of characters, defined using quotation marks</li>
+						<pre class="fragment"><code data-trim>var x = "hello"</code></pre>
+						<li class="fragment">Array: A set of items (string or numeric) stored in a vector</li>
+						<pre class="fragment"><code data-trim>var x = [13, 14, 15]</code></pre>
+						<pre class="fragment"><code data-trim>var x = ["string one", "string two", "string three"]</code></pre>				
+						<li class="fragment">Object: An item which holds key-value pairs</li>
+						<pre class="fragment"><code data-trim>var x = {name:'mike'}</code></pre>						
+					</ul>	
+				</section>
+				<section>
+					<h3>Numbers and Strings</h3>
+					<ul>
+						<li class="fragment">There is only one type of JavaScript number</li>
+						<li class="fragment">Mathematical operators can be used, as well as advanced <code>Math</code> functions</li>
+						<pre class="fragment"><code data-trim>var x = 2*15 //x is 30</code></pre>
+						<pre class="fragment"><code data-trim>var x = Math.sqrt(4) //x is 2</code></pre>
+						<li class="fragment">JS supports inline concatinations and common string functions and</li>
+						<pre class="fragment"><code data-trim>var name = "Mike"</code></pre>
+						<pre class="fragment"><code data-trim>var sentence = "Hello, my name is " + name //Hello, my name is Mike</code></pre>				
+						<pre class="fragment"><code data-trim>var shortened = sentence.replace("Hello, ", "") //my name is Mike</code></pre>				
+						
+					</ul>				
+				</section>
+				<section>
+					<h3>Arrays</h3>
+					<ul>
+						<li class="fragment">Arrays are vectors of comma seperated items, denoted by square brackets []</li>
+						<pre class="fragment"><code data-trim>var x = [13, 14, 15]</code></pre>
+						<li class="fragment">Values of arrays are accessed by their index, starting at 0</li>
+						<pre class="fragment"><code data-trim>x[0] //13</code></pre>			
+					</ul>			
+				</section>
+				<section>
+					<h3>Objects</h3>
+					<ul>
+						<li class="fragment">Objects are items with key-value pairs, denoted by curly braces {}</li>
+						<pre class="fragment"><code data-trim>var person = {firstName:'Anna', lastName:'Smith', height:"5'4", age:32}</code></pre>
+						<li class="fragment">Access properties from objects by referencing the key</li>
+						<pre class="fragment"><code data-trim>person.firstName // Anna</code></pre>			
+						<pre class="fragment"><code data-trim>person['firstName'] // Anna</code></pre>			
+					</ul>			
+				</section>
+				<section>
+					<h3>Functions</h3>
+					<ul>
+						<li class="fragment">Functions perform blocks of code on parameters that are passed to them</li>
+						<li class="fragment">Any function returns a single item (object, array, value, etc)</li>
+						<pre class="fragment"><code data-trim>var myFunction = function(a,b) {return a*b})</code></pre>
+						<li class="fragment">Functions are executed as follows</li>
+						<pre class="fragment"><code data-trim>var result = function(2,4) //result is 8</code></pre>			
+					</ul>			
+				</section>
+			</section>
+
+		</section>
+		<section>
+			<section>
+				<h3>Manipulating HTML Elements</h3>
+			</section>
+			<section>
+				<p>Creating all page elements with HTML would be tedious (impossible)</p>
+					<ul>
+						<li class="fragment">JavaScript can be used to change page element content and style</li>
+						<pre class="fragment"><code data-trim>document.getElementById("demo").innerHTML = "New Text!"</code></pre>
+						<pre class="fragment"><code data-trim>document.getElementById("demo").style.fontSize = "25px";</code></pre>
+						<li class="fragment">D3 extends this type of manipulation to multiple elements</li>
+					</ul>		
+			</section>
+			<section>
+				<iframe class="stretch" src="http://jsbin.com/guwex/1/embed"></iframe>
+			</section>
+		</section>
+		
+			
+		</div>
+	</div>
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+
+
+	<script>
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, 
+			transition: Reveal.getQueryHash().transition || 'default',
+			dependencies: [
+				{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>
