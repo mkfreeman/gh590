@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Lecture 3t</title>
+
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+		if( window.location.search.match( /print-pdf/gi ) ) {
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = 'css/print/pdf.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		}
+	</script>
+
+
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+			<h2>Lecture 3 (technical): Introduciton to D3</h2>
+			</section>
+			
+			<section>
+			<h3>Outline</h3>
+				<ul>
+					<li class="fragment">Overview</li>
+					<li class="fragment">Making Selections</li>
+					<li class="fragment">Binding Data</li>
+					<li class="fragment">Individual Exercises</li>					
+					<li class="fragment">Review</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Overview</h3>
+				<ul>
+					<li class="fragment">D3 is the most popular library for building web visualizations</li>
+					<li class="fragment">It's not a charting library</li>
+					<li class="fragment">D3 binds data to DOM elements and facilitates dynamic manipulation</li>
+					<li class="fragment">Add the D3 library in the head of your HTML document</li>
+					<pre class="fragment"><code data-trim><script src="http://d3js.org/d3.v3.min.js"></script></code></pre>		
+					
+
+					
+				</ul>	
+			</section>
+			<section>
+				<section>
+					<h3>Making Selections</h3>
+					<ul>
+						<li class="fragment">Javascript can select and manipulate HTML elements</li>
+						<pre class="fragment"><code data-trim>document.getElementById('my-id').style.fill = 'red'</code></pre>
+						<li class="fragment">D3 simplifies the selection</li>
+						<pre class="fragment"><code data-trim>d3.select('#my-id').style('fill', 'red')</code></pre>	
+						<li class="fragment">D3 supports the selection and manipulation of multiple elements</li>
+						<pre class="fragment"><code data-trim>d3.selectAll('.my-class').style('fill', 'red')</code></pre>					
+					</ul>	
+				</section>
+			
+				<section>
+						<iframe class="stretch" src="http://jsbin.com/munugi/1/embed"></iframe>
+				</section>
+			</section>
+			
+				<section>
+				<section>
+					<h3>Binding data</h3>
+					<ul>
+						<li class="fragment">The power of D3 is its ability to bind data to DOM elements</li>
+						<li class="fragment">Each element (ie, <code>&ltcircle&gt,&ltrect&gt</code>) is tied to data</li>
+						<li class="fragment">Any HTML elements without corresponding data can be removed</li>
+						<li class="fragment">Any data without existing HTML elements can add new HTML elements</li>						
+						<li class="fragment">Existing HTML elements can transition to reflect updates in the data</li>
+					</ul>	
+				</section>
+				<section>
+					<h3>How it works: entering</h3>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/empty.png"></img>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/data.png"></img>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/entered.png"></img>
+				</section>
+				<section>
+					<h3>How it works: exiting</h3>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/entered.png"></img>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/data_2.png"></img>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/entered_2.png"></img>
+				</section>
+				<section>
+					<h3>How it works: updating</h3>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/entered.png"></img>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/data_3.png"></img>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/entered_3.png"></img>
+				</section>
+				<section>
+					<h3>Enter Elements</h3>
+					<ol>
+						<li class="fragment">Select element to which you want to bind data (ie, svg)</li>
+						<pre class="fragment"><code data-trim>var mySvg = d3.select('#my-svg')</code></pre>
+						<li class="fragment">Select all child elements of SVG that you want to bind data to</li>
+						<pre class="fragment"><code data-trim>var circles = mySvg.selectAll('circle').data(dataSet)</code></pre>
+						<li class="fragment">Enter new objects onto the page and append the desired elements</li>
+						<pre class="fragment"><code data-trim>circles.enter().append('circle')</code></pre>
+						<li class="fragment">Assign attributes</li>
+						<pre class="fragment"><code data-trim>circles.attr('r', 15).attr('cx', 50)...</code></pre>
+					</ol>	
+				</section>
+				<section>
+						<iframe class="stretch" src="http://jsbin.com/kivel/9/embed"></iframe>
+				</section>
+				<section>
+					<h3>Remember functions?</h3>
+					<ul>
+						<li class="fragment">Many similar processes are repeated when updating elements</li>
+						<li class="fragment">These processes can (should) be stored in functions</li>
+						<li class="fragment">Function to define circle attributes</li>
+												<pre class="fragment"><code data-trim>
+var circleFunction = function(circle) {
+	circle.attr('r', 15)
+	  .attr('cx', function(d) {return d*1})
+	  .attr('cy', function(d) {return d*30})
+	  .attr('fill', 'blue')
+}
+						</pre></code>
+					</ul>	
+				</section>
+				<section>
+						<iframe class="stretch" src="http://jsbin.com/kivel/14/embed"></iframe>
+				</section>
+				<section>
+					<h3>Exit Elements</h3>
+					<ol>
+						<li class="fragment">Select element to which you want to manage data (ie, svg)</li>
+						<pre class="fragment"><code data-trim>var mySvg = d3.select('#my-svg')</code></pre>
+						<li class="fragment">Select all child elements of SVG that you want to bind data to</li>
+						<pre class="fragment"><code data-trim>var circles = mySvg.selectAll('circle').data(dataSet)</code></pre>
+						<li class="fragment">Remove circles that are no longer present</li>
+						<pre class="fragment"><code data-trim>circles.exit().remove()</code></pre>
+					</ol>	
+				</section>
+				<section>
+						<iframe class="stretch" src="http://jsbin.com/jaqemu/2/embed"></iframe>
+				</section>
+				<section>
+					<h3>Transition Elements</h3>
+					<ol>
+						<li class="fragment">Select element to which you want to manage data (ie, svg)</li>
+						<pre class="fragment"><code data-trim>var mySvg = d3.select('#my-svg')</code></pre>
+						<li class="fragment">Select all child elements of SVG that you want to bind data to</li>
+						<pre class="fragment"><code data-trim>var circles = mySvg.selectAll('circle').data(dataSet)</code></pre>
+						<li class="fragment">Select <i>all</i> elements and transition a property</li>
+						<pre class="fragment"><code data-trim>mySvg.selectAll('circle').transition().duration(500).attr('cx', 100)</code></pre>
+					</ol>	
+				</section>
+				<section>
+						<iframe class="stretch" src="http://jsbin.com/xeheg/1/embed"></iframe>
+				</section>
+			</section>
+		
+			
+		</div>
+	</div>
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+
+
+	<script>
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, 
+			transition: Reveal.getQueryHash().transition || 'default',
+			dependencies: [
+				{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>
