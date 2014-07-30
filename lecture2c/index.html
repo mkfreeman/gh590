@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Lecture 2c</title>
+
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+		if( window.location.search.match( /print-pdf/gi ) ) {
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = 'css/print/pdf.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		}
+	</script>
+
+
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+			<h2>User Driven Design</h2>
+			</section>
+			
+			<section>
+			<h3>Outline</h3>
+				<ul>
+					<li class="fragment">UCD Overview</li>
+					<li class="fragment">Users/Personas</li>
+					<li class="fragment">Scenarios</li>
+					<li class="fragment">Use Cases</li>					
+				</ul>
+			</section>
+			<section>
+				<section>
+					<h3>UCD Overview</h3>
+					<ul>
+						<li class="fragment">Prioritizes end users at each stage of the design/development process</li>
+						<li class="fragment">Aims to meet needs/wants of users(not change behavior)</li>
+						<li class="fragment">Engages users for design, prototyping, testing (ideally)</li>
+						<li class="fragment">Provides a framework for prioritization and evaluation</li>					
+					</ul>	
+				</section>
+				<section>
+					<h3>UCD Process</h3>
+					<ul>
+						<li class="fragment">Identify target population for product (users)</li>
+						<li class="fragment">Construct aggregate representations of common users (personas)</li>
+						<li class="fragment">Describe contexts in which product is used (scenarios)</li>
+						<li class="fragment">Detail specific tasks to accomplish (use cases)</li>					
+					</ul>	
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Users/Personas</h3>
+					<ul>
+						<li class="fragment">Users are identified through research / estimation</li>
+						<li class="fragment">Personas are developed to represent groups of users</li>
+						<li class="fragment">Development is centered around the personas</li>
+						<li class="fragment">Crucial for understanding the needs, wants, and limitations of users </li>
+						<li class="fragment">Often have multiple (competing) personas</li>					
+					</ul>	
+				</section>
+				<section>
+					<h3>Persona Description</h3>
+					<p>Typically include:</p>
+					<ul>
+						<li class="fragment">Name</li>
+						<li class="fragment">Demographics (age, language)</li>
+						<li class="fragment">Profession</li>						
+						<li class="fragment">Roles and responsibilities</li>
+						<li class="fragment">Goals and tasks</li>					
+						<li class="fragment">Work environment</li>			
+					</ul>	
+				</section>
+				<section>
+					<h3>Persona Sample</h3>
+					<ul>
+						<li>Name: Marie</li>
+						<li>Age: 32</li>
+						<li>Country: Japan</li>
+						<li>Profession: Epidemiologist</li>					
+						<li>Work environment</li>			
+					</ul>	
+				</section>
+			
+				<section>
+					<h3>Users in global health</h3>
+					<ul>
+						<li class="fragment">Health officials</li>
+						<li class="fragment">Health providers</li>
+						<li class="fragment">International NGOs</li>
+						<li class="fragment">General public</li>
+						<li class="fragment">Researchers</li>	
+						<li class="fragment">Educators</li>	
+						<li class="fragment">You</li>					
+					</ul>	
+				</section>
+			</section>
+			
+				<section>
+				<section>
+					<h3>Binding data</h3>
+					<ul>
+						<li class="fragment">The power of D3 is its ability to bind data to DOM elements</li>
+						<li class="fragment">Each element (ie, <code>&ltcircle&gt,&ltrect&gt</code>) is tied to data</li>
+						<li class="fragment">Any data without existing HTML elements can create new HTML elements (<code>enter</code>)</li>						
+						<li class="fragment">Any HTML elements without corresponding data can be removed (<code>exit</code>)</li>
+						<li class="fragment">Existing HTML elements can transition to reflect updates in the data (<code>update</code>)</li>
+					</ul>	
+				</section>
+				<section>
+					<h3>How it works: entering</h3>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/empty.png"></img>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/data.png"></img>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/entered.png"></img>
+				</section>
+				<section>
+					<h3>How it works: exiting</h3>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/entered.png"></img>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/data_2.png"></img>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/entered_2.png"></img>
+				</section>
+				<section>
+					<h3>How it works: updating</h3>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/entered.png"></img>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/data_3.png"></img>
+						<img class="fragment" style="height:200px" src ="../reveal/lib/imgs/entered_3.png"></img>
+				</section>
+				<section>
+					<h3>Enter Elements</h3>
+					<ol>
+						<li class="fragment">Select element to which you want to bind data (ie, svg)</li>
+						<pre class="fragment"><code data-trim>var mySvg = d3.select('#my-svg')</code></pre>
+						<li class="fragment">Select all child elements of SVG that you want to bind data to</li>
+						<pre class="fragment"><code data-trim>var circles = mySvg.selectAll('circle').data(dataSet)</code></pre>
+						<li class="fragment">Enter new objects onto the page and append the desired elements</li>
+						<pre class="fragment"><code data-trim>circles.enter().append('circle')</code></pre>
+						<li class="fragment">Assign attributes</li>
+						<pre class="fragment"><code data-trim>circles.attr('r', 15).attr('cx', 50)...</code></pre>
+					</ol>	
+				</section>
+				<section>
+						<iframe class="stretch" src="http://jsbin.com/kivel/9/embed"></iframe>
+				</section>
+				<section>
+					<h3>Remember functions?</h3>
+					<ul>
+						<li class="fragment">Many similar processes are repeated when updating elements</li>
+						<li class="fragment">These processes can (should) be stored in functions</li>
+						<li class="fragment">Function to define circle attributes</li>
+												<pre class="fragment"><code data-trim>
+var circleFunction = function(circle) {
+	circle.attr('r', 15)
+	  .attr('cx', function(d) {return d*1})
+	  .attr('cy', function(d) {return d*30})
+	  .attr('fill', 'blue')
+}
+						</pre></code>
+					</ul>	
+				</section>
+				<section>
+						<iframe class="stretch" src="http://jsbin.com/kivel/14/embed"></iframe>
+				</section>
+				<section>
+					<h3>Exit Elements</h3>
+					<ol>
+						<li class="fragment">Select element to which you want to manage data (ie, svg)</li>
+						<pre class="fragment"><code data-trim>var mySvg = d3.select('#my-svg')</code></pre>
+						<li class="fragment">Select all child elements of SVG that you want to bind data to</li>
+						<pre class="fragment"><code data-trim>var circles = mySvg.selectAll('circle').data(dataSet)</code></pre>
+						<li class="fragment">Remove circles that are no longer present</li>
+						<pre class="fragment"><code data-trim>circles.exit().remove()</code></pre>
+					</ol>	
+				</section>
+				<section>
+						<iframe class="stretch" src="http://jsbin.com/jaqemu/2/embed"></iframe>
+				</section>
+				<section>
+					<h3>Transition Elements</h3>
+					<ol>
+						<li class="fragment">Select element to which you want to manage data (ie, svg)</li>
+						<pre class="fragment"><code data-trim>var mySvg = d3.select('#my-svg')</code></pre>
+						<li class="fragment">Select all child elements of SVG that you want to bind data to</li>
+						<pre class="fragment"><code data-trim>var circles = mySvg.selectAll('circle').data(dataSet)</code></pre>
+						<li class="fragment">Select <i>all</i> elements and transition a property</li>
+						<pre class="fragment"><code data-trim>mySvg.selectAll('circle').transition().duration(500).attr('cx', 100)</code></pre>
+					</ol>	
+				</section>
+				<section>
+						<iframe class="stretch" src="http://jsbin.com/xeheg/1/embed"></iframe>
+				</section>
+			</section>
+		
+			
+		</div>
+	</div>
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+
+
+	<script>
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, 
+			transition: Reveal.getQueryHash().transition || 'default',
+			dependencies: [
+				{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>
