@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Lecture 6t</title>
+
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+		if( window.location.search.match( /print-pdf/gi ) ) {
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = 'css/print/pdf.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		}
+	</script>
+
+
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+			<h2>How to build maps</h2>
+			</section>
+			
+			<section>
+			<h3>Outline</h3>
+				<ul>
+					<li class="fragment">Overview</li>
+					<li class="fragment">Inputs</li>
+					<li class="fragment">Drawing an outline</li>
+					<li class="fragment">Filling in colors</li>
+					<li class="fragment">Advanced interactivity</li>					
+				</ul>
+			</section>
+			<section>
+				<h3>Overview</h3>
+				<ul>
+					<li class="fragment">Drawing a map is just like drawing any other visualization</li>
+					<li class="fragment">Data is bound to an svg element for each visual feature (<code>path</code>)</li>
+					<pre class="fragment"><code data-trim>var paths = mySvg.selectAll('path').data(shape.features).enter().append('path')</code></pre>		
+					<li class="fragment">As with lines, the path is assigned to the 'd' attribute</li>
+					<pre class="fragment"><code data-trim>paths.attr('d', path)</code></pre>		
+				</ul>	
+				
+			</section>
+		<section>
+			<section>
+				<h3>Inputs</h3>
+			</section>
+			<section>
+				<h3>Shapefiles</h3>
+				<ul>
+					<li class="fragment">Vector data format for storing geometric location data</li>
+					<li class="fragment">Contains geographic information and other properties for each location</li>
+					<img style="width:50%" class="fragment" src="../reveal/lib/imgs/shape.png"></img>
+				</ul>	
+			</section>
+			<section>
+				<h3>Data</h3>
+				<ul>
+					<li class="fragment">Data should be formatted to reference shapefile properties (ie, iso3)</li>
+					<pre class="fragment"><code data-trim>
+var data = [
+	AFG:6, 
+	AGO:9, 
+	ALB:10, 
+	...
+	ZWE:1,
+]
+</code></pre>	
+			<li class = "fragment">Data is then easily accessed when using the shapefile</li>
+			<pre class="fragment"><code data-trim>
+			var value = data[shape[0].properties.iso3]
+			</code></pre>
+				</ul>	
+			</section>
+		</section>
+		<section>
+			<section>
+				<h3>Drawing an outline</h3>
+				<ul>
+					<li class = "fragment">A <i>projection</i> is used to define how coordinates are translated into the layout</li>
+					<pre class="fragment"><code data-trim>var projection = d3.geo.equirectangular()</code></pre>
+					<li class = "fragment">A path generator uses the projection to construct coordinate paths</li>
+					<pre class="fragment"><code data-trim>var path = d3.geo.path().projection(projection)</code></pre>							
+					<li class = "fragment">Append elements to the DOM, passing data to the path function</li>
+					<pre class="fragment"><code data-trim>
+var paths = d3.select('#map-g').selectAll('path')
+	.data(shape.features)
+	.enter().append("path")
+	.attr("fill", "#FFF")
+	.attr("stroke", "#000")
+	.attr('d', path)					
+</code></pre>							
+				</ul>
+				</section>	
+				<section>
+					<iframe class="stretch" src="http://prototypes-dev.ihme.washington.edu/gh_590h/simple_map/"></iframe>
+				</section>
+			</section>
+		<section>
+			<section>
+				<h3>Colorize</h3>
+			</section>
+			<section>
+				<h3>Set scale</h3>
+				<p class="fragment">Get min/max values from data</p>
+				<pre class="fragment"><code data-trim>var values = d3.keys(data).map(function(d) {return data[d].mean})
+var min = d3.min(values)
+var max = d3.max(values)
+				</code></pre>	
+				<p class="fragment">Set color scale from values to colors</p>
+				<pre class="fragment"><code data-trim>var scale = d3.scale.linear().range(['white', 'red']).domain([min, max])</code></pre>											
+			</section>
+		<section>
+			<h3>Fill in paths with colors</h3>
+<pre class="fragment"><code data-trim>
+paths.attr('fill', function(d) {
+	var iso3 = d.properties.adm0_a3 // get ISO3 of path
+	if(data[iso3] == undefined) return '#d3d3d3' // Return gray if no data
+	var value = data[iso3].mean // Get value to colorize
+	var color = scale(value) // Get color from scale
+	return color // Return color
+})
+</code></pre>
+	<p class="fragment">Alternatively</p>	
+<pre class="fragment"><code data-trim>
+paths.attr('fill', function(d) {
+	return data[iso3] == undefined) ? '#d3d3d3' : scale(data[d.properties.adm0_a3].mean)
+})	
+</code></pre>	
+		</section>
+		<section>
+			<iframe class="stretch" src="../examples/map?color=draw"></iframe>
+		</section>
+		</section>
+		<section>
+			<section>
+				<h3>Add hover text</h3>
+			</section>
+			<section>
+			<p>Select each path using the jQuery library</p>
+			<pre class="fragment"><code data-trim>$('#map-svg path')</code></pre>
+			<p class="fragment">Call the poshytip function on selected objects</p>	
+			<pre class="fragment"><code data-trim>$('#map-svg path').poshytip({arguments})</code></pre>		
+			</section>
+			<section>
+			<h3>Poshytip arguments</h3>
+<pre class="fragment"><code data-trim>
+$('#map-svg path').poshytip({
+	alignTo: 'cursor', // Align to cursor
+	followCursor: true, // follow cursor when it moves
+	showTimeout: 0, // No fade in
+	hideTimeout: 0,  // No fade out
+	alignX: 'center', // X alignment
+	alignY: 'inner-bottom', // Y alignment
+	className: 'tip-ihme', // Class for styling
+	offsetY: 10, // Offset vertically
+	slide: false, // No slide animation
+	content: function(d){
+		var obj = this.__data__ // Data associated with element
+		var name = obj.properties.brk_name // Name from properties
+		var iso3 = obj.properties.adm0_a3 // iso3
+		mean = data[iso3] == undefined ? '' : data[iso3].mean // Value
+		return name + ' ' + mean // String to return
+	}
+})
+</code></pre>
+			</section>
+		</section>
+		</section>
+		</div>
+	</div>
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+
+
+	<script>
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, 
+			transition: Reveal.getQueryHash().transition || 'default',
+			dependencies: [
+				{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>
