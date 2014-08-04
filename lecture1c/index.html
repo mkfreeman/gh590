@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Lecture 1</title>
+	<title>Lecture 1c</title>
 
 	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
 	<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
@@ -35,18 +35,52 @@
 			</section>
 			
 			<section>
-			<h3>Day 1 outline</h3>
+			<h3>Outline</h3>
 				<ul>
-					<li class="fragment">Three questions</li>
+					<li class="fragment">What is data visualization?</li>
+					<li class="fragment">Why use interactive data visualization for global health?</li>
 					<li class="fragment">Course overview</li>
 					<li class="fragment">Technology tour</li>
 					<li class="fragment">Getting started</li>
 				</ul>
 			</section>
-			
-			
 			<section>
-				<h3>Three questions</h3>
+				<section>
+				<h3>What is data visualization?</h3>
+				</section>
+				<section>
+				<h3>Are these data visualizations?</h3>
+				</section>
+				<section>
+				<img src = "http://www.recursion.org/d3-for-mere-mortals/books-per-year-smaller.png"></img>
+				</section>
+				<section>
+				<img src = "http://1.bp.blogspot.com/_68rBirzDdJg/TJGiMU48L5I/AAAAAAAAAGM/AUdjFwHG2gM/s1600/data+visualisation.bmp"></img>
+				</section>
+				<section>
+					<img class="stretch" src="http://dailyinfographic.com/wp-content/uploads/2013/11/top-executives-wakeup-schedule_528b8913cd7f5_w1500.jpg"></img>
+				</section>
+				<section>
+					<img class="stretch" src="http://www.foodtechconnect.com/wp-content/uploads/2012/04/Screen-Shot-2012-11-08-at-2.54.16-PM.png"></img>
+				</section>
+				<section>
+				<img src = "http://www.cdc.gov/pcd/issues/2007/oct/images/07_0091_03.gif"></img>
+				</section>
+				<!-- 
+<section>
+				<img src = "http://cdn.hdw9.com/wp-content/uploads/2013/07/A_large_blank_world_map_with_oceans_marked_in_blue.png"></img>
+				</section>
+ -->
+				<section>
+				<a href="https://immersion.media.mit.edu/viz#" target="_blank">Immersion Media</a>
+				</section>
+				<section>
+					<h3>What is data visualization?</h3>
+					<p class="fragment">The practice of translating information into graphical representations</p>
+				</section>
+			</section>
+			<section>
+				<h3>Why use interactive data visualization for global health?</h3>
 				<ul>
 					<li class="fragment">Why visualization?</li>
 					<li class="fragment">Why <i>interactive</i> visualization?</li>
@@ -79,7 +113,15 @@
 				</section>	
 				<section>
 				<h3>A more complex example</h3>
-				<img src = "https://blog.scraperwiki.com/wp-content/uploads/2013/03/anscombesdata.png"></img>
+					<img style="float:left;" class="fragment" src="https://blog.scraperwiki.com/wp-content/uploads/2013/03/anscombesdata.png"></img>
+					<ul>
+						<li class="fragment">Mean x: 9.00</li>
+						<li class="fragment">Mean y: 7.50</li>
+						<li class="fragment">Variance x: 11.00</li>
+						<li class="fragment">Variance y: 4.12</li>
+						<li class="fragment">Correlation between x and y: .816</li>
+						<li class="fragment">Linear regression: y = 3.00 + .500x</li>
+					</ul>
 				</section>
 				<section>
 					<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Anscombe%27s_quartet_3.svg/800px-Anscombe%27s_quartet_3.svg.png"></img>
@@ -90,19 +132,19 @@
 					<h3>Why <i>interactive </i> &nbsp visualization?</h3>
 				</section>
 				<section>
-				<h4>Retrieve information</h4>
+				<h3>Retrieve information</h3>
 				</section>
 				<section>
 					<iframe class="stretch" src="http://nvd3.org/examples/scatter.html"></iframe>
 				</section>
 				<section>
-					<h4>Data Exploration
+					<h3>Data Exploration</h3>
 				</section>
 				<section>
 					<iframe class="stretch" src="http://mbostock.github.io/d3/talk/20111116/iris-splom.html"></iframe>
 				</section>
 				<section>
-					<h4>Broaden Reach</h4>
+					<h3>Broaden Reach</h3>
 				</section>
 				<section>
 					<iframe class="stretch" src="http://ihmeuw.org/1zl9"></iframe>
@@ -113,22 +155,22 @@
 					<h3>Why interactive visualization for <i>global health</i> ?</h3>
 				</section>
 				<section>
-					<h4>Health & public health trend discovery</h4>
+					<h3>Health & public health trend discovery</h3>
 				</section>
 				<section>
 					<img class="stretch" src="http://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Snow-cholera-map-1.jpg/823px-Snow-cholera-map-1.jpg"></img>
 				</section>
 				<section>
-					<h4>Health data exploration</h4>
+					<h3>Health data exploration</h3>
 				</section>
 				<section>
 					<iframe class="stretch" src="http://vizhub.healthdata.org/gbd-compare/"></iframe>
 				</section>
 				<section>
-					<h4>Health data communication</h4>
+					<h3>Health data communication</h3>
 				</section>
 				<section>
-					<img class="stretch" src="http://www.foodtechconnect.com/wp-content/uploads/2012/04/Screen-Shot-2012-11-08-at-2.54.16-PM.png"></img>
+					<a href="http://vizhealth.org" target="_blank">vizhealth.org</a>
 				</section>
 			</section>
 			<section>
@@ -159,28 +201,43 @@
 						<h3>Course structure</h3>
 					</section>
 					<section>
+						<p><u>Week 1</u></p>
+						<ul>
+							<li class="fragment"><b>Conceptual: </b>Foundational theories of design approaches and graphical perception</li>
+							<li class="fragment"><b>Technical: </b>Foundational understanding of web programming and D3</li>							
+							<li class="fragment"><b>Assignments: </b>Specific assessments of skills</li>							
+						</ul>
+						<p class="fragment"><u>Week 2</u></p>
+						<ul>
+							<li class="fragment"><b>Conceptual: </b>Various topics in visualization (maps, design, evaluation)</li>
+							<li class="fragment"><b>Technical: </b>Tutorials on using specific chart types (treemaps, stacked bars, etc.)</li>							
+							<li class="fragment"><b>Assignments: </b>Independent project work</li>							
+						</ul>
+					</section>
+					<section>
 						<h3>Daily process</h3>
 						<ul>
 							<li class="fragment">Conceptual lecture (20-30 mins)</li>
 							<li class="fragment">Conceptual exercise (20-30 mins)</li>
-							<li class="fragment">Group technical exercise(s) (1-2 hours)</li>
-							<li class="fragment">Individual technical exercise (1-2 hours)</li>
+							<li class="fragment">Technical lecture (1 hour)</li>
+							<li class="fragment">Technical exercises (1-2 hours)</li>
+							<li class="fragment">Exercise review(30-60 mins)</li>
 						</ul>
 					</section>
 					<section>
 						<h3>Evaluation</h3>
 						<ul>
-							<li class="fragment">Class participation: 20%</li>
-							<li class="fragment">Homework assignments: 40%</li>
-							<li class="fragment">Final project: 40%</li>
+							<li class="fragment">Class participation: 10%</li>
+							<li class="fragment">Homework assignments: 35%</li>
+							<li class="fragment">Final project: 55%</li>
 						</ul>
 					</section>
 				</section>
-				
-			<section>
-				<h3>Technology/resources tour</h3>
-			</section>
-			<section>
+			<section>	
+				<section>
+					<h3>Technology/resources tour</h3>
+				</section>
+			
 				<section>
 					<h3>Stack overflow</h3>
 					<ul>
@@ -211,7 +268,12 @@
 						</ul>
 				</section>
 				<section>
-					<iframe class="stretch" src="http://jsbin.com/"></iframe>
+					<h3>Reveal</h3>
+					<li class="fragment">A web based presentation framework</li>
+					<li>Course purpose: lectures</li>
+				</section>
+				<section>
+					<iframe class="stretch" src="http://jsbin.com/nayog/1/embed"></iframe>
 				</section>
 				<section>
 					<h3>Local web servers(MAMP/WAMP)</h3>
@@ -219,6 +281,7 @@
 						
 						<li class="fragment">Running a local web server allows your browser to interpret certain file types (ie, .csv files)</li>
 						<li class="fragment">Free software (MAMP/WAMP) or simple python commands can set this up easily</li>
+						<li class="fragment">Course purpose: local projects that require data reading</li>
 					</ul>
 				</section>
 			</section>

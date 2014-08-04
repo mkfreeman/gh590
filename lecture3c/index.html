@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Lecture 3c</title>
+
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+		if( window.location.search.match( /print-pdf/gi ) ) {
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = 'css/print/pdf.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		}
+	</script>
+
+
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+			<h2>Graphical Perception (1/2)</h2>
+			</section>
+			
+			<section>
+			<h3>Outline</h3>
+				<ul>
+					<li class="fragment">Importance of graphical perception</li>
+					<li class="fragment">Overview of data types</li>
+					<li class="fragment">Personas</li>					
+					<li class="fragment">Scenarios</li>
+					<li class="fragment">Use Cases</li>					
+				</ul>
+			</section>
+			<section>
+				<section>
+					<h3>UCD Overview</h3>
+					<ul>
+						<li class="fragment">Design philosophy that prioritizes  users at each stage of development </li>
+						<li class="fragment">Aims to meet needs/wants of users (not change behavior)</li>
+						<li class="fragment">Engages users for design, prototyping, testing (ideally)</li>
+						<li class="fragment">Provides a framework for prioritization and evaluation</li>					
+					</ul>	
+				</section>
+				<section>
+					<h3>UCD Process</h3>
+					<ul>
+						<li class="fragment">Identify target population for product (users)</li>
+						<li class="fragment">Construct aggregate representations of common users (personas)</li>
+						<li class="fragment">Describe contexts in which product is used (scenarios)</li>
+						<li class="fragment">Detail specific tasks to accomplish (use cases)</li>					
+					</ul>	
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Users</h3>
+					<p class="fragment">Identify users through:</p>
+					<ul>
+						<li class="fragment">Field research</li>
+						<li class="fragment">Analysis of existing products</li>
+						<li class="fragment">Outreach and collaboration</li>
+						<li class="fragment">Prior knowledge and estimation</li>					
+					</ul>	
+				</section>
+					<section>
+					<h3>Users in global health</h3>
+					<ul>
+						<li class="fragment">Health officials</li>
+						<li class="fragment">Health providers</li>
+						<li class="fragment">International NGOs</li>
+						<li class="fragment">General public</li>
+						<li class="fragment">Researchers</li>	
+						<li class="fragment">Educators</li>	
+						<li class="fragment">You</li>					
+					</ul>	
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Personas</h3>
+					<blockquote>
+						&ldquo;Fictional characters that represent users with shared attitudes, goals, and behaviors&rdquo;
+					</blockquote>
+					<ul>
+						<li class="fragment">Increased empathy</li>
+						<li class="fragment">Tighter focus</li>
+						<li class="fragment">Better communication</li>
+						<li class="fragment">Avoid stereotypes</li>
+						<li class="fragment"><a href="http://itidjournal.org/itid/article/viewFile/423/191">(Putnam 2009)</a></li>
+					</ul>
+				</section>
+				<section>
+					<h3>Persona Description</h3>
+					<p>Typically include:</p>
+					<ul>
+						<li class="fragment">Name</li>
+						<li class="fragment">Demographics (age, language)</li>
+						<li class="fragment">Profession</li>						
+						<li class="fragment">Roles and responsibilities</li>
+						<li class="fragment">Goals and tasks</li>					
+						<li class="fragment">Technological experience</li>			
+					</ul>	
+				</section>
+				<section>
+					<img class="stretch" src="http://www.thedesignschool.co.uk/ardronegameproject/files/persona-for-AR-Drone-game-project.jpg"></img>
+				</section>
+				<section>
+					<h3>Persona Sample</h3>
+					<ul>
+						<li><b>Name:</b> Marie</li>
+						<li><b>Age:</b>  32</li>
+						<li><b>Country:</b> Japan</li>
+						<li><b>Profession:</b>  HIV Researcher</li>		
+						<li><b>Role:</b>  Estimate intervention efficacy</li>
+					</ul>	
+				</section>
+			
+			</section>
+			</section>
+			<section>
+				<section>
+					<h3>Scenarios</h3>
+					<blockquote>
+						&ldquo;Story about how a user interacts with a product&rdquo;
+					</blockquote>
+					<ul>
+						<li class="fragment">Provides tangible/memorable context for product</li>
+						<li class="fragment">Helps define requirements for the product</li>
+						<li class="fragment">Identifies potential challenges/issues</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Global Health Scenarios</h3>
+					<ul>
+						<li class="fragment">An HIV researcher is writing a paper and wants to get HIV statistics</li>
+						<li class="fragment">An academic uses the visualization in a class</li>
+						<li class="fragment">A health minister wants to learn about age-specific HIV trends in her country</li>
+					</ul>
+				</section>
+			</section>
+			
+			<section>
+				<section>
+					<h3>Use Cases</h3>
+					<blockquote>
+						&ldquo;A use case defines the interactions between external actors and the system under consideration to accomplish a goal&rdquo; -wiki
+					</blockquote>
+					<ul>
+						<li class="fragment">Detail system level requirements for steps in a scenario</li>
+						<li class="fragment">Articulate process for an interaction </li>
+						<li class="fragment">Can help limit out unrelated requests</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Example Use Cases</h3>
+					<ul>
+						<li class="fragment">Getting HIV numbers: mouseover element to retrieve value</li>
+						<li class="fragment">Learning about different ages: need a menu to select age</li>
+						<li class="fragment">Learning about a specific country: click the country</li>						
+					</ul>
+				</section>
+			
+			</section>
+			<section>
+				<h3>Summary</h3>
+				<p class="fragment">Design the right product for the right people</p>
+				<ul>
+					<li class="fragment">Identify and describe your users</li>
+					<li class="fragment">Write scenarios that facilitate understanding product use</li>
+					<li class="fragment">Detail use cases to articulate steps executed in a scenario</li>						
+				</ul>
+			</section>
+		
+		</div>
+	</div>
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+
+
+	<script>
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, 
+			transition: Reveal.getQueryHash().transition || 'default',
+			dependencies: [
+				{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>
