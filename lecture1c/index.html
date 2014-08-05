@@ -21,6 +21,8 @@
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		}
 	</script>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+
 
 
 </head>
@@ -52,10 +54,23 @@
 				<h3>Are these data visualizations?</h3>
 				</section>
 				<section>
-				<img src = "http://www.recursion.org/d3-for-mere-mortals/books-per-year-smaller.png"></img>
+				<img id="books-img" src = "../reveal/lib/imgs/books_per_year.png"></img>
+				<img id="books-data" class="fragment" src = "../reveal/lib/imgs/books1.png"></img>
+				<div class="fragment" id='books2' style="height:0px; width:0px;"></div>
+				<div class="fragment" id='books3' style="height:0px; width:0px;"></div>
+				<div class="fragment" id='books4' style="height:0px; width:0px;"></div>
+				<div class="fragment" id='books5' style="height:0px; width:0px;"></div>
+				<div class="fragment" id='books6' style="height:0px; width:0px;"></div>
+				<div class="fragment" id='books7' style="height:0px; width:0px;"></div>
+
 				</section>
 				<section>
-				<img src = "http://1.bp.blogspot.com/_68rBirzDdJg/TJGiMU48L5I/AAAAAAAAAGM/AUdjFwHG2gM/s1600/data+visualisation.bmp"></img>
+				<img id="wordcloud" src = "../reveal/lib/imgs/wordcloud1.png"></img>
+				<img id="wordcloud-data" class ="fragment" src = "http://www.franzyourfranz.com/Wall_Street_Journal_article.jpg"></img>
+				<div class="fragment" id='wordcloud2' style="height:0px; width:0px;"></div>
+				<div class="fragment" id='wordcloud3' style="height:0px; width:0px;"></div>
+				<div class="fragment" id='wordcloud4' style="height:0px; width:0px;"></div>
+
 				</section>
 				<section>
 					<img class="stretch" src="http://dailyinfographic.com/wp-content/uploads/2013/11/top-executives-wakeup-schedule_528b8913cd7f5_w1500.jpg"></img>
@@ -253,7 +268,7 @@
 						<ul>
 						<li class="fragment">"Web-based hosting service for software development projects that use the Git revision control system" -wiki</li>
 						<li class="fragment">Widely used for version control and code sharing</li>
-						<li class="fragment">Course purpose: publishing web-pages</li>
+						<li class="fragment"><b>Course purpose:</b> publishing web-pages</li>
 						</ul>
 				</section>
 				<section>
@@ -264,24 +279,24 @@
 						<ul>
 						<li class="fragment">"An integrated development environment (IDE) that is hosted in a browser" -wiki</li>
 						<li class="fragment">Popular for posing questions, sharing examples</li>
-						<li class="fragment">Course purpose: embedded simple examples</li>
+						<li class="fragment"><b>Course purpose:</b>embedded simple examples</li>
 						</ul>
-				</section>
-				<section>
-					<h3>Reveal</h3>
-					<li class="fragment">A web based presentation framework</li>
-					<li>Course purpose: lectures</li>
 				</section>
 				<section>
 					<iframe class="stretch" src="http://jsbin.com/nayog/1/embed"></iframe>
 				</section>
 				<section>
+					<h3>Reveal</h3>
+					<li class="fragment">A web based presentation framework</li>
+					<li class = "fragment"><b>Course purpose:</b> lectures</li>
+				</section>
+				<section>
 					<h3>Local web servers(MAMP/WAMP)</h3>
 					<ul>
 						
-						<li class="fragment">Running a local web server allows your browser to interpret certain file types (ie, .csv files)</li>
+						<li class="fragment">Running a local web server allows your browser to access certain file types (ie, .csv files)</li>
 						<li class="fragment">Free software (MAMP/WAMP) or simple python commands can set this up easily</li>
-						<li class="fragment">Course purpose: local projects that require data reading</li>
+						<li class="fragment"><b>Course purpose:</b> local projects that require data reading</li>
 					</ul>
 				</section>
 			</section>
@@ -312,7 +327,80 @@
 				{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
 			]
 		});
-
+		Reveal.addEventListener('book-slide', function() {
+			d3.select('#books-img').attr('src',  "../reveal/lib/imgs/books_per_year.png")
+			d3.select('#books-data').attr('src',  "../reveal/lib/imgs/books1.png")
+		})
+		Reveal.addEventListener('fragmentshown', function(event) {
+			console.log('show event ', event)
+			switch(event.fragment.id) {
+				case 'books2':
+					d3.select('#books-img').attr('src',  "../reveal/lib/imgs/books_per_year2.png")
+					d3.select('#books-data').attr('src',  "../reveal/lib/imgs/books2.png")
+					break
+				case 'books3':
+					d3.select('#books-img').attr('src',  "../reveal/lib/imgs/books_per_year3.png")
+					d3.select('#books-data').attr('src',  "../reveal/lib/imgs/books3.png")
+					break
+				case 'books4':	
+					d3.select('#books-img').attr('src',  "../reveal/lib/imgs/books_per_year4.png")
+					break	
+				case 'books5':	
+					d3.select('#books-img').attr('src',  "../reveal/lib/imgs/books_per_year5.png")
+					break	
+				case 'books6':	
+					d3.select('#books-img').attr('src',  "../reveal/lib/imgs/books_per_year6.png")
+					break;
+				case 'books7':	
+					d3.select('#books-img').attr('src',  "../reveal/lib/imgs/books_per_year7.png")
+					break;
+				case 'wordcloud2':
+					d3.select('#wordcloud-data').attr('src', '../reveal/lib/imgs/wordcloud2.png')
+					break;
+				case 'wordcloud3':
+					d3.select('#wordcloud').attr('src', '../reveal/lib/imgs/wordcloud_vis1.png')
+					d3.select('#wordcloud-data').attr('src', '../reveal/lib/imgs/wordcloud3.png')
+					break;
+				case 'wordcloud4':
+					d3.select('#wordcloud').attr('src', '../reveal/lib/imgs/wordcloud_vis2.png')
+					break;
+			}
+		})
+		Reveal.addEventListener('fragmenthidden', function(event) {
+			console.log('hide event ', event)
+			switch(event.fragment.id) {
+				case 'books2':
+					d3.select('#books-img').attr('src',  "../reveal/lib/imgs/books_per_year.png")
+					d3.select('#books-data').attr('src',  "../reveal/lib/imgs/books1.png")
+					break
+				case 'books3':
+					d3.select('#books-img').attr('src',  "../reveal/lib/imgs/books_per_year2.png")
+					d3.select('#books-data').attr('src',  "../reveal/lib/imgs/books2.png")
+					break
+				case 'books4':	
+					d3.select('#books-img').attr('src',  "../reveal/lib/imgs/books_per_year3.png")
+					break	
+				case 'books5':	
+					d3.select('#books-img').attr('src',  "../reveal/lib/imgs/books_per_year4.png")
+					break	
+				case 'books6':	
+					d3.select('#books-img').attr('src',  "../reveal/lib/imgs/books_per_year5.png")
+					break;
+				case 'books7':	
+					d3.select('#books-img').attr('src',  "../reveal/lib/imgs/books_per_year6.png")
+					break;		
+				case 'wordcloud2':
+					d3.select('#wordcloud-data').attr('src', 'http://www.franzyourfranz.com/Wall_Street_Journal_article.jpg')
+					break;
+				case 'wordcloud3':
+					d3.select('#wordcloud').attr('src', '../reveal/lib/imgs/wordcloud1.png')
+					d3.select('#wordcloud-data').attr('src', '../reveal/lib/imgs/wordcloud2.png')
+					break;
+				case 'wordcloud4':
+					d3.select('#wordcloud').attr('src', '../reveal/lib/imgs/wordcloud_vis1.png')
+					break;
+			}
+		})
 	</script>
 
 </body>
