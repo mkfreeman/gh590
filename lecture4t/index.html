@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Lecture 4t</title>
+
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+		if( window.location.search.match( /print-pdf/gi ) ) {
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = 'css/print/pdf.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		}
+	</script>
+
+
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+			<h2>D3 Part 2: Scales, axes, and review</h2>
+			</section>
+			
+			<section>
+			<h3>Outline</h3>
+				<ul>
+					<li class="fragment">Assignment review</li>
+					<li class="fragment">Overview</li>
+					<li class="fragment">Linear Scales</li>
+					<li class="fragment">Ordinal Scales</li>
+					<li class="fragment">Axes</li>					
+					<li class="fragment">Review</li>
+				</ul>
+			</section>
+			<section>
+				Insert assignment review
+			</section>
+		<section>
+			<section>
+				<h3>Overview</h3>
+				<ul>
+					<li class="fragment">Scales are functions which translate from a data space to a visual space</li>
+					<li class="fragment">They map from an input <b>domain</b> (your data) to an output <b>range</b> (visual space)</li>					
+					<li class="fragment">Axes are visual representations of scales that allow reverse translation</li>
+					<li class="fragment">D3 has built in scale functionality that easily converts from data values to pixels</li>			
+				</ul>	
+			</section>
+			<section>
+					<h3>Conceptual Example</h3>
+					<ul>
+						<li class="fragment">What you have: Life expectancy <a href="http://data.worldbank.org/indicator/SP.DYN.LE00.IN">data</a></li>
+						<pre class="fragment"><code data-trim>
+var data = [
+	{location:'AFG', ex_1960:31.5, ex_2012:60.5}, 
+	{location:'ALB', ex_1960:62.3, ex_2012:77.4}, 
+	{location:'ARG', ex_1960:65.2, ex_2012:76.0}, 
+	{location:'AUS', ex_1960:70.8, ex_2012:82.1}, 
+]
+</code></pre>
+						<li class="fragment">What you want: x and y distances from origin</li>
+<pre class="fragment"><code data-trim>
+var data = [
+	{location:'AFG', x:0, y:0}, 
+	{location:'ALB', x:313, y:312}, 
+	{location:'ARG', x:343, y:287}, 
+	{location:'AUS', x:400, y:400}, 
+]
+</code></pre>
+					</ul>	
+				</section>
+			<section>
+				<h3>Defining a scale</h3>
+				<ul>
+					<li class="fragment">Define a variable as a scale</li>
+					<pre class="fragment"><code data-trim>var myScale = d3.scale.linear()</code></pre>
+					<li class="fragment">Define the <b>domain</b> of the scale (data space)</li>	
+					<pre class="fragment"><code data-trim>xScale.domain([dataMin, dataMax])</code></pre>
+					<li class="fragment">Define the <b>range</b> of the scale (visual space)</li>	
+					<pre class="fragment"><code data-trim>xScale.range([0, settings.width])</code></pre>				
+					<li class="fragment">Pass in a value from the data space to return a value in the visual space</li>	
+					<pre class="fragment"><code data-trim>var scaleValue = xScale(someValue)</code></pre>				
+	
+				</ul>	
+			</section>
+		</section>
+				
+		<section>
+					<section>
+					<h3>Quantitative Scales</h3>
+					</section>
+		
+					<section>
+						<ul>
+						<p style="text-align:center;"><u>Inputs</u></p>
+							<li class="fragment">Domain (min and max of data)</li>
+							<li class="fragment">Range (usually 0 and the height or width of chart)</li>
+							<li class="fragment">These are all quantitative values</li>
+						<p class="fragment" style="text-align:center;"><u>Outputs</u></p>
+							<li class="fragment">Single quantitative value in visual space</li>
+
+						</ul>
+					</section>
+					
+				<section>
+						<h3>Getting min/max values</h3>
+						<ul>
+							<li class="fragment">Life expectancy data:</li>
+<pre class="fragment"><code data-trim>
+var data = [
+	{location:'AFG', ex_1960:31.5, ex_2012:60.5}, 
+	{location:'ALB', ex_1960:62.3, ex_2012:77.4}, 
+...
+]
+</code></pre>
+							<li class="fragment">Use <code>.map</code> to iterate through items and extract values</li>
+							<pre class="fragment"><code data-trim>var xValues = data.map(function(d) {return d.ex_1960})</code></pre>
+							<li class="fragment">Use built in D3 functions to get min, max</li>
+							<pre class="fragment"><code data-trim>var xMin = d3.min(xValues)</code></pre>
+							<li class="fragment">More concisely</li>
+							<pre class="fragment"><code data-trim>var xMin = d3.min(data, function(d) {return d.ex_1960})</code></pre>							
+												
+						</ul>
+					</section>
+					
+				
+					<section>
+						<h3>Set Scale</h3>
+						<ul>
+						<li class="fragment">Define a variable as a scale</li>
+						<pre class="fragment"><code data-trim>var xScale = d3.scale.linear()</code></pre>
+						<li class="fragment">Define the <b>domain</b> of the scale (data space)</li>	
+						<pre class="fragment"><code data-trim>xScale.domain([xMin, xMax])</code></pre>
+						<li class="fragment">Define the <b>range</b> of the scale (visual space)</li>	
+						<pre class="fragment"><code data-trim>xScale.range([0, 500])</code></pre>		
+						<li class="fragment">The scale now takes in data x values and returns corresponding position from 0 to 500</li>	
+						</ul>	
+					
+						<h3>Drawing with scales</h3>
+						<p class="fragment">Just like drawing other scale, but scale the value</p>
+						<pre class="fragment"><code data-trim>
+// Append circles
+d3.select('#my-svg').selectAll('circle')
+  .data(data)
+  .enter().append('circle')
+  .attr('cx', function(d) {return xScale(d.ex_1960)})
+  .attr('cy', function(d) {return yScale(d.ex_2012)})
+  .attr('r', settings.radius)
+</code></pre>
+					</section>
+					<section>
+						<iframe class="stretch" src="http://jsbin.com/penoq/1/embed?js,output"></iframe>
+					</section>
+				</section>
+
+				<section>
+					<section>
+					<h3>Ordinal Scales</h3>
+					</section>
+					<section>
+						<ul>
+						<p style="text-align:center;"><u>Inputs</u></p>
+							<li class="fragment">Domain (min and max of data) (optional)</li>
+							<li class="fragment">Range (usually 0 and the height or width of chart) (optional)</li>
+							<li class="fragment">These are all typically string values</li>
+						<p class="fragment" style="text-align:center;"><u>Outputs</u></p>
+							<li class="fragment">Single value that is the mapped value in the range</li>
+
+						</ul>
+					</section>
+					<section>
+						
+					</section>
+<!-- 
+				<section>
+					<section>
+					<h3>Quantitative Scales</h3>
+					</section>
+				</section>
+ -->
+			</section>
+		</div>
+	</div>
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+
+
+	<script>
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, 
+			transition: Reveal.getQueryHash().transition || 'default',
+			dependencies: [
+				{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

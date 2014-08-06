@@ -31,7 +31,7 @@
 
 		<div class="slides">
 			<section>
-			<h2>Introduciton to D3</h2>
+			<h2>Introduction to D3</h2>
 			</section>
 			
 			<section>
@@ -126,9 +126,9 @@
 				<section>
 					<h3>Remember functions?</h3>
 					<ul>
-						<li class="fragment">Many similar processes are repeated when updating elements</li>
+						<li class="fragment">Many similar processes are repeated when positioning elements</li>
 						<li class="fragment">These processes can (should) be stored in functions</li>
-						<li class="fragment">Function to define circle attributes</li>
+						<li class="fragment">Function to define circle attributes:</li>
 												<pre class="fragment"><code data-trim>
 var circleFunction = function(circle) {
 	circle.attr('r', 15)
@@ -136,6 +136,14 @@ var circleFunction = function(circle) {
 	  .attr('cy', function(d) {return d*30})
 	  .attr('fill', 'blue')
 }
+						</pre></code>
+						<li class="fragment">Pass selected elements to functions by using D3's <code>.call</code> functionality</li>
+						<pre class="fragment"><code data-trim>
+d3.selectAll('circle')
+	.data(data)
+	.enter()
+	.append('circle')
+	.call(circleFunction)
 						</pre></code>
 					</ul>	
 				</section>
