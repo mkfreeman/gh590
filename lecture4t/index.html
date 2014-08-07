@@ -31,7 +31,7 @@
 
 		<div class="slides">
 			<section>
-			<h2>D3 Part 2: Scales, axes, and review</h2>
+			<h2>D3 Part 2: Scales and axes</h2>
 			</section>
 			
 			<section>
@@ -40,7 +40,7 @@
 					<li class="fragment">Assignment review</li>
 					<li class="fragment">Overview</li>
 					<li class="fragment">Linear Scales</li>
-					<li class="fragment">Ordinal Scales</li>
+					<li class="fragment">Ordinal Color Scales</li>
 					<li class="fragment">Axes</li>					
 					<li class="fragment">Review</li>
 				</ul>
@@ -147,9 +147,10 @@ var data = [
 						<pre class="fragment"><code data-trim>xScale.range([0, 500])</code></pre>		
 						<li class="fragment">The scale now takes in data x values and returns corresponding position from 0 to 500</li>	
 						</ul>	
-					
-						<h3>Drawing with scales</h3>
-						<p class="fragment">Just like drawing other scale, but scale the value</p>
+					</section>
+					<section>
+						<h3>Positioning elements with scales</h3>
+						<p class="fragment">Same process, just scale the value</p>
 						<pre class="fragment"><code data-trim>
 // Append circles
 d3.select('#my-svg').selectAll('circle')
@@ -161,28 +162,119 @@ d3.select('#my-svg').selectAll('circle')
 </code></pre>
 					</section>
 					<section>
-						<iframe class="stretch" src="http://jsbin.com/penoq/1/embed?js,output"></iframe>
+						<iframe class="stretch" src="http://jsbin.com/penoq/2/embed?js,output"></iframe>
 					</section>
 				</section>
 
 				<section>
 					<section>
-					<h3>Ordinal Scales</h3>
+					<h3>Ordinal Color Scales</h3>
 					</section>
 					<section>
-						<ul>
-						<p style="text-align:center;"><u>Inputs</u></p>
-							<li class="fragment">Domain (min and max of data) (optional)</li>
-							<li class="fragment">Range (usually 0 and the height or width of chart) (optional)</li>
-							<li class="fragment">These are all typically string values</li>
-						<p class="fragment" style="text-align:center;"><u>Outputs</u></p>
-							<li class="fragment">Single value that is the mapped value in the range</li>
-
+						<h3>Ordinal scales</h3>
+						<li class="fragment">Map from a discrete domain to a discrete range</li>
+						<pre class="fragment"><code data-trim>
+var people = ['Jim', 'Adam', 'Steve']
+var jobs = ['Researcher', 'Nurse', 'Farmer']
+var jobScale = d3.scale.ordinal().domain(people).range(jobs)
+var steves_job = jobScale('Steve') // returns "Farmer"
+</pre></code>
+						<li class="fragment">Domain is optional and will be set dynamically</li>
+						<pre class="fragment"><code data-trim>
+var people = ['Jim', 'Adam', 'Steve']
+var jobs = ['Researcher', 'Nurse', 'Farmer']
+var jobScaleNoDomain = d3.scale.ordinal().range(jobs)
+var steves_job = jobScale('Steve') // returns first element "Researcher"
+</pre></code>	
 						</ul>
 					</section>
 					<section>
-						
+						<iframe class="stretch" src="http://jsbin.com/moroy/1/embed?js,console"></iframe>
 					</section>
+					<section>
+						<h3>Color Scales</h3>
+						<ul>
+						<li class="fragment">D3 has built in color scales (and they're pretty)</li>
+						<li class="fragment">These scales have a pre-set range, and the domain can be set explicitly or dynamically</li>
+						<pre class="fragment"><code data-trim>
+var colorScale = d3.scale.category10()
+var color1 = colorScale('first item')
+var color2 = colorScale('second item')
+</pre></code>					
+						<li class="fragment">How would you create 10 text elements, each with one of these colors?</li>
+					</ul>
+					</section>
+					<section>
+						<iframe class="stretch" src="http://jsbin.com/sogewo/2/embed?js,output"></iframe>
+					</section>		
+				</section>
+				<section>
+					<section>
+						<h3>Axes</h3>
+					</section>
+					<section>
+						<h3>Overview</h3>
+						<ul>
+							<li class="fragment">Axes are visual representations of scales</li>
+							<li class="fragment">D3 has built in functionality for creating SVG elements to represent a given scale</li>
+							<li class="fragment">You can easily manipulate:</li>
+								<ul>
+									<li class="fragment">The scale that an axis represents</li>
+									<li class="fragment">Orientation of the axis ('left', 'bottom')</li>
+									<li class="fragment">Number of ticks that appear</li>
+									<li class="fragment">The tick values (ticks at specific values)</li>
+									<li class="fragment">The formatting of each tick (ie, "12.2%", not ".1219438")</li>
+									<li class="fragment">Even <a href="https://github.com/mbostock/d3/wiki/SVG-Axes">more</a></li>
+									<li class="fragment">Reference <a href="http://alignedleft.com/tutorials/d3/axes">tutorial</a></li>
+									
+								</ul>
+						</ul>
+					</section>
+					<section>
+						<h3>Defining an axis function</h3>
+						<ul>
+							<li class="fragment">Define an object/function using d3.svg.axis</li>
+							<pre class="fragment"><code data-trim>var axisFunction = d3.svg.axis()</code></pre>							
+							<li class="fragment">Pass the scale that you want to represent to the function</li>
+							<pre class="fragment"><code data-trim>axisFunction.scale(myScale)</code></pre>							
+							<li class="fragment">Position the labels relative to the axis</li>
+							<pre class="fragment"><code data-trim>axisFunction.orient('bottom')</code></pre>							
+							<li class="fragment">Assign other attributes as needed/wanted</li>
+							<pre class="fragment"><code data-trim>axisFunction.ticks(5)</code></pre>							
+														
+						</ul>
+					</section>					
+					<section>
+						<h3>Appending an axis</h3>
+						<ul>
+							<li class="fragment">Append a 'g' element to hold your axis</li>
+							<pre class="fragment"><code data-trim>var axisG = d3.select('#my-svg').append('g')</code></pre>							
+							<li class="fragment">Position this g where you want relative to the svg</li>
+							<pre class="fragment"><code data-trim>axisG.attr('transform', 'translate(0,' + settings.height + ')') // bottom of svg</code></pre>							
+							<li class="fragment">Pass your g element to the axis function using <code>.call</code></li>		
+							<pre class="fragment"><code data-trim>axisG.call(axisFunction)</code></pre>							
+						</ul>
+					</section>
+					<section>
+						<h3>Axis styling</h3>
+						<ul>
+							<li class="fragment">Apply styles to paths and lines in the axis class in CSS</li>
+							<pre class="fragment"><code data-trim>.axis path, .axis line{}</code></pre>					
+							<li class="fragment">Make the axis path thin</li>
+							<pre class="fragment"><code data-trim>.axis path, .axis line {fill:none;}</code></pre>							
+							<li class="fragment">Make the outline visible</li>
+							<pre class="fragment"><code data-trim>.axis path, .axis line {stroke:black;}</code></pre>							
+							<li class="fragment">Cleaner line</li>		
+							<pre class="fragment"><code data-trim>.axis path, .axis line {shape-rendering:crispEdges}</code></pre>							
+
+						</ul>
+					</section>
+					
+					<section>
+						<iframe class="stretch" src="http://jsbin.com/lufex/4/embed?js,output"></iframe>
+					</section>
+					</section>
+				</section>
 <!-- 
 				<section>
 					<section>
