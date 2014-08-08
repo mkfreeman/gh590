@@ -48,9 +48,31 @@
 			<section>
 				<section>
 					<h3>Overview</h3>
+				</section>
+				<section>
+					<h3>The internet (briefly)</h3>
+					<img class="fragment" src="../reveal/lib/imgs/browser.png"></img>
+				</section>
+				<section>
+					<h3>Browsers</h3>
 					<ul>
-						<li class="fragment">Web browsers retrieve and present information they are directed to via URLs</li>
+						<li class="fragment">Chrome, firefox, IE</li>
+						<li class="fragment">Retrieve and present information they are directed to via URLs</li>
+						<li class="fragment">Information (files) can be stored on</li>
+						<ul>
+							<li class="fragment">Your local machine (i.e., file:///)</li>
+							<li class="fragment">A remote web server (i.e., HTTP://)</li>
+							<li class="fragment">A local web server (i.e., localhost:8888/)</li>
+						</ul>
 						<li class="fragment">The protocol for handeling the information is dictated by the URL prefix (ie, HTTP, file:///, etc.)</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Web pages</h3>
+					<ul>
+						<li class="fragment">Browsers render files into page elements</li>
+						<pre class="fragment"><code data-trim>&lttext style="color:red"&gtRED TEXT&lt/text&gt</code></pre>
+						<pre class="fragment"><text style="color:red">RED TEXT</text></pre>
 						<li class="fragment">Page elements (text, images, etc.) are assembled into a tree structure calle the Document Object Module (DOM)</li>
 						<li class="fragment">These elements can be inspected using the browser (rt. click)</li>
 					</ul>
@@ -60,13 +82,29 @@
 					<h3>DOM from previous slide</h3>
 					<img class="stretch fragment" src="../reveal/lib/imgs/dom.png"></img>
 				</section>
+			</section>
+			<section>
 				<section>
 					<h3>File Structure</h3>
+				</section>
+				<section>
+					<h3>Reading files</h3>
 					<ul>
 					<li class="fragment">Browsers will automatically render the <code>index.html</code> file in a directory</li>
-					<li class="fragment"><code>index.html</code> files will point to other necessary scripts and style files.</li>
-					<img class="fragment" style="max-height:62%" src="../reveal/lib/imgs/folder.png"></img>
+					<li class="fragment">This presentation URL is rendering an <code>index.html</code> file stored here
+						<pre>http://mkfreeman.github.io/gh590/lecture1t</pre>
+					
+					</li>
 					</ul>
+				</section>
+				<section>
+					<h3>Organizing files</h3>
+					<ul>
+						<li class="fragment">Directory names are URL extensions</li>
+						<li class="fragment"><code>index.html</code> files will point to other necessary scripts and style files.</li>
+					</ul>
+					<img class="fragment" style="max-height:62%" src="../reveal/lib/imgs/folder.png"></img>
+					
 				</section>
 			</section>
 				<section>
