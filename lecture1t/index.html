@@ -38,10 +38,11 @@
 			<h3>Outline</h3>
 				<ul>
 					<li class="fragment">Overview</li>
+					<li class="fragment">File structure</li>
 					<li class="fragment">Elements of a webpage (HTML)</li>
 					<li class="fragment">Styles of a webpage (CSS)</li>
-					<li class="fragment">Group exercises</li>
-					<li class="fragment">Indiviual exercises</li>
+					<li class="fragment">Exercise 1</li>
+					<li class="fragment">Review</li>
 				</ul>
 			</section>
 			<section>
@@ -54,9 +55,18 @@
 						<li class="fragment">These elements can be inspected using the browser (rt. click)</li>
 					</ul>
 				</section>
+				
 				<section>
 					<h3>DOM from previous slide</h3>
 					<img class="stretch fragment" src="../reveal/lib/imgs/dom.png"></img>
+				</section>
+				<section>
+					<h3>File Structure</h3>
+					<ul>
+					<li class="fragment">Browsers will automatically render the <code>index.html</code> file in a directory</li>
+					<li class="fragment"><code>index.html</code> files will point to other necessary scripts and style files.</li>
+					<img class="fragment" style="max-height:62%" src="../reveal/lib/imgs/folder.png"></img>
+					</ul>
 				</section>
 			</section>
 				<section>
@@ -135,6 +145,8 @@
 							<li class="fragment">Any combination of these (i.e., circles with certain class)</li>
 						</ul>
 						<li class="fragment">Styles are inherited from parent objects (hence, <i>cascading</i>)</li>
+						<li class="fragment">CSS should be written in a separate file, referenced by your index.html file</li>
+						<pre class="fragment"><code data-trim><link rel="stylesheet" href="css/my_styles.css"></code></pre>
 					</ul>
 				</section>
 				<section>
