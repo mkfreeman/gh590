@@ -369,7 +369,6 @@
 			}
 		})
 		Reveal.addEventListener('fragmenthidden', function(event) {
-			console.log('hide event ', event)
 			switch(event.fragment.id) {
 				case 'books2':
 					d3.select('#books-img').attr('src',  "../reveal/lib/imgs/books_per_year.png")
