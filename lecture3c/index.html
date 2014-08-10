@@ -39,15 +39,16 @@
 			<section>
 			<h3>Outline</h3>
 				<ul>
-					<li class="fragment">Importance of graphical perception</li>
-					<li class="fragment">Overview of data types</li>
+					<li class="fragment">Role of graphical perception</li>
+					<li class="fragment">Sensory versus arbitrary representation</li>
+					<li class="fragment">Model of perceptual processing</li>
+					<li class="fragment">Types of data</li>
 					<li class="fragment">Expressiveness and effectiveness</li>					
-					<li class="fragment">Towards effectiveness</li>
 				</ul>
 			</section>
 			<section>
 				<section>
-					<h3>Importance of graphical perception</h3>
+					<h3>Role of graphical perception</h3>
 				</section>
 				<section>
 					<h3>Visualization process</h3>
@@ -63,7 +64,122 @@
 					<blockquote class="fragment">
 						&ldquo;The visual decoding of information encoded in graphs&rdquo; - Cleveland/McGill
 					</blockquote>
-					<p class="fragment">Our task: encode data with graphical properties that are most easily/accurately decoded</p>
+					<ul>
+						<li class="fragment" style="text-align:left;">Our task: encode data with graphical properties that are most easily/accurately decoded</li>
+						<li class="fragment" style="text-align:left;">Semiotics of graphics</li>
+					</ul>
+					<blockquote class="fragment">
+						&ldquo;The study of symbols and how the convey meaning&rdquo; - Ware 2004
+					</blockquote>
+				</section>
+				<section>
+					<h3>Is this possible?</h3>
+					<ul>
+						<li class="fragment">Can there be a science of visualization?</li>
+						<li class="fragment">Arbitrariness (Saussure)</li>
+						<li class="fragment">Cultural relativism</li>
+						<li class="fragment"><a target="_blank" href="http://ifs.tuwien.ac.at/~silvia/wien/vu-infovis/articles/book_information-visualization-perception-for-design_Ware_Chapter1.pdf">Ware 2004</a></li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Sensory versus arbitrary symbols</h3>
+				</section>
+				<section>
+					<h3>Definitions</h3>
+					<ul>
+						<li class="fragment"><b>Sensory:</b> meaning derived without learning</li>
+						<li class="fragment"><b>Arbitrary:</b> understanding depends on learned information</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Sensory symbols</h3>
+					<ul>
+						<li class="fragment">Understanding without training</li>
+						<li class="fragment">Resistance to instructional bias</li>
+						<li class="fragment">Sensory immediacy</li>
+						<li class="fragment">Cross-cultural validity</li>
+					</ul>
+				</section>	
+				<section>
+					<h3>Resistance to instructional bias</h3>
+					<img class="fragment" src="../reveal/lib/imgs/muller1.png"></img>
+					<img class="fragment" src="../reveal/lib/imgs/muller2.png"></img>
+				</section>
+				<section>
+					<h3>Arbitrary symbols</h3>
+					<ul>
+						<li class="fragment">Hard to learn</li>
+						<li class="fragment">Easy to forget</li>
+						<li class="fragment">Embedded in culture and applications</li>
+						<li class="fragment">Formally powerful</li>
+						<li class="fragment">Capable of change</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Model of perceptual processing</h3>
+				</section>
+				<section>
+					<h3>Three stages</h3>
+					<ul>
+						<li class="fragment">Stage 1: Parallel processing of low level information</li>
+						<li class="fragment">Stage 2: Pattern perception</li>
+						<li class="fragment">Stage 3: Goal directed processing</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Stage 1</h3>
+					<ul>
+						<li class="fragment">Neurons process information in parallel</li>
+						<li class="fragment">Extract features (color, texture, movement, orientation)</li>
+					</ul>
+					<img class="fragment" src="../reveal/lib/imgs/stage1.png"></img>
+				</section>
+				<section>
+					<h3>Stage 2</h3>
+					<ul>
+						<li class="fragment">Slower serial processing</li>
+						<li class="fragment">More detailed processes such as segmentation</li>
+					</ul>
+					<img class="fragment" src="../reveal/lib/imgs/stage2.png"></img>
+				</section>
+				<section>
+					<h3>Stage 3</h3>
+					<ul>
+						<li class="fragment">Executing advanced visual queries</li>
+						<li class="fragment">Requires active attention</li>
+					</ul>
+					<img class="fragment" src="../reveal/lib/imgs/stage3.png"></img>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Types of data</h3>
+				</section>
+				<section>
+					<h3>Data structure</h3>
+					<ul>
+						<li class="fragment">Entities: objects of interest</li>
+						<li class="fragment">Relationships: structures between entities</li>
+						<li class="fragment">Entities and relationships both can be described with data attributes</li>
+						<li class="fragment"><a href="http://vizhub.healthdata.org/us-health-map" target="_blank">Example</a></li>
+					</ul>
+				</section>
+				<section>
+					<h3>Data attributes</h3>
+					<ul>
+						<li class="fragment">Nominal: no inherent ordering of values</li>
+						<pre class="fragment">Fruits: apples, bananas, oranges</pre>
+						<li class="fragment">Ordinal: ordered values with unknown distances between them</li>
+						<pre class="fragment">Quality: low, medium, high</pre>
+						<li class="fragment">Quantitative (interval): Only interval is meaningful</li>
+						<pre class="fragment">Date: 2/15/77, 3/18/66</pre>
+						<li class="fragment">Quantitative (ratio): zero is fixed</li>
+						<pre class="fragment">Physical measurements, counts, etc.</pre>
+					</ul>
 				</section>
 			</section>
 		</div>

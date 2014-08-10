@@ -38,26 +38,22 @@
 			<h3>Outline</h3>
 				<ul>
 					<li class="fragment">HTML/CSS Assignment Review</li>
-					<li class="fragment">Javascript Overview</li>
+					<li class="fragment">JavaScript Overview</li>
 					<li class="fragment">JavaScript Variables</li>
 					<li class="fragment">Manipulating HTML Elements</li>
-					<li class="fragment">Group Exercises</li>
-					<li class="fragment">Indiviual Exercises</li>
+					<li class="fragment">Exercise</li>
+					<li class="fragment">Exercise review</li>
 				</ul>
 			</section>
 			<section>
-				<iframe class="stretch" src="http://jsbin.com/zogoke/2/embed"></iframe>
+				<iframe class="stretch" src="http://jsbin.com/zogoke/3/embed"></iframe>
 			</section>
 			<section>
 				<h3>Overview</h3>
 				<ul>
 					<li class="fragment">JavaScript (JS) can be used to create, manipulate, and remove HTML elements</li>
 					<li class="fragment">Most of the code you write will be JS</li>
-					<li class="fragment">JS inspired by functional programming</li>
-						<ul>
-							<li class="fragment">Supports logical operators(if, else, etc.)</li>
-							<li class="fragment">Many mathematical operators (+, -, *, /) are similar</li>
-						</ul>
+					<li class="fragment">Scripting language</li>
 				</ul>	
 			</section>
 			<section>
@@ -65,7 +61,7 @@
 				<h3>JavaScript Variables</h3>
 				</section>
 				<section>
-					<p>There are various data types used in Javascript</p>
+					<p>There are various data types used in JavaScript</p>
 					<ul>
 						<li class="fragment">Numeric: a single quantitative value</li>
 						<pre class="fragment"><code data-trim>var x = 13;</code></pre>
@@ -79,21 +75,40 @@
 					</ul>	
 				</section>
 				<section>
+					<p>JS variables have different <i>properties</i> and <i>methods</i> based on type</p>
+					<ul>
+						<li class="fragment"><i>Properties</i> describe a feature of the element</li>
+						<pre class="fragment"><code>
+var characters = "This is a string"
+characters.length // Returns the length of the variable
+var arr = [1,2,3]
+arr.length // Returns the number of items in the array
+</code></pre>
+					<li class="fragment"><i>Methods</i> are actions that variables can perform</li>
+						<pre class="fragment"><code>
+var characters = "This is a string"
+characters.replace("This", "Here") // Replaces "This" with "Here"
+var arr = [1,2,3]
+arr.push(4)// Pushes the number 4 into the array as the last element
+</code></pre>
+					</ul>
+				</section>
+				<section>
 					<h3>Numbers and Strings</h3>
 					<ul>
 						<li class="fragment">There is only one type of JavaScript number</li>
 						<li class="fragment">Mathematical operators can be used, as well as advanced <code>Math</code> functions</li>
 						<pre class="fragment"><code data-trim>var x = 2*15 //x is 30</code></pre>
 						<pre class="fragment"><code data-trim>var x = Math.sqrt(4) //x is 2</code></pre>
-						<li class="fragment">JS supports inline concatinations and common string functions and</li>
+						<li class="fragment">JS supports inline concatinations and common string functions</li>
 						<pre class="fragment"><code data-trim>var name = "Mike"</code></pre>
 						<pre class="fragment"><code data-trim>var sentence = "Hello, my name is " + name //Hello, my name is Mike</code></pre>				
-						<pre class="fragment"><code data-trim>var shortened = sentence.replace("Hello, ", "") //my name is Mike</code></pre>				
+						<pre class="fragment"><code data-trim>var alternate = sentence.replace("Hello", "Yo") //Yo, my name is Mike</code></pre>				
 						
 					</ul>				
 				</section>
 				<section>
-					<iframe class="stretch" src="http://jsbin.com/risoj/2/embed"></iframe>
+					<iframe class="stretch" src="http://jsbin.com/risoj/2/embed?js"></iframe>
 				</section>
 				
 				<section>
@@ -103,11 +118,12 @@
 						<pre class="fragment"><code data-trim>var x = [13, 14, 15]</code></pre>
 						<li class="fragment">Values of arrays are accessed by their index, starting at 0</li>
 						<pre class="fragment"><code data-trim>x[0] //13</code></pre>			
+						<pre class="fragment"><code data-trim>x[1] //14</code></pre>			
 					</ul>			
 				</section>
 				
 				<section>
-					<iframe class="stretch" src="http://jsbin.com/xogiti/1/embed"></iframe>
+					<iframe class="stretch" src="http://jsbin.com/xogiti/1/embed?js,console"></iframe>
 				</section>
 				
 				<section>
@@ -121,7 +137,7 @@
 					</ul>			
 				</section>
 				<section>
-					<iframe class="stretch" src="http://jsbin.com/fevet/1/embed"></iframe>
+					<iframe class="stretch" src="http://jsbin.com/fevet/1/embed?js,console"></iframe>
 				</section>
 				<section>
 					<h3>Functions</h3>
@@ -155,7 +171,7 @@
 					</ul>		
 			</section>
 			<section>
-				<iframe class="stretch" src="http://jsbin.com/guwex/1/embed"></iframe>
+				<iframe class="stretch" src="http://jsbin.com/repuk/1/embed?html,js,output"></iframe>
 			</section>
 		</section>
 		
