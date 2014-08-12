@@ -40,6 +40,7 @@
 					<li class="fragment">HTML/CSS Assignment Review</li>
 					<li class="fragment">JavaScript Overview</li>
 					<li class="fragment">JavaScript Variables</li>
+					<li class="fragment">Advanced array functionality</li>
 					<li class="fragment">Manipulating HTML Elements</li>
 					<li class="fragment">Exercise</li>
 					<li class="fragment">Exercise review</li>
@@ -49,12 +50,28 @@
 				<iframe class="stretch" src="http://jsbin.com/zogoke/3/embed"></iframe>
 			</section>
 			<section>
-				<h3>Overview</h3>
-				<ul>
-					<li class="fragment">JavaScript (JS) can be used to create, manipulate, and remove HTML elements</li>
-					<li class="fragment">Most of the code you write will be JS</li>
-					<li class="fragment">Scripting language</li>
-				</ul>	
+				<section>
+					<h3>Overview</h3>
+				</section>
+				<section>
+					<p><u>Javascript(JS)</u></p>
+					<ul>
+						<li class="fragment">The most popular programming language in the world</li>
+						<li class="fragment">Most of the code you write will be JS</li>
+						<li class="fragment">Can be used to create, manipulate, and remove HTML elements</li>
+						<li class="fragment">Program behaviors of the webpage</li>
+						<li class="fragment">Handle data</li>
+					</ul>	
+				</section>
+				<section>
+					<p>Javascript is a scripting language</p>
+					<ul>
+						<li class="fragment">Differs substantially from markup languages</li>
+						<li class="fragment">Creates variables which are not represented in the DOM</li>
+						<li class="fragment">Supports structured programming (ie, conditional <code>if, else</code>statements</li>
+						<li class="fragment">We will aim for a functional understanding of JS</li>
+					</ul>
+				</section>
 			</section>
 			<section>
 				<section>
@@ -71,7 +88,9 @@
 						<pre class="fragment"><code data-trim>var x = [13, 14, 15];</code></pre>
 						<pre class="fragment"><code data-trim>var x = ["string one", "string two", "string three"];</code></pre>				
 						<li class="fragment">Object: An item which holds key-value pairs</li>
-						<pre class="fragment"><code data-trim>var x = {name:'mike'};</code></pre>						
+						<pre class="fragment"><code data-trim>var x = {name:'mike'};</code></pre>	
+						<li class="fragment">Function: An executable block of code that returns a value</li>
+						<pre class="fragment"><code data-trim>var timesTwo = function(a){return a*2};</code></pre>												
 					</ul>	
 				</section>
 				<section>
@@ -93,14 +112,25 @@ arr.push(4)// Pushes the number 4 into the array as the last element
 </code></pre>
 					</ul>
 				</section>
+			</section>
+			<section>
 				<section>
 					<h3>Numbers and Strings</h3>
+				</section>
+				<section>
+					<p><u>Numbers</u></p>
 					<ul>
-						<li class="fragment">There is only one type of JavaScript number</li>
+						<li>There is only one type of JavaScript number</li>
 						<li class="fragment">Mathematical operators can be used, as well as advanced <code>Math</code> functions</li>
 						<pre class="fragment"><code data-trim>var x = 2*15 //x is 30</code></pre>
 						<pre class="fragment"><code data-trim>var x = Math.sqrt(4) //x is 2</code></pre>
-						<li class="fragment">JS supports inline concatinations and common string functions</li>
+					</ul>
+					<p class="fragment"><u>Strings</u></p>
+					<ul>
+						<li class="fragment">String variables are assigned by wrapping characters in single or double quotes</li>
+						<pre class="fragment"><code data-trim>var x = 'using single quotes'</code></pre>
+						<pre class="fragment"><code data-trim>var x = "or double quotes, if you's have a single quote in the string"</code></pre>
+						<li class="fragment">JS supports inline concatenations and common string functions</li>
 						<pre class="fragment"><code data-trim>var name = "Mike"</code></pre>
 						<pre class="fragment"><code data-trim>var sentence = "Hello, my name is " + name //Hello, my name is Mike</code></pre>				
 						<pre class="fragment"><code data-trim>var alternate = sentence.replace("Hello", "Yo") //Yo, my name is Mike</code></pre>				
@@ -108,13 +138,16 @@ arr.push(4)// Pushes the number 4 into the array as the last element
 					</ul>				
 				</section>
 				<section>
-					<iframe class="stretch" src="http://jsbin.com/risoj/2/embed?js"></iframe>
+					<iframe class="stretch" src="http://jsbin.com/risoj/2/embed?js"></iframe> 
 				</section>
-				
+			</section>
+			<section>
 				<section>
 					<h3>Arrays</h3>
+				</section>
+				<section>
 					<ul>
-						<li class="fragment">Arrays are vectors of comma seperated items, denoted by square brackets []</li>
+						<li >Arrays are vectors of comma seperated items, denoted by square brackets []</li>
 						<pre class="fragment"><code data-trim>var x = [13, 14, 15]</code></pre>
 						<li class="fragment">Values of arrays are accessed by their index, starting at 0</li>
 						<pre class="fragment"><code data-trim>x[0] //13</code></pre>			
@@ -125,24 +158,33 @@ arr.push(4)// Pushes the number 4 into the array as the last element
 				<section>
 					<iframe class="stretch" src="http://jsbin.com/xogiti/1/embed?js,console"></iframe>
 				</section>
-				
+			</section>
+			<section>
 				<section>
 					<h3>Objects</h3>
+				</section>
+				<section>
 					<ul>
-						<li class="fragment">Objects are data items (often key-value pairs), that have <i>properties</i> and <i>methods</i></li>
+						<li >Objects are data items with multiple key-value pairs</i></li>
 						<pre class="fragment"><code data-trim>var person = {firstName:'Anna', lastName:'Smith', height:"5'4", age:32}</code></pre>
-						<li class="fragment">Access properties from objects by referencing the key</li>
+						<li class="fragment">Access values from objects by referencing the key</li>
 						<pre class="fragment"><code data-trim>person.firstName // Anna</code></pre>			
 						<pre class="fragment"><code data-trim>person['firstName'] // Anna</code></pre>			
 					</ul>			
 				</section>
 				<section>
-					<iframe class="stretch" src="http://jsbin.com/fevet/1/embed?js,console"></iframe>
+					<iframe class="stretch" src="http://jsbin.com/fevet/1/embed?js,console"></iframe> 
 				</section>
+			</section>
+	
+	
+		<section>
 				<section>
 					<h3>Functions</h3>
+				</section>
+				<section>
 					<ul>
-						<li class="fragment">Functions perform blocks of code on parameters that are passed to them</li>
+						<li>Functions perform blocks of code on parameters that are passed to them</li>
 						<li class="fragment">Any function returns a single item (object, array, value, etc)</li>
 						<pre class="fragment"><code data-trim>var myFunction = function(a,b) {return a*b})</code></pre>
 						<li class="fragment">Functions are executed as follows</li>
@@ -151,27 +193,188 @@ arr.push(4)// Pushes the number 4 into the array as the last element
 				</section>
 				
 				<section>
-					<iframe class="stretch" src="http://jsbin.com/xetej/2/embed?js"></iframe>
+					<iframe class="stretch" src="http://jsbin.com/xetej/3/embed?js,console"></iframe>
 				</section>
 				<section>
-					<h3>Functions can take functions as parameters</h3>
-					<li class="fragment">What?</li>
-					<pre class="fragment"><code data-trim>
-var alertFunction = function() {
-	alert('hello')
+					<h3>Conditional Statements (flow control)</h3>
+					<ul>
+						<li class="fragment">Execute statements only if a condition is true</li>
+<pre class="fragment"><code data-trim>
+	var a = 1;
+var b = 2;
+if(a&lt;b) {
+	//take some action
 }
-var conditionalFunction = function(a,b,callback) {
-	if(a==b) {
-		callback()
-	}
-}
-conditionalFunction(1,1,alertFunction)
 </code></pre>
+						<li class="fragment">You can also provide a default alternative</li>
+<pre class="fragment"><code data-trim class="js">
+	if(a&lt;b) {
+	//take some action
+}
+else {
+	//take a different action
+}
+</code></pre>	
+					<li class="fragment">Or provide multiple conditions</li>
+<pre class="fragment"><code data-trim>
+	if(a&lt;b) {
+	// take some action
+}
+else if (a == b){
+	// take some action
+}
+else {
+	// take the default action
+}
+</code></pre>						
+						
+					</ul>
 				</section>
 				
-			</section>
+				
+				
 
+				<section>
+					<h3>Switch case</h3>
+					<ul>
+						<li class="fragment">An extension of if, else, but for multiple conditions</li>
+						<li class="fragment">Benefit is you don't have to re-type conditions</li>
+<pre class="fragment"><code data-trim>
+	var country = 'USA'
+switch(country) {
+	case 'USA':
+		// take some action
+		break;
+	case 'FRA':
+		// take some action
+		break;
+	default:
+		// take default action
+		break;
+}
+
+</code></pre>						
+						
+					</ul>
+				</section>
+				
+								<section>
+					<h3>Functions can take functions as parameters</h3>
+					<img src = "http://www.quickmeme.com/img/43/4337b29de46958f42d3c07016abfb055fa43bd7d8298b63cb644f39cefcfe6c8.jpg" class="fragment"></img>
+				</section>
+		
+				
+				<section>
+					<p>Imagine you have a function that compares two values</p>
+					<pre class = "fragment"><code data-trim class="javascript">
+var comparison = function(a,b) {
+	if(a&gt;b) {
+		return'a is greater that b'
+	}
+	else {
+		return 'b is less than or equal to a'
+	}
+}
+</code></pre>
+
+					<p class="fragment">You might want to do something in one of those scenarios</p>
+<pre class="fragment"><code>
+if(a&gt;b) {
+	// do a specified action
+	return 'a is greater that b'
+}
+</code></pre>
+				<p class="fragment">You can specify the action by passing in a function</p>
+<pre class = "fragment"><code data-trim class="javascript">
+var comparison = function(a,b, callback) {
+if(a&gt;b) {
+	callback()
+	return 'a is greater that b'
+}
+else {
+	return 'b is less than or equal to a'
+}
+}
+</code></pre>	
+			
+</section>
+	
+		<section>
+			<iframe class="stretch" src="http://jsbin.com/parem/1/embed?js"></iframe> 
 		</section>
+	</section>
+	
+	
+		<section>
+			<section>
+				<h3>Advanced array manipulation</h3>
+			</section>
+			
+			<section>
+				<p>Execute a function on each element of an array by using the "map" method </p>
+				<ul>
+				<li class="fragment">The map method is a built in alternative to writing loops</li>
+				<li class="fragment">Each array value is passed to a provided function</li>
+				<li class="fragment">Values in the array are unchanged</li>
+				</ul>
+<pre class="fragment"><code>
+	var arr = [1,2,3]
+	var timesTwo = function(d) {return d*2}
+	var doubleArr = arr.map(timeTwo) // returns [2,4,6]
+</code></pre>
+			</section>
+			
+		
+		<section>
+			<p>Map functions can also be written in-line</p>
+<pre class="fragment"><code>
+	var arr = [1,2,3]
+	var doubleArr = arr.map(function(d) {
+		return d*2
+	})
+</code></pre>
+	</section>
+	<section>
+		<iframe class="stretch" src="http://jsbin.com/pavef/1/embed?js"></iframe>
+	</section>
+	<section>
+		<p>You can filter arrays using a similar syntax</p>
+		<li class="fragment">Filtering only returns values that meet a given conditionality</li>
+<pre class="fragment"><code>
+	var arr = [1,2,3]
+	var greaterThanTwo = arr.filter(function(d) {
+		return d>2
+	})
+</code></pre>		
+	</section>
+	<section>
+		<iframe class="stretch" src="http://jsbin.com/yamof/2/embed?js"></iframe>
+	</section>
+			
+			<section>
+				<p>Sorting works in a similar fashion, but:</p>
+				<ul>
+					<li class="fragment">Sorting functions will change your array (unlike map, filter)</li>
+					<li class="fragment">Sorting functions take two arguments</li>
+					<li class="fragment">These parameters represent two values to be compared</li>
+<pre class="fragment"><code data-trim>
+var arrToSort = [1,4,3,5,2]
+sortFunction = function(a,b) {
+	return a - b
+}
+arrToSort.sort(sortFunction)
+
+</pre></code>
+				<li class="fragment">How it <a href="http://sorting.at/" target="_blank">works</a></li>
+
+				</ul>	
+			</section>
+		</section>
+
+
+
+
+		
 		<section>
 			<section>
 				<h3>Manipulating HTML Elements</h3>
@@ -182,27 +385,28 @@ conditionalFunction(1,1,alertFunction)
 						<li class="fragment">JavaScript can be used to change page element content and style</li>
 						<pre class="fragment"><code data-trim>document.getElementById("demo").innerHTML = "New Text!"</code></pre>
 						<pre class="fragment"><code data-trim>document.getElementById("demo").style.fontSize = "25px";</code></pre>
-						<li class="fragment">D3 extends this type of manipulation to multiple elements</li>
+						<li class="fragment">D3 extends this type of manipulation for simple entering, transition, and exiting</li>
 					</ul>		
 			</section>
+			
 			<section>
 				<iframe class="stretch" src="http://jsbin.com/repuk/1/embed?html,js,output"></iframe>
 			</section>
+			
 		</section>
 		<section>
-			<section>
-				<h3>Array map functionality</h3>
-			</section>
-			<section>
-				<ul>
-					<li>Arrays natively have a method "map"</li>
-					<li>It allows you to perform a function on each element of the array</li>
-					<li>The map function takes an argument as its parameter</li>
-
-				</ul>	
-			</section>	
+			<h3>Summary</h3>
+			<ul>
+				<li class="fragment">Properties and methods of JavaScript variables</li>
+				<li class="fragment">The use of functions</li>
+				<li class="fragment">The ability to manipulate HTML elements</li>
+			</ul>
 		</section>
-			
+		<section>
+			<h3><a href="http://jsbin.com/cobumo/3/edit">Exercise 2</a><h3>
+		</section>
+
+
 		</div>
 	</div>
 	<script src="../reveal/lib/js/head.min.js"></script>
