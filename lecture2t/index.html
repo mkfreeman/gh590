@@ -151,7 +151,22 @@ arr.push(4)// Pushes the number 4 into the array as the last element
 				</section>
 				
 				<section>
-					<iframe class="stretch" src="http://jsbin.com/xetej/2/embed"></iframe>
+					<iframe class="stretch" src="http://jsbin.com/xetej/2/embed?js"></iframe>
+				</section>
+				<section>
+					<h3>Functions can take functions as parameters</h3>
+					<li class="fragment">What?</li>
+					<pre class="fragment"><code data-trim>
+var alertFunction = function() {
+	alert('hello')
+}
+var conditionalFunction = function(a,b,callback) {
+	if(a==b) {
+		callback()
+	}
+}
+conditionalFunction(1,1,alertFunction)
+</code></pre>
 				</section>
 				
 			</section>
@@ -174,7 +189,19 @@ arr.push(4)// Pushes the number 4 into the array as the last element
 				<iframe class="stretch" src="http://jsbin.com/repuk/1/embed?html,js,output"></iframe>
 			</section>
 		</section>
-		
+		<section>
+			<section>
+				<h3>Array map functionality</h3>
+			</section>
+			<section>
+				<ul>
+					<li>Arrays natively have a method "map"</li>
+					<li>It allows you to perform a function on each element of the array</li>
+					<li>The map function takes an argument as its parameter</li>
+
+				</ul>	
+			</section>	
+		</section>
 			
 		</div>
 	</div>
