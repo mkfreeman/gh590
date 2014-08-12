@@ -61,6 +61,8 @@
 						<li class="fragment">Can be used to create, manipulate, and remove HTML elements</li>
 						<li class="fragment">Program behaviors of the webpage</li>
 						<li class="fragment">Handle data</li>
+						<li class="fragment">Written in a separate file, referenced by index.html</li>
+						<pre class="fragment"><code data-trim>&lt;script type="text/javascript" src="js/myScript.js"&gt;&lt;/script&gt;</code></pre>
 					</ul>	
 				</section>
 				<section>
@@ -68,7 +70,7 @@
 					<ul>
 						<li class="fragment">Differs substantially from markup languages</li>
 						<li class="fragment">Creates variables which are not represented in the DOM</li>
-						<li class="fragment">Supports structured programming (ie, conditional <code>if, else</code>statements</li>
+						<li class="fragment">Supports structured programming (ie, conditional <code>if, else) </code>statements</li>
 						<li class="fragment">We will aim for a functional understanding of JS</li>
 					</ul>
 				</section>
@@ -97,14 +99,14 @@
 					<p>JS variables have different <i>properties</i> and <i>methods</i> based on type</p>
 					<ul>
 						<li class="fragment"><i>Properties</i> describe a feature of the element</li>
-						<pre class="fragment"><code>
+						<pre class="fragment"><code data-trim class="javascript">
 var characters = "This is a string"
 characters.length // Returns the length of the variable
 var arr = [1,2,3]
 arr.length // Returns the number of items in the array
 </code></pre>
 					<li class="fragment"><i>Methods</i> are actions that variables can perform</li>
-						<pre class="fragment"><code>
+						<pre class="fragment"><code data-trim class="javascript">
 var characters = "This is a string"
 characters.replace("This", "Here") // Replaces "This" with "Here"
 var arr = [1,2,3]
@@ -128,12 +130,12 @@ arr.push(4)// Pushes the number 4 into the array as the last element
 					<p class="fragment"><u>Strings</u></p>
 					<ul>
 						<li class="fragment">String variables are assigned by wrapping characters in single or double quotes</li>
-						<pre class="fragment"><code data-trim>var x = 'using single quotes'</code></pre>
-						<pre class="fragment"><code data-trim>var x = "or double quotes, if you's have a single quote in the string"</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">var x = 'using single quotes'</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">var x = "or double quotes, if you's have a single quote in the string"</code></pre>
 						<li class="fragment">JS supports inline concatenations and common string functions</li>
-						<pre class="fragment"><code data-trim>var name = "Mike"</code></pre>
-						<pre class="fragment"><code data-trim>var sentence = "Hello, my name is " + name //Hello, my name is Mike</code></pre>				
-						<pre class="fragment"><code data-trim>var alternate = sentence.replace("Hello", "Yo") //Yo, my name is Mike</code></pre>				
+						<pre class="fragment"><code data-trim class="javascript">var name = "Mike"</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">var sentence = "Hello, my name is " + name //Hello, my name is Mike</code></pre>				
+						<pre class="fragment"><code data-trim class="javascript">var alternate = sentence.replace("Hello", "Yo") //Yo, my name is Mike</code></pre>				
 						
 					</ul>				
 				</section>
@@ -148,10 +150,10 @@ arr.push(4)// Pushes the number 4 into the array as the last element
 				<section>
 					<ul>
 						<li >Arrays are vectors of comma seperated items, denoted by square brackets []</li>
-						<pre class="fragment"><code data-trim>var x = [13, 14, 15]</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">var x = [13, 14, 15]</code></pre>
 						<li class="fragment">Values of arrays are accessed by their index, starting at 0</li>
-						<pre class="fragment"><code data-trim>x[0] //13</code></pre>			
-						<pre class="fragment"><code data-trim>x[1] //14</code></pre>			
+						<pre class="fragment"><code data-trim class="javascript">x[0] //13</code></pre>			
+						<pre class="fragment"><code data-trim class="javascript">x[1] //14</code></pre>			
 					</ul>			
 				</section>
 				
@@ -166,10 +168,10 @@ arr.push(4)// Pushes the number 4 into the array as the last element
 				<section>
 					<ul>
 						<li >Objects are data items with multiple key-value pairs</i></li>
-						<pre class="fragment"><code data-trim>var person = {firstName:'Anna', lastName:'Smith', height:"5'4", age:32}</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">var person = {firstName:'Anna', lastName:'Smith', height:"5'4", age:32}</code></pre>
 						<li class="fragment">Access values from objects by referencing the key</li>
-						<pre class="fragment"><code data-trim>person.firstName // Anna</code></pre>			
-						<pre class="fragment"><code data-trim>person['firstName'] // Anna</code></pre>			
+						<pre class="fragment"><code data-trim class="javascript">person.firstName // Anna</code></pre>			
+						<pre class="fragment"><code data-trim class="javascript">person['firstName'] // Anna</code></pre>			
 					</ul>			
 				</section>
 				<section>
@@ -186,9 +188,9 @@ arr.push(4)// Pushes the number 4 into the array as the last element
 					<ul>
 						<li>Functions perform blocks of code on parameters that are passed to them</li>
 						<li class="fragment">Any function returns a single item (object, array, value, etc)</li>
-						<pre class="fragment"><code data-trim>var myFunction = function(a,b) {return a*b})</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">var myFunction = function(a,b) {return a*b})</code></pre>
 						<li class="fragment">Functions are executed as follows</li>
-						<pre class="fragment"><code data-trim>var result = function(2,4) //result is 8</code></pre>			
+						<pre class="fragment"><code data-trim class="javascript">var result = myFunction(2,4) //result is 8</code></pre>			
 					</ul>			
 				</section>
 				
@@ -199,7 +201,7 @@ arr.push(4)// Pushes the number 4 into the array as the last element
 					<h3>Conditional Statements (flow control)</h3>
 					<ul>
 						<li class="fragment">Execute statements only if a condition is true</li>
-<pre class="fragment"><code data-trim>
+<pre class="fragment"><code data-trim class="javascript">
 	var a = 1;
 var b = 2;
 if(a&lt;b) {
@@ -207,7 +209,7 @@ if(a&lt;b) {
 }
 </code></pre>
 						<li class="fragment">You can also provide a default alternative</li>
-<pre class="fragment"><code data-trim class="js">
+<pre class="fragment"><code data-trim>
 	if(a&lt;b) {
 	//take some action
 }
@@ -216,7 +218,7 @@ else {
 }
 </code></pre>	
 					<li class="fragment">Or provide multiple conditions</li>
-<pre class="fragment"><code data-trim>
+<pre class="fragment"><code data-trim class="javascript">
 	if(a&lt;b) {
 	// take some action
 }
@@ -239,7 +241,7 @@ else {
 					<ul>
 						<li class="fragment">An extension of if, else, but for multiple conditions</li>
 						<li class="fragment">Benefit is you don't have to re-type conditions</li>
-<pre class="fragment"><code data-trim>
+<pre class="fragment"><code data-trim class="javascript">
 	var country = 'USA'
 switch(country) {
 	case 'USA':
@@ -269,7 +271,7 @@ switch(country) {
 					<pre class = "fragment"><code data-trim class="javascript">
 var comparison = function(a,b) {
 	if(a&gt;b) {
-		return'a is greater that b'
+		return 'a is greater that b'
 	}
 	else {
 		return 'b is less than or equal to a'
@@ -278,7 +280,7 @@ var comparison = function(a,b) {
 </code></pre>
 
 					<p class="fragment">You might want to do something in one of those scenarios</p>
-<pre class="fragment"><code>
+<pre class="fragment"><code data-trim class="javascript">
 if(a&gt;b) {
 	// do a specified action
 	return 'a is greater that b'
@@ -317,21 +319,21 @@ else {
 				<li class="fragment">Each array value is passed to a provided function</li>
 				<li class="fragment">Values in the array are unchanged</li>
 				</ul>
-<pre class="fragment"><code>
+<pre class="fragment"><code data-trim class="javascript">
 	var arr = [1,2,3]
-	var timesTwo = function(d) {return d*2}
-	var doubleArr = arr.map(timeTwo) // returns [2,4,6]
+var timesTwo = function(d) {return d*2}
+var doubleArr = arr.map(timeTwo) // returns [2,4,6]
 </code></pre>
 			</section>
 			
 		
 		<section>
 			<p>Map functions can also be written in-line</p>
-<pre class="fragment"><code>
+<pre class="fragment"><code data-trim class="javascript">
 	var arr = [1,2,3]
-	var doubleArr = arr.map(function(d) {
-		return d*2
-	})
+var doubleArr = arr.map(function(d) {
+	return d*2
+})
 </code></pre>
 	</section>
 	<section>
@@ -340,11 +342,11 @@ else {
 	<section>
 		<p>You can filter arrays using a similar syntax</p>
 		<li class="fragment">Filtering only returns values that meet a given conditionality</li>
-<pre class="fragment"><code>
+<pre class="fragment"><code data-trim class="javascript">
 	var arr = [1,2,3]
-	var greaterThanTwo = arr.filter(function(d) {
-		return d>2
-	})
+var greaterThanTwo = arr.filter(function(d) {
+	return d>2
+})
 </code></pre>		
 	</section>
 	<section>
@@ -357,7 +359,7 @@ else {
 					<li class="fragment">Sorting functions will change your array (unlike map, filter)</li>
 					<li class="fragment">Sorting functions take two arguments</li>
 					<li class="fragment">These parameters represent two values to be compared</li>
-<pre class="fragment"><code data-trim>
+<pre class="fragment"><code data-trim class="javascript">
 var arrToSort = [1,4,3,5,2]
 sortFunction = function(a,b) {
 	return a - b
@@ -403,7 +405,16 @@ arrToSort.sort(sortFunction)
 			</ul>
 		</section>
 		<section>
-			<h3><a href="http://jsbin.com/cobumo/3/edit">Exercise 2</a><h3>
+			<h3>Assignment 2</h3>
+			<ul>
+				<li class="fragment">Intended to practice data handeling</li>
+				<li class="fragment">Uses population <a href = "http://data.spokesman.com/census/2010/washington/cities/">data</a> from Washington cities</li>
+				<li class="fragment">Asks real questions you might want to know about data</li>
+				<li class="fragment">Github instructions are <a href="https://canvas.uw.edu/courses/912211/pages/new-github-project">here</a></li>
+			</ul>
+		</section>
+		<section>
+			<h3><a href="http://jsbin.com/cobumo/4/edit?js,console">Exercise 2</a><h3>
 		</section>
 
 
