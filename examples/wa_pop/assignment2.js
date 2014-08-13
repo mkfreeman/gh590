@@ -15,7 +15,6 @@ city_names = data.map(function(d) {return d.city})
 populations = data.map(function(d) {return d.pop})
 
 
-
 // Sort the data variable by median age
 data.sort(function(a,b) {return a.age > b.age})
 

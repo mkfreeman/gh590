@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Lecture 4c</title>
+
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+		if( window.location.search.match( /print-pdf/gi ) ) {
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = 'css/print/pdf.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		}
+	</script>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+			<h2>Graphical Perception (2/2)</h2>
+			</section>
+			
+			<section>
+				<section>
+					<h3>Data typology</h3>
+				</section>
+				<section>
+					<h3>Data structure</h3>
+					<ul>
+						<li class="fragment">Entities: objects of interest</li>
+						<li class="fragment">Relationships: structures between entities</li>
+						<li class="fragment">Entities and relationships both can be described with data attributes</li>
+						<li class="fragment"><a href="https://immersion.media.mit.edu/viz#" target="_blank">Example</a></li>
+					</ul>
+				</section>
+				<section>
+					<h3>Data attributes</h3>
+					<ul>
+						<li class="fragment">Nominal: no inherent ordering of values</li>
+						<pre class="fragment">Fruits: apples, bananas, oranges</pre>
+						<li class="fragment">Ordinal: ordered values with unknown distances between them</li>
+						<pre class="fragment">Quality: low, medium, high</pre>
+						<li class="fragment">Quantitative (interval): Only interval is meaningful</li>
+						<pre class="fragment">Date: 2/15/77, 3/18/66</pre>
+						<li class="fragment">Quantitative (ratio): zero is fixed</li>
+						<pre class="fragment">Physical measurements, counts, etc.</pre>
+					</ul>
+				</section>
+			</section>
+		
+		</div>
+	</div>
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+
+
+	<script>
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, 
+			transition: Reveal.getQueryHash().transition || 'default',
+			dependencies: [
+				{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+		Reveal.addEventListener('fragmentshown', function(event) {		
+			if(event.fragment.id.indexOf('viz')!=-1) d3.select('#viz_process1').attr('src', '../reveal/lib/imgs/' + event.fragment.id + '.png')
+		
+		})
+		Reveal.addEventListener('fragmenthidden', function(event) {
+			if(event.fragment.id.indexOf('viz')!=-1) { 
+				var value = 'viz_process' + (Number(event.fragment.id.replace('viz_process', '')) - 1)
+				d3.select('#viz_process1').attr('src', '../reveal/lib/imgs/' + value + '.png')
+			}
+		
+		})
+	</script>
+
+</body>
+</html>

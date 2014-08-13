@@ -37,6 +37,7 @@
 			<section>
 			<h3>Outline</h3>
 				<ul>
+					<li class="fragment">Assignment 2 review</li>
 					<li class="fragment">Overview</li>
 					<li class="fragment">Making Selections</li>
 					<li class="fragment">Binding Data</li>
@@ -45,33 +46,80 @@
 				</ul>
 			</section>
 			<section>
-				<h3>Overview</h3>
-				<ul>
-					<li class="fragment">D3 is the most popular library for building web visualizations</li>
-					<li class="fragment">It's not a charting library</li>
-					<li class="fragment">D3 binds data to DOM elements and facilitates dynamic manipulation</li>
-					<li class="fragment">Add the D3 library in the head of your HTML document</li>
-					<pre class="fragment"><code data-trim><script src="http://d3js.org/d3.v3.min.js"></script></code></pre>		
+				<h3><a href="http://mkfreeman.github.io/gh590/examples/assignment2" target="_blank">Assignment 2</a></h3>
+			</section>
+			<section>
+			
+				<section>
+					<h3>Overview</h3>
+				</section>
+					<section>
+					<p><u>D3</u></p>
+					<ul>
+						<li class="fragment">D3 is the most popular library for building web visualizations</li>
+						<li class="fragment">It's not a charting library</li>
+						<li class="fragment">D3 binds data to DOM elements and facilitates dynamic manipulation</li>
+						<li class="fragment">Add the D3 library in the head of your HTML document</li>
+						<pre class="fragment"><code data-trim class="javascript"><script src="http://d3js.org/d3.v3.min.js" target="_blank"></script></code></pre>		
 					
 
 					
-				</ul>	
+					</ul>	
+				</section>
+				<section>
+					<p>So what can D3 do?</p>
+					<h3 class=fragment><a href="http://www.d3js.org">Everything</a></h3>
+				</section>
 			</section>
 			<section>
 				<section>
 					<h3>Making Selections</h3>
+				</section>
+				<section>
+					<p>HTML elements can be manipulated from JavaScript code</p>
 					<ul>
-						<li class="fragment">Javascript can select and manipulate HTML elements</li>
-						<pre class="fragment"><code data-trim>document.getElementById('my-id').style.fill = 'red'</code></pre>
+						<li class="fragment">Pure JavaScript is clunky</li>
+						<pre class="fragment"><code data-trim class="javascript">document.getElementById('my-id').style.fill = 'red'</code></pre>
 						<li class="fragment">D3 simplifies the selection</li>
-						<pre class="fragment"><code data-trim>d3.select('#my-id').style('fill', 'red')</code></pre>	
-						<li class="fragment">D3 supports the selection and manipulation of multiple elements</li>
-						<pre class="fragment"><code data-trim>d3.selectAll('.my-class').style('fill', 'red')</code></pre>					
+						<li class="fragment">Select an element by ID</li>
+						<pre class="fragment"><code data-trim class="javascript">d3.select('#my-id')</code></pre>	
+						<li class="fragment">Select all elements in a class</li>
+						<pre class="fragment"><code data-trim class="javascript">d3.selectAll('.my-class')</code></pre>	
+						<li class="fragment">Select all element of a given type</li>
+						<pre class="fragment"><code data-trim class="javascript">d3.selectAll('rect')</code></pre>		
+						<li class="fragment">Selections can be stored in variables</li>		
+						<pre class="fragment"><code data-trim class="javascript">var mySvg = d3.selectAll('my-svg')</code></pre>		
+	
 					</ul>	
 				</section>
-			
 				<section>
-						<iframe class="stretch" src="http://jsbin.com/munugi/1/embed"></iframe>
+					<p>You can manipulate <i>attributes</i> and <i>styles</i> of selections</p>
+					<ul>
+						<li class="fragment">Modify attributes</li>
+						<pre class="fragment"><code data-trim class="javascript">d3.select('#my-circle').attr('r', 15)</code></pre>	
+						<li class="fragment">Modify styles</li>
+						<pre class="fragment"><code data-trim class="javascript">d3.selectAll('.points').style('fill', 'blue')</code></pre>		
+					</ul>	
+				</section>
+				<section>
+					<p>Append new elements to your selection</p>
+					<pre class="fragment"><code data-trim class="javascript">
+// Set a variable as a selected div from your page
+var myDiv = d3.select('#top-div')
+
+// Set a variable as a new SVG element that you append to your div
+var mySvg = myDiv.append('svg').attr('id', 'my-svg')
+
+//  All in one line
+var mySvg = d3.select('#my-div').append('svg').attr('id', 'my-svg')
+
+// Just append an item without setting it as a variable
+d3.select('#my-div').append('svg').attr('id', 'my-svg')
+					
+</pre></code>
+				</section>
+				<section>
+						<iframe class="stretch" src="http://jsbin.com/munugi/2/embed"></iframe>
 				</section>
 			</section>
 			
@@ -81,8 +129,8 @@
 					<ul>
 						<li class="fragment">The power of D3 is its ability to bind data to DOM elements</li>
 						<li class="fragment">Each element (ie, <code>&ltcircle&gt,&ltrect&gt</code>) is tied to data</li>
-						<li class="fragment">Any data without existing HTML elements can create new HTML elements (<code>enter</code>)</li>						
-						<li class="fragment">Any HTML elements without corresponding data can be removed (<code>exit</code>)</li>
+						<li class="fragment">New HTML elements can be created from data (<code>enter</code>)</li>						
+						<li class="fragment">When data is removed, corresponding HTML elements can be deleted(<code>exit</code>)</li>
 						<li class="fragment">Existing HTML elements can transition to reflect updates in the data (<code>update</code>)</li>
 					</ul>	
 				</section>
@@ -111,13 +159,13 @@
 					<h3>Enter Elements</h3>
 					<ol>
 						<li class="fragment">Select element to which you want to bind data (ie, svg)</li>
-						<pre class="fragment"><code data-trim>var mySvg = d3.select('#my-svg')</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">var mySvg = d3.select('#my-svg')</code></pre>
 						<li class="fragment">Select all child elements of SVG that you want to bind data to</li>
-						<pre class="fragment"><code data-trim>var circles = mySvg.selectAll('circle').data(dataSet)</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">var circles = mySvg.selectAll('circle').data(dataSet)</code></pre>
 						<li class="fragment">Enter new objects onto the page and append the desired elements</li>
-						<pre class="fragment"><code data-trim>circles.enter().append('circle')</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">circles.enter().append('circle')</code></pre>
 						<li class="fragment">Assign attributes</li>
-						<pre class="fragment"><code data-trim>circles.attr('r', 15).attr('cx', 50)...</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">circles.attr('r', 15).attr('cx', 50)...</code></pre>
 					</ol>	
 				</section>
 				<section>
@@ -129,7 +177,7 @@
 						<li class="fragment">Many similar processes are repeated when positioning elements</li>
 						<li class="fragment">These processes can (should) be stored in functions</li>
 						<li class="fragment">Function to define circle attributes:</li>
-												<pre class="fragment"><code data-trim>
+												<pre class="fragment"><code data-trim class="javascript">
 var circleFunction = function(circle) {
 	circle.attr('r', 15)
 	  .attr('cx', function(d) {return d*1})
@@ -138,7 +186,7 @@ var circleFunction = function(circle) {
 }
 						</pre></code>
 						<li class="fragment">Pass selected elements to functions by using D3's <code>.call</code> functionality</li>
-						<pre class="fragment"><code data-trim>
+						<pre class="fragment"><code data-trim class="javascript">
 d3.selectAll('circle')
 	.data(data)
 	.enter()
@@ -154,11 +202,11 @@ d3.selectAll('circle')
 					<h3>Exit Elements</h3>
 					<ol>
 						<li class="fragment">Select element to which you want to manage data (ie, svg)</li>
-						<pre class="fragment"><code data-trim>var mySvg = d3.select('#my-svg')</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">var mySvg = d3.select('#my-svg')</code></pre>
 						<li class="fragment">Select all child elements of SVG that you want to bind data to</li>
-						<pre class="fragment"><code data-trim>var circles = mySvg.selectAll('circle').data(dataSet)</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">var circles = mySvg.selectAll('circle').data(dataSet)</code></pre>
 						<li class="fragment">Remove circles that are no longer present</li>
-						<pre class="fragment"><code data-trim>circles.exit().remove()</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">circles.exit().remove()</code></pre>
 					</ol>	
 				</section>
 				<section>
@@ -168,16 +216,38 @@ d3.selectAll('circle')
 					<h3>Transition Elements</h3>
 					<ol>
 						<li class="fragment">Select element to which you want to manage data (ie, svg)</li>
-						<pre class="fragment"><code data-trim>var mySvg = d3.select('#my-svg')</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">var mySvg = d3.select('#my-svg')</code></pre>
 						<li class="fragment">Select all child elements of SVG that you want to bind data to</li>
-						<pre class="fragment"><code data-trim>var circles = mySvg.selectAll('circle').data(dataSet)</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">var circles = mySvg.selectAll('circle').data(dataSet)</code></pre>
 						<li class="fragment">Select <i>all</i> elements and transition a property</li>
-						<pre class="fragment"><code data-trim>mySvg.selectAll('circle').transition().duration(500).attr('cx', 100)</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">mySvg.selectAll('circle').transition().duration(500).attr('cx', 100)</code></pre>
 					</ol>	
 				</section>
 				<section>
 						<iframe class="stretch" src="http://jsbin.com/xeheg/1/embed?js,output"></iframe>
 				</section>
+			</section>
+			<section>
+				<h3>Summary</h3>
+				<ul>
+					<li class="fragment">D3 can do anything</li>
+					<li class="fragment">It just might not be easy</li>
+					<li class="fragment">D3 allows HTML elements to be bound to data</li>
+					<li class="fragment">This allows entering, exiting, and updating</li>
+				</ul>	
+			</section>
+			<section>
+				<h3>Assignment 3</h3>
+				<ul>
+					<li class="fragment">Create an interactive 2D plot</li>
+					<li class="fragment">Use a dataset of your choice</li>
+					<li class="fragment">Meet requirements described <a href = "https://canvas.uw.edu/courses/912211/assignments/2555357" target="_blank" >here</a></li>
+					
+				</ul>
+			</section>
+			<section>
+				<h3><a href="http://jsbin.com/yuwos/3/edit?js,html,output" target="_blank">Exercise 3</a></h3>
+				<p>Please clone the jsbin</p>
 			</section>
 		
 			
