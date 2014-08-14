@@ -37,25 +37,52 @@
 			<section>
 			<h3>Outline</h3>
 				<ul>
-					<li class="fragment">Assignment review</li>
-					<li class="fragment">Overview</li>
+					<li class="fragment">D3 review</li>
+					<li class="fragment">Scales/axes Overview</li>
 					<li class="fragment">Linear Scales</li>
-					<li class="fragment">Ordinal Color Scales</li>
+					<li class="fragment">Ordinal (Color) Scales</li>
 					<li class="fragment">Axes</li>					
+					<li class="fragment">Exercise</li>					
 					<li class="fragment">Review</li>
 				</ul>
 			</section>
 			<section>
-				Insert assignment review
+				<section>
+					<h3>Binding data</h3>
+						<ol>
+							<li class="fragment">Select element to which you want to bind data (ie, svg)</li>
+							<pre class="fragment"><code data-trim class="javascript">var mySvg = d3.select('#my-svg')</code></pre>
+							<li class="fragment">Select all child elements of SVG that you want to bind data to, pass data</li>
+							<pre class="fragment"><code data-trim class="javascript">var circles = mySvg.selectAll('circle').data(dataSet)</code></pre>
+							<li class="fragment">Enter new objects onto the page and append the desired elements</li>
+							<pre class="fragment"><code data-trim class="javascript">circles.enter().append('circle').call(circleFunction)</code></pre>
+							<li class="fragment">Exit elements that are no longer preset in the data</li>	
+							<pre class="fragment"><code data-trim class="javascript">circles.exit().remove()</code></pre>											
+							<li class="fragment">Transition elements that are not new or leaving</li>
+							<pre class="fragment"><code data-trim class="javascript">d3.selectAll('circle').transition().duration(500).call(circleFunction)</code></pre>
+						</ol>	
+				</section>
+				<section>
+					<iframe class="stretch" src="http://jsbin.com/yugove/7/embed?output"></iframe>
+				</section>
+				<section>
+					<iframe class="stretch" src="http://jsbin.com/nozapu/1/embed?js,output"></iframe>
+				</section>
+				<section>
+					<iframe class="stretch" src="http://jsbin.com/yenato/1/embed?js,output"></iframe>
+				</section>
+				<section>
+					<iframe class="stretch" src="http://jsbin.com/puneye/1/embed?js,output"></iframe>
+				</section>
 			</section>
 		<section>
 			<section>
-				<h3>Overview</h3>
+				<h3>Scales/Axes Overview</h3>
 				<ul>
 					<li class="fragment">Scales are functions which translate from a data space to a visual space</li>
 					<li class="fragment">They map from an input <b>domain</b> (your data) to an output <b>range</b> (visual space)</li>					
 					<li class="fragment">Axes are visual representations of scales that allow reverse translation</li>
-					<li class="fragment">D3 has built in scale functionality that easily converts from data values to pixels</li>			
+					<li class="fragment">D3 has built in scale functionality that "easily" converts from data values to pixels</li>			
 				</ul>	
 			</section>
 			<section>
@@ -134,24 +161,29 @@ var data = [
 												
 						</ul>
 					</section>
-					
+					<section>
+						<iframe class="stretch" src="http://jsbin.com/povebo/1/embed?js"></iframe>
+					</section>
 				
 					<section>
 						<h3>Set Scale</h3>
 						<ul>
 						<li class="fragment">Define a variable as a scale</li>
-						<pre class="fragment"><code data-trim>var xScale = d3.scale.linear()</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">var xScale = d3.scale.linear()</code></pre>
 						<li class="fragment">Define the <b>domain</b> of the scale (data space)</li>	
-						<pre class="fragment"><code data-trim>xScale.domain([xMin, xMax])</code></pre>
+						<pre class="fragment"><code data-trim class="javascript">xScale.domain([xMin, xMax])</code></pre>
 						<li class="fragment">Define the <b>range</b> of the scale (visual space)</li>	
-						<pre class="fragment"><code data-trim>xScale.range([0, 500])</code></pre>		
+						<pre class="fragment"><code data-trim class="javascript">xScale.range([0, 500])</code></pre>		
 						<li class="fragment">The scale now takes in data x values and returns corresponding position from 0 to 500</li>	
 						</ul>	
 					</section>
 					<section>
+						<iframe class="stretch" src="http://jsbin.com/penoq/3/embed?js"></iframe>
+					</section>
+					<section>
 						<h3>Positioning elements with scales</h3>
 						<p class="fragment">Same process, just scale the value</p>
-						<pre class="fragment"><code data-trim>
+						<pre class="fragment"><code data-trim class="javascript">
 // Append circles
 d3.select('#my-svg').selectAll('circle')
   .data(data)
@@ -173,14 +205,14 @@ d3.select('#my-svg').selectAll('circle')
 					<section>
 						<h3>Ordinal scales</h3>
 						<li class="fragment">Map from a discrete domain to a discrete range</li>
-						<pre class="fragment"><code data-trim>
+						<pre class="fragment"><code data-trim class="javascript">
 var people = ['Jim', 'Adam', 'Steve']
 var jobs = ['Researcher', 'Nurse', 'Farmer']
 var jobScale = d3.scale.ordinal().domain(people).range(jobs)
 var steves_job = jobScale('Steve') // returns "Farmer"
 </pre></code>
 						<li class="fragment">Domain is optional and will be set dynamically</li>
-						<pre class="fragment"><code data-trim>
+						<pre class="fragment"><code data-trim class="javascript">
 var people = ['Jim', 'Adam', 'Steve']
 var jobs = ['Researcher', 'Nurse', 'Farmer']
 var jobScaleNoDomain = d3.scale.ordinal().range(jobs)
@@ -196,7 +228,7 @@ var steves_job = jobScale('Steve') // returns first element "Researcher"
 						<ul>
 						<li class="fragment">D3 has built in color scales (and they're pretty)</li>
 						<li class="fragment">These scales have a pre-set range, and the domain can be set explicitly or dynamically</li>
-						<pre class="fragment"><code data-trim>
+						<pre class="fragment"><code data-trim class="javascript">
 var colorScale = d3.scale.category10()
 var color1 = colorScale('first item')
 var color2 = colorScale('second item')
@@ -234,13 +266,13 @@ var color2 = colorScale('second item')
 						<h3>Defining an axis function</h3>
 						<ul>
 							<li class="fragment">Define an object/function using d3.svg.axis</li>
-							<pre class="fragment"><code data-trim>var axisFunction = d3.svg.axis()</code></pre>							
+							<pre class="fragment"><code data-trim class="javascript">var axisFunction = d3.svg.axis()</code></pre>							
 							<li class="fragment">Pass the scale that you want to represent to the function</li>
-							<pre class="fragment"><code data-trim>axisFunction.scale(myScale)</code></pre>							
+							<pre class="fragment"><code data-trim class="javascript">axisFunction.scale(myScale)</code></pre>							
 							<li class="fragment">Position the labels relative to the axis</li>
-							<pre class="fragment"><code data-trim>axisFunction.orient('bottom')</code></pre>							
+							<pre class="fragment"><code data-trim class="javascript">axisFunction.orient('bottom')</code></pre>							
 							<li class="fragment">Assign other attributes as needed/wanted</li>
-							<pre class="fragment"><code data-trim>axisFunction.ticks(5)</code></pre>							
+							<pre class="fragment"><code data-trim class="javascript">axisFunction.ticks(5)</code></pre>							
 														
 						</ul>
 					</section>					
@@ -248,24 +280,24 @@ var color2 = colorScale('second item')
 						<h3>Appending an axis</h3>
 						<ul>
 							<li class="fragment">Append a 'g' element to hold your axis</li>
-							<pre class="fragment"><code data-trim>var axisG = d3.select('#my-svg').append('g')</code></pre>							
+							<pre class="fragment"><code data-trim class="javascript">var axisG = d3.select('#my-svg').append('g')</code></pre>							
 							<li class="fragment">Position this g where you want relative to the svg</li>
-							<pre class="fragment"><code data-trim>axisG.attr('transform', 'translate(0,' + settings.height + ')') // bottom of svg</code></pre>							
+							<pre class="fragment"><code data-trim class="javascript">axisG.attr('transform', 'translate(0,' + settings.height + ')') // bottom of svg</code></pre>							
 							<li class="fragment">Pass your g element to the axis function using <code>.call</code></li>		
-							<pre class="fragment"><code data-trim>axisG.call(axisFunction)</code></pre>							
+							<pre class="fragment"><code data-trim class="javascript">axisG.call(axisFunction)</code></pre>							
 						</ul>
 					</section>
 					<section>
 						<h3>Axis styling</h3>
 						<ul>
 							<li class="fragment">Apply styles to paths and lines in the axis class in CSS</li>
-							<pre class="fragment"><code data-trim>.axis path, .axis line{}</code></pre>					
+							<pre class="fragment"><code data-trim class="javascript">.axis path, .axis line{}</code></pre>					
 							<li class="fragment">Make the axis path thin</li>
-							<pre class="fragment"><code data-trim>.axis path, .axis line {fill:none;}</code></pre>							
+							<pre class="fragment"><code data-trim class="javascript">.axis path, .axis line {fill:none;}</code></pre>							
 							<li class="fragment">Make the outline visible</li>
-							<pre class="fragment"><code data-trim>.axis path, .axis line {stroke:black;}</code></pre>							
+							<pre class="fragment"><code data-trim class="javascript">.axis path, .axis line {stroke:black;}</code></pre>							
 							<li class="fragment">Cleaner line</li>		
-							<pre class="fragment"><code data-trim>.axis path, .axis line {shape-rendering:crispEdges}</code></pre>							
+							<pre class="fragment"><code data-trim class="javascript">.axis path, .axis line {shape-rendering:crispEdges}</code></pre>							
 
 						</ul>
 					</section>
