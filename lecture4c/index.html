@@ -33,9 +33,42 @@
 
 		<div class="slides">
 			<section>
-			<h2>Graphical Perception (2/2)</h2>
+				<h2>Graphical Perception (2/2)</h2>
 			</section>
-			
+			<section>
+				<h3>Outline</h3>
+				<ul>
+					<li class="fragment">Graphical perception (1) review</li>
+					<li class="fragment">Data typology</li>
+					<li class="fragment">Expressiveness</li>
+					<li class="fragment">Effectiveness</li>
+					<ul>
+						<li class="fragment">Signal detection</li>
+						<li class="fragment">Magnitude estimation</li>
+					</ul>
+				</ul>
+			</section>
+			<section>
+				<section>
+					<h3>Review</h3>
+				</section>
+				<section>
+					<h3>Sensory versus arbitrary</h3>
+					<img class="fragment" src="../reveal/lib/imgs/sensory_v_arbitrary.png"></img>
+				</section>
+				<section>
+					<p>Preattentive attributes</p>
+					<img class="fragment" src="../reveal/lib/imgs/ware2.png"></img>
+				</section>
+				<section>
+					<p><u>Gestalt groupings</u></p>
+						<img style="height:300px;" src="../reveal/lib/imgs/proximity2.png"></img>
+						<img style="height:300px;" src="../reveal/lib/imgs/proximity3.png"></img>
+				</section>
+				<section>
+					<p>Leverage <i>sensory</i> and <i>preattentive</i> attributes to highlight specific messages and increase interpretability</p>
+				</section>
+			</section>
 			<section>
 				<section>
 					<h3>Data typology</h3>
@@ -62,7 +95,132 @@
 						<pre class="fragment">Physical measurements, counts, etc.</pre>
 					</ul>
 				</section>
+				<section>
+					<iframe class="stretch" src="http://hereistoday.com"></iframe>
+				</section>
 			</section>
+			<section>
+				<section>
+					<h3>Expressiveness</h3>
+				</section>
+				<section>
+					<p>A set of facts (data) is expressible in a language (layout) if:</p>
+						<ul>
+							<li class="fragment">It expresses all of the facts</li> 
+							<li class="fragment">It only expresses the facts in the set</li> 
+						</ul>
+				</section>
+				<section>
+					<p>Expressiveness is a function of:</p>
+						<ul>
+							<li class="fragment">The type of each data attribute of interest (N, O, Q)</li> 
+							<li class="fragment">The volume of data</li> 
+							<li class="fragment">The distribution of data</li> 
+						</ul>
+				</section>
+				<section>
+					<p>Unable to express all facts in a layout (fails first criterion)</p>
+					<img class="fragment" src="../reveal/lib/imgs/horizontal.png"></img>
+				</section>
+				<section>
+					<p>Expresses information not inherent in the dataset (fails second criterion)</p>
+					<img class="fragment" src="../reveal/lib/imgs/cars.png"></img>
+				</section>
+				<section>
+					<p>An alternative</p>
+					<img  src="../reveal/lib/imgs/cars_correct.png"></img>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Effectiveness</h3>
+				</section>
+				<section>
+					<p>The <i>effectiveness</i> of a visualization is a measure of how accurately the values can be decoded</p>
+					<ul>
+						<li class="fragment">Prioritizes encodings that are most easily/accurately interpreted</li>						
+						<li class="fragment">Principle of Importance Ordering: Encode more important information more effectively (Mackinlay)</li>						
+					</ul>
+				</section>
+				<section>
+					<img  src="../reveal/lib/imgs/hierarchy.png"></img>				
+				</section>
+				<section>
+					<img  src="../reveal/lib/imgs/typology_hierarchy.png"></img>				
+				</section>
+				<section>
+					<p>These rankings differ because of a variation in associated tasks</p>
+					<ul>
+						<li class="fragment"><b>Nominal/Ordinal variables:</b> detect differences</li>						
+						<li class="fragment"><b>Quantitative variables:</b> estimate magnitudes</li>						
+					</ul>
+				</section>
+			</section>
+				<section>
+					<section>
+						<h3>Signal detection</h3>
+					</section>
+					<section>
+						<h3>Weber's law</h3>
+						<ul>
+							<li class="fragment">Just noticeable differences are functions of relative (not absolute) difference</li> 
+							<li class="fragment">There is a constant scaling factor for interpretations of values (Weber's constant)</li>
+						</ul>
+					</section>
+					<section>
+						<img  id="heer1-img" src="../reveal/lib/imgs/heer1.png"></img>
+						<div class="fragment" id='heer1' style="height:0px; width:0px;"></div>
+									
+					</section>
+					<section>
+						<img  id="heer2-img" src="../reveal/lib/imgs/heer2.png"></img>
+						<div class="fragment" id='heer2' style="height:0px; width:0px;"></div>			
+					</section>
+					<section>
+						<img src="../reveal/lib/imgs/fonts.png"></img>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Magnitude estimation</h3>
+					</section>			
+				<section>
+					<h3><a href="https://docs.google.com/spreadsheets/d/16serrRQV7uHuTz2OuFg2eXTp5Z7nKmziaLK8Mhk9gDw/" target="_blank">Assessment</a></h3>
+				</section>	
+				<section>
+					<iframe class="stretch" src="http://jsbin.com/huduxa/2/embed?output"></iframe>
+				</section>
+				<section>
+					<iframe class="stretch" src="http://jsbin.com/finol/3/embed?output"></iframe>
+				</section>
+				<section>
+					<iframe class="stretch" src="http://jsbin.com/hanaqi/2/embed?output"></iframe>
+				</section>
+				<section>
+					<p>Error</p>
+					<img src="../reveal/lib/imgs/power.png"></img>
+				</section>
+			</section>
+			<section>
+				<h3>Summary</h3>
+					<ul>
+						<li class="fragment">Expressive graphics display all (and only) the facts of the data</li>
+						<li class="fragment">Effective graphs exploit human perception to accurately communicate most important information</li>
+						<li class="fragment">Leverage most perceptible features first (position,length, slope...)</li>
+					</ul>
+			</section>
+			<section>
+				<h3>Assignment 3 (conceptual)</h3>	
+				<ul>
+					<li class="fragment">Identify a global health dataset of interest</li>
+					<li class="fragment">Sketch 5 representations of the dataset</li>
+					<li class="fragment">Include short descriptions of how you encoded data attributes</li>
+					<li class="fragment">Due Friday before class</li>
+					<li class="fragment">Can be final project data</li>					
+					<li class="fragment">More details <a href = "https://canvas.uw.edu/courses/912211/assignments/2555352" target="_blank">here</a></li>		
+				</ul>
+			</section>
+	
 		
 		</div>
 	</div>
@@ -89,10 +247,12 @@
 			]
 		});
 		Reveal.addEventListener('fragmentshown', function(event) {		
-			if(event.fragment.id.indexOf('viz')!=-1) d3.select('#viz_process1').attr('src', '../reveal/lib/imgs/' + event.fragment.id + '.png')
+			if(event.fragment.id.indexOf('heer')!=-1) d3.select('#' + event.fragment.id+ '-img').attr('src', '../reveal/lib/imgs/' + event.fragment.id + '_answer.png')
 		
 		})
 		Reveal.addEventListener('fragmenthidden', function(event) {
+			if(event.fragment.id.indexOf('heer')!=-1) d3.select('#' + event.fragment.id+ '-img').attr('src', '../reveal/lib/imgs/' + event.fragment.id + '.png')
+
 			if(event.fragment.id.indexOf('viz')!=-1) { 
 				var value = 'viz_process' + (Number(event.fragment.id.replace('viz_process', '')) - 1)
 				d3.select('#viz_process1').attr('src', '../reveal/lib/imgs/' + value + '.png')

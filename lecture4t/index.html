@@ -72,12 +72,15 @@
 					<iframe class="stretch" src="http://jsbin.com/yenato/1/embed?js,output"></iframe>
 				</section>
 				<section>
-					<iframe class="stretch" src="http://jsbin.com/puneye/1/embed?js,output"></iframe>
+					<iframe class="stretch" src="http://jsbin.com/puneye/2/embed?js,output"></iframe>
 				</section>
 			</section>
 		<section>
 			<section>
 				<h3>Scales/Axes Overview</h3>
+			</section>
+			<section>
+				<p><u>Definitions</u></p>
 				<ul>
 					<li class="fragment">Scales are functions which translate from a data space to a visual space</li>
 					<li class="fragment">They map from an input <b>domain</b> (your data) to an output <b>range</b> (visual space)</li>					
@@ -162,7 +165,7 @@ var data = [
 						</ul>
 					</section>
 					<section>
-						<iframe class="stretch" src="http://jsbin.com/povebo/1/embed?js"></iframe>
+						<iframe class="stretch" src="http://jsbin.com/povebo/2/embed?js"></iframe>
 					</section>
 				
 					<section>
@@ -194,13 +197,13 @@ d3.select('#my-svg').selectAll('circle')
 </code></pre>
 					</section>
 					<section>
-						<iframe class="stretch" src="http://jsbin.com/penoq/2/embed?js,output"></iframe>
+						<iframe class="stretch" src="http://jsbin.com/penoq/4/embed?js,output"></iframe>
 					</section>
 				</section>
 
 				<section>
 					<section>
-					<h3>Ordinal Color Scales</h3>
+					<h3>Ordinal (Color) Scales</h3>
 					</section>
 					<section>
 						<h3>Ordinal scales</h3>
@@ -265,7 +268,7 @@ var color2 = colorScale('second item')
 					<section>
 						<h3>Defining an axis function</h3>
 						<ul>
-							<li class="fragment">Define an object/function using d3.svg.axis</li>
+							<li class="fragment">Define a variable using d3.svg.axis</li>
 							<pre class="fragment"><code data-trim class="javascript">var axisFunction = d3.svg.axis()</code></pre>							
 							<li class="fragment">Pass the scale that you want to represent to the function</li>
 							<pre class="fragment"><code data-trim class="javascript">axisFunction.scale(myScale)</code></pre>							
@@ -303,17 +306,51 @@ var color2 = colorScale('second item')
 					</section>
 					
 					<section>
-						<iframe class="stretch" src="http://jsbin.com/lufex/4/embed?js,output"></iframe>
+						<iframe class="stretch" src="http://jsbin.com/lufex/5/embed?js,output"></iframe>
 					</section>
-					</section>
-				</section>
-<!-- 
-				<section>
 					<section>
-					<h3>Quantitative Scales</h3>
+						<h3>What if we try adding a y-axis?</h3>
+					</section>
+					<section>
+						<iframe class="stretch" src="http://jsbin.com/buzux/2/embed?js,output"></iframe>
+					</section>
+					<section>
+						<h3>We need a way to shift over the chart</h3>
+						<ul>
+							<li class="fragment">We can group all the elements in a <code>&lt;g&gt;</code> element</li>
+							<pre class="fragment"><code data-trim class="javascript">var myG = d3.select('#my-svg').append('g').attr('id', 'my-g')</code></pre>
+							<li class="fragment">Add elements (shapes, axes) to the g</li>
+							<pre class="fragment"><code data-trim class="javascript">var circles = d3.select('#my-g').data(data).enter().append('circle')</code></pre>
+							<li class="fragment">Position the g element using the 'transform' property </li>
+							<pre class="fragment"><code data-trim class="javascript">myG.attr('transform', 'translate(10,10)'</code></pre>
+
+
+						</ul>
+					</section>
+					<section>
+						<iframe class="stretch" src="http://jsbin.com/xizor/1/embed?js,output"></iframe>
+					</section>
+
 					</section>
 				</section>
- -->
+			</section>
+			<section>
+				<h3>Assignment 3</h3>
+				<ul>
+					<li class="fragment">Create an interactive 2D plot</li>
+					<li class="fragment">Use a dataset of your choice</li>
+					<li class="fragment">Meet requirements described <a href = "https://canvas.uw.edu/courses/912211/assignments/2555357" target="_blank" >here</a></li>		
+					<li class="fragment">Due Friday before class</li>		
+				</ul>
+			</section>
+			<section>
+				<h3>Exercise 4</h3>
+				<ul>
+					<li class="fragment">Make a scatterplot of life expectancy</li>
+					<li class="fragment">Develop on your laptop (not jsbin)</li>
+					<li class="fragment">Use full life expectancy data from <a href = "https://github.com/mkfreeman/gh590/blob/master/examples/scatter/js/data.js" target="_blank" >here</a></li>		
+					<li class="fragment">Color points by region</li>		
+				</ul>
 			</section>
 		</div>
 	</div>
