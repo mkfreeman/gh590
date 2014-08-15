@@ -184,6 +184,54 @@ $('#map-svg path').poshytip({
 		</section>
 		</section>
 		</section>
+		<section>
+			<h3>Formatting numbers</h3>
+			<ul>
+				<li class="fragment">Use a d3.format function</li>
+				<pre class="fragment"><code data-trim class="javascript">var formatter = d3.format('.2s')</code></pre>	
+				<li class="fragment">Pass values to your formatter variable</li>
+				<pre class="fragment"><code data-trim class="javascript">var formatted = formatter (12.234) // returns 12</code></pre>	
+				<li class="fragment">Best understood through <a href="http://bl.ocks.org/zanarmstrong/05c1e95bf7aa16c4768e" target="_blank">example</a></li>
+			</ul>
+			
+		</section>
+		<section>
+			<h3>Grabbing data from examples</h3>
+			<ul>
+				<li class="fragment">There are ubiquitous D3 examples</li>
+				<li class="fragment">But some are using data from servers :(</li>
+				<pre class="fragment"><code class="javascript" data-trim>
+d3.json("/mbostock/raw/4090846/us.json", function(error, topology) {
+  svg.selectAll("path")
+      .data(topojson.feature(topology, topology.objects.counties).features)
+    .enter().append("path")
+      .attr("d", path);
+});
+</pre></code>
+			<li class="fragment">We can run these same commands in the console and retrieve the data</li>
+			<pre class="fragment"><code class="javascript" data-trim>
+var myData
+d3.json("/mbostock/raw/4090846/us.json", function(error, topology) {
+ 	myData = topology
+});
+</pre></code>
+			</ul>
+			<a href="http://bl.ocks.org/mbostock/4122298">Go here</a>
+		</section>
+		<section>
+			<h3>Next steps</h3>
+			<ul>
+				<li class="fragment">Turn the object into a string using JSON.stringify</li>
+				<pre class="fragment"><code class="javascript" data-trim>
+JSON.stringify(myData)
+</pre></code>
+			<li class="fragment">Copy and paste the results into a text document</li>
+			<pre class="fragment"><code class="javascript" data-trim>
+var shape = "{insert copied info here}"
+</pre></code>
+			<li class="fragment">Save that file as shape.js and include in your index.html</li>
+			</ul>
+		</section>
 		</div>
 	</div>
 	<script src="../reveal/lib/js/head.min.js"></script>
