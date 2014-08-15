@@ -38,190 +38,157 @@
 			<section>
 				<h3>Outline</h3>
 				<ul>
+					<li class="fragment">Graphical perception</li>
 					<li class="fragment">Overview</li>
-					<li class="fragment">Tasks</li>
-					<li class="fragment">Actions</li>
+					<li class="fragment">Tasks and actions</li>
+					<li class="fragment">Visual queues</li>
 					<li class="fragment">Examples</li>
-					<ul>
-						<li class="fragment">Signal detection</li>
-						<li class="fragment">Magnitude estimation</li>
-					</ul>
+					<li class="fragment">Activity</li>
 				</ul>
 			</section>
 			<section>
+				<h3><a href="http://www.forbes.com/sites/jvchamary/2014/08/13/ebola/" target="_blank">Why study graphical perception</a></h3>
+			</section>
+			<section>
 				<section>
-					<h3>Review</h3>
+					<h3>Overview</h3>
 				</section>
 				<section>
-					<h3>Sensory versus arbitrary</h3>
-					<img class="fragment" src="../reveal/lib/imgs/sensory_v_arbitrary.png"></img>
+					<p>Interactivity requires mutual understanding</p>
+					<ul>
+						<li class="fragment">User must understand effects of actions</li>
+						<li class="fragment">Computer must understand intentions of users</li>
+							<ul>
+								<li class="fragment">We must understand (anticipate) intentions of users</li>							
+							</ul>
+					</ul>
 				</section>
 				<section>
-					<p>Preattentive attributes</p>
-					<img class="fragment" src="../reveal/lib/imgs/ware2.png"></img>
-				</section>
-				<section>
-					<p><u>Gestalt groupings</u></p>
-						<img style="height:300px;" src="../reveal/lib/imgs/proximity2.png"></img>
-						<img style="height:300px;" src="../reveal/lib/imgs/proximity3.png"></img>
-				</section>
-				<section>
-					<p>Leverage <i>sensory</i> and <i>preattentive</i> attributes to highlight specific messages and increase interpretability</p>
+					<p>More bad clip art</p>
+					<img class="fragment" id="interaction" src="../reveal/lib/imgs/interaction_1.png"></scr>
+					<div class="fragment" id='interaction_2' style="height:0px; width:0px;"></div>
+					<div class="fragment" id='interaction_3' style="height:0px; width:0px;"></div>
+					<div class="fragment" id='interaction_4' style="height:0px; width:0px;"></div>
 				</section>
 			</section>
 			<section>
 				<section>
-					<h3>Data typology</h3>
+					<h3>Tasks and actions</h3>
 				</section>
 				<section>
-					<h3>Data structure</h3>
+					<p>What does a user want to accomplish through their interactions (tasks)?</p>
 					<ul>
-						<li class="fragment">Entities: objects of interest</li>
-						<li class="fragment">Relationships: structures between entities</li>
-						<li class="fragment">Entities and relationships both can be described with data attributes</li>
-						<li class="fragment"><a href="https://immersion.media.mit.edu/viz#" target="_blank">Example</a></li>
+						<li class="fragment">Select view of data (chart type)</li>					
+						<li class="fragment">Filter data</li>
+						<li class="fragment">Retrieve information</li>
+						<li class="fragment">Zoom into data</li>
+						<li class="fragment">Highlight data</li>
+						<li class="fragment">Rearrange data (sort)</li>
+						<li class="fragment">Explore specific sections, relationships</li>
 					</ul>
 				</section>
 				<section>
-					<h3>Data attributes</h3>
+					<p>What steps does a user take to accomplish their tasks (actions)?</p>
 					<ul>
-						<li class="fragment">Nominal: no inherent ordering of values</li>
-						<pre class="fragment">Fruits: apples, bananas, oranges</pre>
-						<li class="fragment">Ordinal: ordered values with unknown distances between them</li>
-						<pre class="fragment">Quality: low, medium, high</pre>
-						<li class="fragment">Quantitative (interval): Only interval is meaningful</li>
-						<pre class="fragment">Date: 2/15/77, 3/18/66</pre>
-						<li class="fragment">Quantitative (ratio): zero is fixed</li>
-						<pre class="fragment">Physical measurements, counts, etc.</pre>
+						<li class="fragment">Hover</li>					
+						<li class="fragment">Click</li>
+						<li class="fragment">Click + drag (to move)</li>
+						<li class="fragment">Click + drag (to select: brush)</li>
+						<li class="fragment">Mousewheel up/down</li>
+						<li class="fragment">Type</li>
 					</ul>
 				</section>
 				<section>
-					<iframe class="stretch" src="http://hereistoday.com"></iframe>
+					<p>User versus developer driven interaction</p>
+					<ul>
+						<li class="fragment">User driven: user seeks out information of interest</li>					
+						<li class="fragment">Developer driven: visualization exposes information to users in specific steps</li>
+					</ul>
 				</section>
 			</section>
 			<section>
 				<section>
-					<h3>Expressiveness</h3>
+					<h3>Visual queues</h3>
 				</section>
 				<section>
-					<p>A set of facts (data) is expressible in a language (layout) if:</p>
-						<ul>
-							<li class="fragment">It expresses all of the facts</li> 
-							<li class="fragment">It only expresses the facts in the set</li> 
-						</ul>
+					<h3>How do users know when to take certain actions?</h3>
 				</section>
 				<section>
-					<p>Expressiveness is a function of:</p>
-						<ul>
-							<li class="fragment">The type of each data attribute of interest (N, O, Q)</li> 
-							<li class="fragment">The volume of data</li> 
-							<li class="fragment">The distribution of data</li> 
-						</ul>
+					<h3>Page features (explicit)</h3>				
 				</section>
 				<section>
-					<p>Unable to express all facts in a layout (fails first criterion)</p>
-					<img class="fragment" src="../reveal/lib/imgs/horizontal.png"></img>
+					<a href="http://peoplemov.in/" target="_blank"><img src="../reveal/lib/imgs/explicit.png"></img></a>
 				</section>
 				<section>
-					<p>Expresses information not inherent in the dataset (fails second criterion)</p>
-					<img class="fragment" src="../reveal/lib/imgs/cars.png"></img>
+					<img src="../reveal/lib/imgs/explicit3.png"></img>				
 				</section>
 				<section>
-					<p>An alternative</p>
-					<img  src="../reveal/lib/imgs/cars_correct.png"></img>
-				</section>
-			</section>
-			<section>
-				<section>
-					<h3>Effectiveness</h3>
+					<img src="../reveal/lib/imgs/explicit2.png"></img>				
 				</section>
 				<section>
-					<p>The <i>effectiveness</i> of a visualization is a measure of how accurately the values can be decoded</p>
-					<ul>
-						<li class="fragment">Prioritizes encodings that are most easily/accurately interpreted</li>						
-						<li class="fragment">Principle of Importance Ordering: Encode more important information more effectively (Mackinlay)</li>						
-					</ul>
+					<iframe src = "//player.vimeo.com/video/37714632" class="stretch"></iframe>
 				</section>
 				<section>
-					<img  src="../reveal/lib/imgs/hierarchy.png"></img>				
+					<h3>Page features (implicit)</h3>				
 				</section>
 				<section>
-					<img  src="../reveal/lib/imgs/typology_hierarchy.png"></img>				
+					<a href = "http://www.bloomberg.com/dataview/2014-04-17/how-americans-die.html" target="_blank"><img src="../reveal/lib/imgs/play1.png"></img></a>
 				</section>
 				<section>
-					<p>These rankings differ because of a variation in associated tasks</p>
-					<ul>
-						<li class="fragment"><b>Nominal/Ordinal variables:</b> detect differences</li>						
-						<li class="fragment"><b>Quantitative variables:</b> estimate magnitudes</li>						
-					</ul>
-				</section>
-			</section>
-				<section>
-					<section>
-						<h3>Signal detection</h3>
-					</section>
-					<section>
-						<h3>Weber's law</h3>
-						<ul>
-							<li class="fragment">Just noticeable differences are functions of relative (not absolute) difference</li> 
-							<li class="fragment">There is a constant scaling factor for interpretations of values (Weber's constant)</li>
-						</ul>
-					</section>
-					<section>
-						<img  id="heer1-img" src="../reveal/lib/imgs/heer1.png"></img>
-						<div class="fragment" id='heer1' style="height:0px; width:0px;"></div>
-									
-					</section>
-					<section>
-						<img  id="heer2-img" src="../reveal/lib/imgs/heer2.png"></img>
-						<div class="fragment" id='heer2' style="height:0px; width:0px;"></div>			
-					</section>
-					<section>
-						<img src="../reveal/lib/imgs/fonts.png"></img>
-					</section>
+					<img src="../reveal/lib/imgs/play2.png"></img>				
 				</section>
 				<section>
-					<section>
-						<h3>Magnitude estimation</h3>
-					</section>			
-				<section>
-					<h3><a href="https://docs.google.com/spreadsheets/d/16serrRQV7uHuTz2OuFg2eXTp5Z7nKmziaLK8Mhk9gDw/" target="_blank">Assessment</a></h3>
-				</section>	
-				<section>
-					<iframe class="stretch" src="http://jsbin.com/huduxa/2/embed?output"></iframe>
+					<h3>Cursor image</h3>				
 				</section>
 				<section>
-					<iframe class="stretch" src="http://jsbin.com/finol/3/embed?output"></iframe>
+					<img style="height:300px;" src="../reveal/lib/imgs/pointer.png"></img>				
 				</section>
 				<section>
-					<iframe class="stretch" src="http://jsbin.com/hanaqi/2/embed?output"></iframe>
-				</section>
-				<section>
-					<p>Error</p>
-					<img src="../reveal/lib/imgs/power.png"></img>
+					<img src="../reveal/lib/imgs/crosshair.png"></img>				
 				</section>
 			</section>
 			<section>
-				<h3>Summary</h3>
-					<ul>
-						<li class="fragment">Expressive graphics display all (and only) the facts of the data</li>
-						<li class="fragment">Effective graphs exploit human perception to accurately communicate most important information</li>
-						<li class="fragment">Leverage most perceptible features first (position,length, slope...)</li>
-					</ul>
+				<section>
+					<h3>Examples</h3>
+				</section>
+				<section>
+					<h3><a href="http://prototypes-dev.ihme.washington.edu/viz-hub/gbd-compare" target="_blank" >View specification</a></h3>
+				</section>
+				<section  data-background="white">
+					<iframe class="stretch" src="http://bl.ocks.org/mbostock/3680999"></iframe>
+				</section>
+				<section  data-background="white">
+					<iframe class="stretch" src="http://bl.ocks.org/mbostock/3680957"></iframe>
+				</section>
+			<section>
+				<h3><a href="http://mbostock.github.io/d3/talk/20111116/airports.html" target="_blank" >Smart hovering</a></h3>
 			</section>
 			<section>
-				<h3>Assignment 3 (conceptual)</h3>	
-				<ul>
-					<li class="fragment">Identify a global health dataset of interest</li>
-					<li class="fragment">Sketch 5 representations of the dataset</li>
-					<li class="fragment">Include short descriptions of how you encoded data attributes</li>
-					<li class="fragment">Due Friday before class</li>
-					<li class="fragment">Can be final project data</li>					
-					<li class="fragment">More details <a href = "https://canvas.uw.edu/courses/912211/assignments/2555352" target="_blank">here</a></li>		
-				</ul>
+				<h3><a href="http://bl.ocks.org/jasondavies/1341281" target="_blank" >Advanced queries</a></h3>
 			</section>
-	
-		
+			<section>
+				<h3><a href="http://benfry.com/zipdecode/" target="_blank">Novel exploration mechanisms</a></h3>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h3>Activity</h3>
+			</section>
+			<section>	
+				<p>Visualize <a href="https://docs.google.com/spreadsheet/ccc?key=0Aqe2P9sYhZ2ndHBmX2pldm1IelpRZHJqdGUwMWlUaHc#gid=18" target="_blank">this</a></p>
+			</section>
+		</section>
+		<section>
+			<p>Due Monday</p>
+			<ul>
+				<li class="fragment">Hover</li>					
+				<li class="fragment">Click</li>
+				<li class="fragment">Click + drag (to move)</li>
+				<li class="fragment">Click + drag (to select: brush)</li>
+				<li class="fragment">Mousewheel up/down</li>
+				<li class="fragment">Type</li>
+			</ul>
+		</section>
 		</div>
 	</div>
 	<script src="../reveal/lib/js/head.min.js"></script>
@@ -247,15 +214,15 @@
 			]
 		});
 		Reveal.addEventListener('fragmentshown', function(event) {		
-			if(event.fragment.id.indexOf('heer')!=-1) d3.select('#' + event.fragment.id+ '-img').attr('src', '../reveal/lib/imgs/' + event.fragment.id + '_answer.png')
+			if(event.fragment.id.indexOf('interaction_')!=-1) d3.select('#interaction').attr('src', '../reveal/lib/imgs/' + event.fragment.id + '.png')
 		
 		})
 		Reveal.addEventListener('fragmenthidden', function(event) {
 			if(event.fragment.id.indexOf('heer')!=-1) d3.select('#' + event.fragment.id+ '-img').attr('src', '../reveal/lib/imgs/' + event.fragment.id + '.png')
 
-			if(event.fragment.id.indexOf('viz')!=-1) { 
-				var value = 'viz_process' + (Number(event.fragment.id.replace('viz_process', '')) - 1)
-				d3.select('#viz_process1').attr('src', '../reveal/lib/imgs/' + value + '.png')
+			if(event.fragment.id.indexOf('interaction_')!=-1) { 
+				var value = 'interaction_' + (Number(event.fragment.id.replace('interaction_', '')) - 1)
+				d3.select('#interaction').attr('src', '../reveal/lib/imgs/' + value + '.png')
 			}
 		
 		})
