@@ -34,8 +34,19 @@
  */
 
 path {
-  fill: #;
-  stroke: #000;
+  fill: #d3d3d3;
+  stroke: white;
   stroke-linejoin: round;
   stroke-linecap: round;
+}
+
+.bubble {
+  fill: red;
+  fill-opacity: .5;
+  stroke: #fff;
+  stroke-width: .5px;
+}
+
+.bubble :hover {
+  stroke: #000;
 }

@@ -37,13 +37,66 @@
 			<section>
 			<h3>Outline</h3>
 				<ul>
-					<li class="fragment">Overview</li>
+					<li class="fragment">Lines</li>				
+					<li class="fragment">Overview</li>				
 					<li class="fragment">Inputs</li>
 					<li class="fragment">Drawing an outline</li>
 					<li class="fragment">Filling in colors</li>
-					<li class="fragment">Advanced interactivity</li>					
+					<li class="fragment">Interactivity</li>					
 				</ul>
 			</section>
+		<section>
+			<section>
+				<h3>Lines</h3>
+			</section>
+			<section>
+				<h3>Simple lines</h3>
+				<ul>
+					<li class="fragment">We learned simple HTML syntax for creating lines</li>
+					<pre class="fragment"><code data-trim>&lt;line x1=0 x2=100 y1=0 y2=100&gt;&lt;/line&gt;</code></pre>		
+					<li class ="fragment">We could obviously recreate this using D3</li>
+					<pre class="fragment"><code data-trim>
+var line = d3.select('my-svg').append('line')
+	.attr('x1', 0)
+	.attr('x2', 100)
+	.attr('y1', 0)
+	.attr('y2', 100)
+</code></pre>		
+					<li class ="fragment">This only connects two points</li>
+				</ul>	
+			</section>
+			
+			<section>
+				<h3>Paths</h3>
+				<ul>
+					<li class="fragment">A <code>path</code> element traces coordinates to make advanced shape</li>
+					<li class="fragment">D3 has built in functions to create paths based on sets of x and y coordinates</li>
+					<pre class="fragment"><code data-trim class="javascript">
+var pathGen = d3.svg.line()
+	.x(function(d) {return xScale(d.x)})
+	.y(function(d) {return yScale(d.y)})
+	.interpolate('cardinal')
+</code></pre>		
+					<li class ="fragment">This function takes an array of objects with x and y keys</li>
+					<pre class="fragment"><code data-trim class="javascript">
+var pathGenValues = [
+	{x:1990, y:200},
+	{x:1992, y:210},
+	{x:1994, y:190},
+	{x:1996, y:250},
+]
+</code></pre>						
+	
+				</ul>	
+			</section>
+			<section>
+				<iframe class="stretch" src="http://jsbin.com/fukud/1/embed?js,output"></iframe>
+			</section>
+			<section>
+				<iframe class="stretch" src="http://jsbin.com/yokub/2/embed?js,output"></iframe>
+			</section>
+		</section>
+		<section>
 			<section>
 				<h3>Overview</h3>
 				<ul>
@@ -53,8 +106,8 @@
 					<li class="fragment">As with lines, the path is assigned to the 'd' attribute</li>
 					<pre class="fragment"><code data-trim>paths.attr('d', path)</code></pre>		
 				</ul>	
-				
 			</section>
+		</section>
 		<section>
 			<section>
 				<h3>Inputs</h3>
@@ -72,13 +125,13 @@
 				<ul>
 					<li class="fragment">Data should be formatted to reference shapefile properties (ie, iso3)</li>
 					<pre class="fragment"><code data-trim>
-var data = [
+var data = {
 	AFG:6, 
 	AGO:9, 
 	ALB:10, 
-	...
+	...,
 	ZWE:1,
-]
+}
 </code></pre>	
 			<li class = "fragment">Data is then easily accessed when using the shapefile</li>
 			<pre class="fragment"><code data-trim>
@@ -107,7 +160,26 @@ var paths = d3.select('#map-g').selectAll('path')
 				</ul>
 				</section>	
 				<section>
+					<p><a href="http://mkfreeman.github.io/gh590/examples/map/" target="_blank">Link</a></p>
 					<iframe class="stretch" src="../examples/map/"></iframe>
+				</section>
+				<section>	
+					<h3>Using topojson</h3>
+					<ul>
+						<li class = "fragment">D3's topojson library is built to make this process more efficient</li>
+						<li class = "fragment">The projection is embedded in the shapefile, so no projection is needed</li>
+						
+						<pre class="fragment"><code data-trim>var path = d3.geo.path()</code></pre>
+						<li class = "fragment">The topojson function will handel passing your data</li>
+						<pre class="fragment"><code data-trim class="javascript">						
+var paths = d3.select('#map-g').selectAll('path')
+	.data(topojson.feature(shape, shape.objects.counties).features).enter().append("path")
+	.attr("fill", "#FFF")
+	.attr("stroke", "#000")
+	.attr('d', path)
+</code></pre>							
+						<li class = "fragment">We'll use this for the exercise today</li>						
+					</ul>					
 				</section>
 			</section>
 		<section>
@@ -117,16 +189,16 @@ var paths = d3.select('#map-g').selectAll('path')
 			<section>
 				<h3>Set scale</h3>
 				<p class="fragment">Get min/max values from data</p>
-				<pre class="fragment"><code data-trim>var values = d3.keys(data).map(function(d) {return data[d].mean})
+				<pre class="fragment"><code data-trim class="javascript">var values = d3.keys(data).map(function(d) {return data[d].mean})
 var min = d3.min(values)
 var max = d3.max(values)
 				</code></pre>	
 				<p class="fragment">Set color scale from values to colors</p>
-				<pre class="fragment"><code data-trim>var scale = d3.scale.linear().range(['white', 'red']).domain([min, max])</code></pre>											
+				<pre class="fragment"><code data-trim class="javascript">var scale = d3.scale.linear().range(['white', 'red']).domain([min, max])</code></pre>											
 			</section>
 		<section>
 			<h3>Fill in paths with colors</h3>
-<pre class="fragment"><code data-trim>
+<pre class="fragment"><code data-trim class="javascript">
 paths.attr('fill', function(d) {
 	var iso3 = d.properties.adm0_a3 // get ISO3 of path
 	if(data[iso3] == undefined) return '#d3d3d3' // Return gray if no data
@@ -136,7 +208,7 @@ paths.attr('fill', function(d) {
 })
 </code></pre>
 	<p class="fragment">Alternatively</p>	
-<pre class="fragment"><code data-trim>
+<pre class="fragment"><code data-trim class="javascript">
 paths.attr('fill', function(d) {
 	return data[iso3] == undefined) ? '#d3d3d3' : scale(data[d.properties.adm0_a3].mean)
 })	
@@ -151,10 +223,10 @@ paths.attr('fill', function(d) {
 				<h3>Add hover text</h3>
 			</section>
 			<section>
-			<p>Select each path using the jQuery library</p>
-			<pre class="fragment"><code data-trim>$('#map-svg path')</code></pre>
-			<p class="fragment">Call the poshytip function on selected objects</p>	
-			<pre class="fragment"><code data-trim>$('#map-svg path').poshytip({arguments})</code></pre>		
+			<p>Select each path using the jQuery <a href="http://jquery.com/download/" target="_blank">library</a></p>
+			<pre class="fragment"><code data-trim class="javascript">$('#map-svg path')</code></pre>
+			<p class="fragment">Call the <a href="http://vadikom.com/files/?file=poshytip/poshytip-1.2.zip" target="_blank">poshytip</a> function on selected objects</p>	
+			<pre class="fragment"><code data-trim  class="javascript">$('#map-svg path').poshytip({arguments})</code></pre>		
 			</section>
 			<section>
 			<h3>Poshytip arguments</h3>
@@ -216,7 +288,7 @@ d3.json("/mbostock/raw/4090846/us.json", function(error, topology) {
 });
 </pre></code>
 			</ul>
-			<a href="http://bl.ocks.org/mbostock/4122298">Go here</a>
+			<a class="fragment" href="http://bl.ocks.org/mbostock/4122298" target="_blank">Go here</a>
 		</section>
 		<section>
 			<h3>Next steps</h3>
@@ -227,10 +299,23 @@ JSON.stringify(myData)
 </pre></code>
 			<li class="fragment">Copy and paste the results into a text document</li>
 			<pre class="fragment"><code class="javascript" data-trim>
-var shape = "{insert copied info here}"
+var shape = JSON.parse("{insert copied info here}")
 </pre></code>
 			<li class="fragment">Save that file as shape.js and include in your index.html</li>
 			</ul>
+		</section>
+		<section>
+			<section>
+				<h3>Exercise</h3>
+			</section>
+			<section>
+				<p>Real life example</p>
+				<ul>
+					<li class="fragment">Make a bubble map of U.S. counties</li>				
+					<li class="fragment">Find, download, and format data</li>
+					<li class="fragment">Instructions are <a href="https://canvas.uw.edu/courses/912211/pages/map-exercise" target="_blank">here</a></li>
+				</ul>
+			</section>
 		</section>
 		</div>
 	</div>
@@ -246,7 +331,7 @@ var shape = "{insert copied info here}"
 			center: true,
 
 			theme: Reveal.getQueryHash().theme, 
-			transition: Reveal.getQueryHash().transition || 'default',
+			transition: Reveal.getQueryHash().transition || 'linear',
 			dependencies: [
 				{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
 				{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },

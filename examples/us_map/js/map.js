@@ -23,51 +23,24 @@ var svg = d3.select("#container").append("svg")
     .attr("width", width)
     .attr("height", height);
 
-
-// svg.append("path")
-//     .datum(topojson.feature(shape, shape.objects.nation))
-//     .attr("class", "land")
-//     .attr("d", path);
-// 
-// svg.append("path")
-//     .datum(topojson.mesh(shape, shape.objects.states, function(a, b) { return a !== b; }))
-//     .attr("class", "border border--state")
-//     .attr("d", path);
 // States
 svg.append("path")
     .datum(topojson.feature(shape, shape.objects.states))
     .attr("class", "border border--state")
     .attr("d", path)
     
-// Counties
-// svg.selectAll("path")
-// 	.data(topojson.feature(shape, shape.objects.counties).features)
-// 	.enter().append("path")
-// 	.attr("d", path)
-// 	.style('fill', '#d3d3d3')
-
-
-	svg.append("g")
-    .attr("class", "bubble")
-  .selectAll("circle")
+// Bubbles
+svg.append("g")
+    .attr('class', 'bubble')
+	.selectAll("circle")
     .data(topojson.feature(shape, shape.objects.counties).features)
-  .enter().append("circle")
+  	.enter().append("circle")
     .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
     .attr("r", function(d) {
-    	if(d.id == "01001") {
-    		console.log('cali ', formattedData[d.id],formattedData[01001], d.id)
-    	}
-    	return bubbleScale(formattedData[(d.id)])
-// 		return 10
-    })
-    .style('opacity', 1)
-    .style('fill', function(d) {
-    	return formattedData[d.id] == undefined ? 'black' : 'red'
-    })
-    .attr('class', function(d) {
-    	return formattedData[d.id] == undefined ? 'missing' : 'found'
+    	return formattedData[(d.id)] == undefined ? 0 : bubbleScale(formattedData[(d.id)])
     })
     
+
     
     
     

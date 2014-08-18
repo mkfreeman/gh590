@@ -70,7 +70,7 @@
 						<li class="fragment">Encodings are difficult to process</li>
 						<li class="fragment">Large countries are the focus</li>
 						<li class="fragment">Small countries are marginalized</li>
-						<li class="fragment">Non geospatail patterns are harder to detect</li>						
+						<li class="fragment">Non geospatial patterns are harder to detect</li>						
 					</ul>
 				</section>				
 			</section>
@@ -111,7 +111,7 @@
 					</ul>
 				</section>
 				<section>
-					<iframe class="stretch" src="http://vizhub.healthdata.org/hiv"></iframe>
+					<iframe class="stretch" src="http://vizhub.healthdata.org/obesity"></iframe>
 				</section>
 				<section>
 					<iframe class="stretch" src="http://prag.ma/code/d3-cartogram/#popest/2011"></iframe>
@@ -124,27 +124,32 @@
 					<a href="https://www.facebook.com/notes/facebook-engineering/visualizing-friendships/469716398919" target="_blank" class="fragment"><img src = "../reveal/lib/imgs/facebook.png"></img></a>
 				</section>
 				<section>
-					<p>Show overlay of sub-entities</p>
+					<p>Show overlay of other entities</p>
 					<img class="fragment" src = "../reveal/lib/imgs/hospitals.png"></img></a>
 				</section>
 				<section>
 					<iframe class="stretch" src="http://mbostock.github.io/d3/talk/20111116/airports.html"></iframe>
 				</section>
 			</section>
+		<section>
 			<section>
 				<h3>Sketching</h3>
 			</section>
 			<section>
-				<p>Considering alternatives to maps</p>
+				<p>Considering maps or alternative representations</p>
 				<ul>
-					<li class="fragment">3 datasets</li>
-					<li class="fragment">Write down visualization purpose</li>	
-					<li class="fragment">Sketch map encoding</li>																		
-					<li class="fragment">Sketch alternative encoding</li>
+					<li class="fragment">5 datasets</li>
+					<li class="fragment">Jot down visualization purpose</li>	
+					<li class="fragment">Sketch visual encoding</li>																		
 					<li class="fragment">Keep in mind:</li>							
 					<ul>
+						<li class="fragment">Specific question you want to answer</li>					
 						<li class="fragment">Transformations of data</li>
-						<li class="fragment">Issues of scale</li>						
+						<li class="fragment">Issues of scale</li>	
+						<li class="fragment">Multiple (integrated?) charts</li>
+						<li class="fragment">Leverage interactivity</li>						
+												
+											
 					</ul>
 				</ul>
 			</section>
@@ -153,9 +158,7 @@
 				<ul>
 					<li class="fragment">Which country has the highest/lowest life expectancy?</li>
 					<li class="fragment">How many countries have a life expectancy above/below X?</li>	
-					<li class="fragment">Where (regionally) are life expectancies the lowest?</li>																		
-					<li class="fragment">Sketch alternative encoding</li>
-					<li class="fragment">Keep in mind:</li>							
+					<li class="fragment">Where (regionally) are life expectancies the lowest?</li>																								
 				</ul>
 			</section>
 			<section>
@@ -167,19 +170,27 @@
 				</ul>
 			</section>
 			<section>
-				<p>Number of lung cancer deaths for each country in 2014</p>
+				<p>Number and rate of lung cancer deaths for each country in 2014</p>
 				<ul>
 					<li class="fragment">Which countries the highest number of lung cancer deaths</li>
-					<li class="fragment">Which country has the fewest smokers?</li>	
+					<li class="fragment">Which country has the highest rate of lung cancer deaths</li>	
 				</ul>				
 			</section>
 			<section>
-				<p>Number of lung, brain, and skin cancer deaths for each country in 2014</p>
+				<p>Number and rate of lung, brain, and skin cancer deaths for each country in 2014</p>
+				<ul>
+					<li class="fragment">In each country, what is the cancer responsible for most deaths?</li>
+					<li class="fragment">What is the cancer with the most deaths (total, by country)?</li>	
+				</ul>	
+			</section>
+			<section>
+				<p>Number and rate of lung, brain, and skin cancer deaths for male and females each country in 2014</p>
 				<ul>
 					<li class="fragment">In each country, what is the cancer responsible for most deaths?</li>
 					<li class="fragment">What is the deadliest cancer (total, by country)?</li>	
 				</ul>	
-			</section>			
+			</section>
+		</section>			
 		</div>
 	</div>
 	<script src="../reveal/lib/js/head.min.js"></script>

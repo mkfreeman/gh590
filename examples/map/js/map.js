@@ -20,7 +20,7 @@ var min = d3.min(values)
 var max = d3.max(values)	
 var scale = d3.scale.linear().range(['white', 'red']).domain([min, max])
 
-// Fill in paths if color = true
+// Fill in paths if color == true
 if(color == "draw") {
 	paths.attr('fill', function(d) {
 		var iso3 = d.properties.adm0_a3
@@ -32,7 +32,7 @@ if(color == "draw") {
 }	
 
 
-// Add hovers if hover = true
+// Add hovers if hover == true
 if(hover == "draw") {
 	$('#map-svg path').poshytip({
 		slide: false, 

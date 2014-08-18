@@ -10,23 +10,56 @@
 			height:500, 
 			padding:50
 		}
-		// Data for a country
-		var country = {
+		// Data for a countries
+		var countries = [{
 			name:'Uganda', 
 			values: [
 				{year:1990, deaths:200},
 				{year:1992, deaths:210},
 				{year:1994, deaths:190},
 				{year:1996, deaths:250},
-			]
-		}
+			],
+			},
+			{
+			name:'Tanzania', 
+			values: [
+				{year:1990, deaths:300},
+				{year:1992, deaths:250},
+				{year:1994, deaths:200},
+				{year:1996, deaths:250},
+			],
+			
+			}	
+		]
 		
 		// Get min and max to set chart scale
-		var xMin = d3.min(country.values, function(d) {return d.year})
-		var xMax = d3.max(country.values, function(d) {return d.year})
-		var yMin = d3.min(country.values, function(d) {return d.deaths})
-		var yMax = d3.max(country.values, function(d) {return d.deaths})
+		var xMin = d3.min(countries, function(d) {
+			return d3.min(d.values, function(dd) {
+				return dd.year
+			})		
+		})
 		
+		var xMax = d3.max(countries, function(d) {
+			return d3.max(d.values, function(dd) {
+				return dd.year
+			})		
+		})
+		
+		var yMin = d3.min(countries, function(d) {
+			return d3.min(d.values, function(dd) {
+				return dd.deaths
+			})		
+		})
+		
+		var yMax = d3.max(countries, function(d) {
+			return d3.max(d.values, function(dd) {
+				return dd.deaths
+			})		
+		})
+		// var xMax = d3.max(country.values, function(d) {return d.year})
+// 		var yMin = d3.min(country.values, function(d) {return d.deaths})
+// 		var yMax = d3.max(country.values, function(d) {return d.deaths})
+// 		
 		// Set scales
 		var xScale = d3.scale.linear().range([settings.padding, settings.width-settings.padding]).domain([xMin, xMax])
 		var yScale = d3.scale.linear().range([settings.height-settings.padding,settings.padding]).domain([yMin, yMax])
@@ -42,10 +75,10 @@
 		var mySvg = d3.select('#container').append('svg').attr('id', 'my-svg').attr('height', settings.height).attr('width', settings.width)
 		
 		// Append line to svg
-		var lines = mySvg.selectAll('path').data([country])
+		var lines = mySvg.selectAll('path').data(countries)
 		
 		lines.enter().append('path')
-			.attr('d', function(d) {console.log('draw');return pathGen(d.values)})
+			.attr('d', function(d) {return pathGen(d.values)})
 			.style('stroke', 'black')
 			.style('fill', 'none')
 			.style('stroke-width', '3px')

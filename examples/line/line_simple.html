@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+	<div id="container"></div>
+	<script src="lib/d3.min.js"></script>
+
+	<script>
+		// Settings for width and heigh
+
+		var values = [
+			{x:100, y:200},
+			{x:200, y:210},
+			{x:300, y:190},
+			{x:400, y:250},
+		]
+		
+			
+		// Path generator function to interpolate line based on points
+		var pathGen = d3.svg.line()
+					.x(function(d) {return d.x})
+					.y(function(d) {return d.y})
+					.interpolate('cardinal')
+					
+		// Append line to svg
+		var mySvg = d3.select('#container').append('svg').attr('id', 'my-svg').attr('height', 900)
+		
+		// Append line to svg
+		var line = mySvg.append('path').attr('d', pathGen(values))
+					.style('stroke', 'black')
+					.style('fill', 'none')
+
+	
+	</script>
+</html>
