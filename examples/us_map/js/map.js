@@ -1,55 +1,73 @@
-// How to make a map
+var width = 960,
+    height = 500;
+    
+var color = d3.scale.category10()
 
-// Set projection -- how the geography is distorted
-var projection = d3.geo.equirectangular()
+// Format data
+var formattedData = {}
+data.map(function(d) {
+	formattedData[d.fips] = (d.pop)
+})
 
-// Set path generator -- how coordinates translate into a path element
-var path = d3.geo.path().projection(projection)
+// Get min, max for scale
+var min = d3.min(data, function(d) {return (d.pop)})
+var max = d3.max(data, function(d) {return (d.pop)})
 
-// Draw paths
-var paths = d3.select('#map-g').selectAll('path')
-	.data(shape.features)
-	.enter().append("path")
-	.attr("fill", "#FFF")
-	.attr("stroke", "#000")
-	.attr('d', path)
-	
-// Make scale
-var values = d3.keys(data).map(function(d) {return data[d].mean})
-var min = d3.min(values)
-var max = d3.max(values)	
-var scale = d3.scale.linear().range(['white', 'red']).domain([min, max])
+// Set scale
 
-// Fill in paths if color = true
-if(color == "draw") {
-	paths.attr('fill', function(d) {
-		var iso3 = d.properties.adm0_a3
-		if(data[iso3] == undefined) return '#d3d3d3'	
-		var value = data[iso3].mean
-		var color = scale(value)
-		return color
-	})		
-}	
+var scale = d3.scale.linear().range(['gray', 'red']).domain([min, max])
+var path = d3.geo.path()
+
+var bubbleScale = d3.scale.linear().range([.5, 50]).domain([min,max])
+var svg = d3.select("#container").append("svg")
+    .attr("width", width)
+    .attr("height", height);
 
 
-// Add hovers if hover = true
-if(hover == "draw") {
-	$('#map-svg path').poshytip({
-		slide: false, 
-		followCursor: true, 
-		alignTo: 'cursor', 
-		showTimeout: 0, 
-		hideTimeout: 0, 
-		alignX: 'center', 
-		alignY: 'inner-bottom', 
-		className: 'tip-ihme',
-		offsetY: 10,
-		content: function(d){
-			var obj = this.__data__
-			var name = obj.properties.brk_name
-			var iso3 = obj.properties.adm0_a3
-			mean = data[iso3] == undefined ? '' : data[iso3].mean
-			return name + ' ' + mean
-		}
-	})
-}
+// svg.append("path")
+//     .datum(topojson.feature(shape, shape.objects.nation))
+//     .attr("class", "land")
+//     .attr("d", path);
+// 
+// svg.append("path")
+//     .datum(topojson.mesh(shape, shape.objects.states, function(a, b) { return a !== b; }))
+//     .attr("class", "border border--state")
+//     .attr("d", path);
+// States
+svg.append("path")
+    .datum(topojson.feature(shape, shape.objects.states))
+    .attr("class", "border border--state")
+    .attr("d", path)
+    
+// Counties
+// svg.selectAll("path")
+// 	.data(topojson.feature(shape, shape.objects.counties).features)
+// 	.enter().append("path")
+// 	.attr("d", path)
+// 	.style('fill', '#d3d3d3')
+
+
+	svg.append("g")
+    .attr("class", "bubble")
+  .selectAll("circle")
+    .data(topojson.feature(shape, shape.objects.counties).features)
+  .enter().append("circle")
+    .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+    .attr("r", function(d) {
+    	if(d.id == "01001") {
+    		console.log('cali ', formattedData[d.id],formattedData[01001], d.id)
+    	}
+    	return bubbleScale(formattedData[(d.id)])
+// 		return 10
+    })
+    .style('opacity', 1)
+    .style('fill', function(d) {
+    	return formattedData[d.id] == undefined ? 'black' : 'red'
+    })
+    .attr('class', function(d) {
+    	return formattedData[d.id] == undefined ? 'missing' : 'found'
+    })
+    
+    
+    
+    

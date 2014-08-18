@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Lecture 6c</title>
+
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/simple.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+		if( window.location.search.match( /print-pdf/gi ) ) {
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = 'css/print/pdf.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		}
+	</script>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+				<h2>Maps</h2>
+			</section>
+			<section>
+				<h3>Outline</h3>
+				<ul>
+					<li class="fragment">Overview</li>
+					<li class="fragment">Projections</li>
+					<li class="fragment">Uses</li>
+					<li class="fragment">Sketching</li>
+				</ul>
+			</section>
+			<section>
+				<section>
+					<h3>Overview</h3>
+				</section>
+				<section>
+					<p>Why do people love maps?</p>
+					<ul>
+						<li class="fragment">Familiarity</li>
+						<li class="fragment">Aesthetically pleasing</li>
+						<li class="fragment">Trendy</li>
+					</ul>
+				</section>
+				<section>
+					<p>Why should people love maps?</p>
+					<ul>
+						<li class="fragment">Rapid visual processing</li>
+						<li class="fragment">Geospatial pattern recognition</li>
+						<li class="fragment">Outlier detection</li>
+					</ul>
+				</section>					
+				<section>
+					<p>Why shouldn't people love maps?</p>
+					<ul>
+						<li class="fragment">Encodings are difficult to process</li>
+						<li class="fragment">Large countries are the focus</li>
+						<li class="fragment">Small countries are marginalized</li>
+						<li class="fragment">Non geospatail patterns are harder to detect</li>						
+					</ul>
+				</section>				
+			</section>
+			<section>
+				<section>
+					<h3>Projections</h3>
+				</section>
+				<section>
+					<p>Projections translate 3D surfaces into cartesian coordinates</p>
+					<ul>
+						<li class="fragment">Enhances usability, portability, interpretability</li>
+						<li class="fragment">Obscures one or more of these features</li>
+						<ul>
+							<li class="fragment">Shape</li>
+							<li class="fragment">Area</li>		
+							<li class="fragment">Distance</li>
+							<li class="fragment">Bearing</li>													
+						</ul>
+					</ul>
+				</section>	
+				<section>
+					<iframe class="stretch" src="http://bl.ocks.org/mbostock/5731632"></iframe>
+				</section>		
+				<section>
+					<iframe width="560" height="315" src="//www.youtube.com/embed/vVX-PrBRtTY" frameborder="0" allowfullscreen></iframe>
+				</section>	
+			</section>
+			<section>
+				<section>
+					<h3>Uses of maps</h3>
+				</section>
+				<section>
+					<p>Show single values for each entity</p>
+					<ul>
+						<li class="fragment">Color</li>
+						<li class="fragment">Distortion</li>		
+						<li class="fragment">Overlapping shape</li>
+					</ul>
+				</section>
+				<section>
+					<iframe class="stretch" src="http://vizhub.healthdata.org/hiv"></iframe>
+				</section>
+				<section>
+					<iframe class="stretch" src="http://prag.ma/code/d3-cartogram/#popest/2011"></iframe>
+				</section>
+				<section>
+					<iframe class="stretch" src="http://mkfreeman.github.io/gh590/examples/us_map/"></iframe>
+				</section>
+				<section>
+					<p>Show connections between entities</p>
+					<a href="https://www.facebook.com/notes/facebook-engineering/visualizing-friendships/469716398919" target="_blank" class="fragment"><img src = "../reveal/lib/imgs/facebook.png"></img></a>
+				</section>
+				<section>
+					<p>Show overlay of sub-entities</p>
+					<img class="fragment" src = "../reveal/lib/imgs/hospitals.png"></img></a>
+				</section>
+				<section>
+					<iframe class="stretch" src="http://mbostock.github.io/d3/talk/20111116/airports.html"></iframe>
+				</section>
+			</section>
+			<section>
+				<h3>Sketching</h3>
+			</section>
+			<section>
+				<p>Considering alternatives to maps</p>
+				<ul>
+					<li class="fragment">3 datasets</li>
+					<li class="fragment">Write down visualization purpose</li>	
+					<li class="fragment">Sketch map encoding</li>																		
+					<li class="fragment">Sketch alternative encoding</li>
+					<li class="fragment">Keep in mind:</li>							
+					<ul>
+						<li class="fragment">Transformations of data</li>
+						<li class="fragment">Issues of scale</li>						
+					</ul>
+				</ul>
+			</section>
+			<section>
+				<p>Life expectancy for each country (187 countries) in 2014</p>
+				<ul>
+					<li class="fragment">Which country has the highest/lowest life expectancy?</li>
+					<li class="fragment">How many countries have a life expectancy above/below X?</li>	
+					<li class="fragment">Where (regionally) are life expectancies the lowest?</li>																		
+					<li class="fragment">Sketch alternative encoding</li>
+					<li class="fragment">Keep in mind:</li>							
+				</ul>
+			</section>
+			<section>
+				<p>Life expectancy for males and females for each country in 2014</p>
+				<ul>
+					<li class="fragment">Which countries have a higher male/female life expectancy?</li>
+					<li class="fragment">Do males or females tend to live longer?</li>	
+					<li class="fragment">What is the difference between male and female life expectancy?</li>																							
+				</ul>
+			</section>
+			<section>
+				<p>Number of lung cancer deaths for each country in 2014</p>
+				<ul>
+					<li class="fragment">Which countries the highest number of lung cancer deaths</li>
+					<li class="fragment">Which country has the fewest smokers?</li>	
+				</ul>				
+			</section>
+			<section>
+				<p>Number of lung, brain, and skin cancer deaths for each country in 2014</p>
+				<ul>
+					<li class="fragment">In each country, what is the cancer responsible for most deaths?</li>
+					<li class="fragment">What is the deadliest cancer (total, by country)?</li>	
+				</ul>	
+			</section>			
+		</div>
+	</div>
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+
+
+	<script>
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+			backgroundTransition: 'slide',
+
+			theme: Reveal.getQueryHash().theme, 
+			transition: Reveal.getQueryHash().transition || 'linear',
+			dependencies: [
+				{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+		Reveal.addEventListener('fragmentshown', function(event) {		
+			if(event.fragment.id.indexOf('interaction_')!=-1) d3.select('#interaction').attr('src', '../reveal/lib/imgs/' + event.fragment.id + '.png')
+		
+		})
+		Reveal.addEventListener('fragmenthidden', function(event) {
+			if(event.fragment.id.indexOf('heer')!=-1) d3.select('#' + event.fragment.id+ '-img').attr('src', '../reveal/lib/imgs/' + event.fragment.id + '.png')
+
+			if(event.fragment.id.indexOf('interaction_')!=-1) { 
+				var value = 'interaction_' + (Number(event.fragment.id.replace('interaction_', '')) - 1)
+				d3.select('#interaction').attr('src', '../reveal/lib/imgs/' + value + '.png')
+			}
+		
+		})
+	</script>
+
+</body>
+</html>
