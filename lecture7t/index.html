@@ -41,7 +41,7 @@
 					<li class="fragment">Reusable code</li>				
 					<li class="fragment">HTML Controls</li>				
 					<li class="fragment">jQuery</li>				
-					<li class="fragment">Styles</li>
+					<li class="fragment">Defining controls</li>
 					<li class="fragment">Event binding</li>
 					<li class="fragment">Hover text</li>
 				</ul>
@@ -140,7 +140,7 @@ var circleFunc = function(circ) {
 				</ul>
 			</section>
 			<section>
-				<h3><a href="mkfreeman.github.io/gh590/examples/scatter_interactive" target="_blank">Example</a></href>
+				<h3><a href="http://mkfreeman.github.io/gh590/examples/scatter_interactive" target="_blank">Example</a></href>
 			</section>
 		</section>
 
@@ -228,9 +228,9 @@ var circleFunc = function(circ) {
 d3.select('#my-svg')
 $('#my-svg')
 </code></pre>
-					<li class="fragment">Assign styles to HTML elements</li>
+					<li class="fragment">Transforms elements into controls</li>
 					<pre class="fragment"><code data-trim class="javascript">
-$('#my-button').button()
+$('#my-button').buttonset()
 </code></pre>
 					<li class="fragment">Dynamically binding events to buttons</li>
 					<pre class="fragment"><code data-trim class="javascript">
@@ -258,27 +258,12 @@ $('#my-button').on('click', function() {
 			</section>	
 			<section>
 				<section>
-					<h3>Styles</h3>
+					<h3>Defining controls</h3>
 				</section>
 				<section>
-					<p>Button styles</p>
+					<p>Radio elements</p>
 					<ul>
-					<li class="fragment">Apply styles to buttons using <code>.button()</code></li>
-<pre class="fragment"><code data-trim class="html">
-&lt;input id="button1" type="button" value="Button Text!" onclick="alert('clicked')"&gt;&lt;/input&gt;
-</code></pre>
-<pre class="fragment"><code data-trim class="javascript">
-$('#button1').button()				
-</code></pre>		
-				</ul>
-				</section>
-				<section>
-						<iframe class="stretch" src="http://jsbin.com/vahen/4/embed?html,output"></iframe>							
-				</section>
-				<section>
-					<p>Radio styles</p>
-					<ul>
-						<li class="fragment">Apply styles to radios using <code>.buttonset()</code></li>
+						<li class="fragment">Declare that an element is a radio using <code>.buttonset()</code></li>
 						<pre class="fragment"><code data-trim class="html">
 &lt;div id="sex"&gt;
     &lt;input type="radio" id="sex1" name="sex"&gt;&lt;label for="sex1"&gt;Males&lt;/label&gt;
@@ -289,13 +274,16 @@ $('#button1').button()
 <pre class="fragment"><code data-trim class="javascript">
 $('#sex').buttonset()				
 </code></pre>			
+						<li class="fragment">Assigns jQuery UI defined styles</code></li>
+						<li class="fragment">Allows tracking updates of state for updating</code></li>
+
 				</ul>		
 				</section>		
 				<section>
-						<iframe class="stretch" src="http://jsbin.com/vahen/3/embed?html,output"></iframe>				
+						<iframe class="stretch" src="http://jsbin.com/vahen/4/embed?html,output"></iframe>				
 				</section>	
 				<section>
-					<p>Select styles</p>
+					<p>Select elements</p>
 					<ul>
 						<li class="fragment">Apply styles to radios using <code>.selectmenu()</code></li>
 				<pre class="fragment"><code data-trim class="html">
@@ -352,7 +340,8 @@ $('#sex').on('change', function() {
 <pre class="fragment"><code data-trim class="javascript">
 $('#yvar').selectmenu({
 	change:function() {
-		settings.yVar = $(this).val()
+		
+	settings.yVar=$('#yvar').val()
 		draw()
 	}, 
 })		
@@ -361,6 +350,24 @@ $('#yvar').selectmenu({
 			</section>
 			<section>
 					<iframe class="stretch" src="http://jsbin.com/yijuno/1/embed?html,output"></iframe>							
+			</section>
+			<section>
+				<p>Sliders elements</p>
+					<ul>
+						<li class="fragment">Transform a div into a slider using <code>.slider()</code></li>
+						<pre class="fragment"><code data-trim class="html">
+&lt;div id="slider"&gt;
+  &lt;/div&gt;				
+</code></pre>	
+<pre class="fragment"><code data-trim class="javascript">
+$('#slider').slider()				
+</code></pre>			
+						<li class="fragment">Assigns jQuery UI defined styles</code></li>
+						<li class="fragment">Allows tracking updates of state for updating</code></li>
+
+			</section>
+			<section>
+					<iframe class="stretch" src="http://jsbin.com/satapi/1/embed?html,output"></iframe>							
 			</section>
 		</section>
 		<section>
@@ -406,7 +413,20 @@ $('#map-svg path').poshytip({
 })
 </code></pre>
 			</section>
-		
+			<section>
+					<iframe class="stretch" src="../examples/map?color=draw&hover=draw"></iframe>
+			</section>
+			<section>
+			<h3>Formatting numbers</h3>
+			<ul>
+				<li class="fragment">Use a d3.format function</li>
+				<pre class="fragment"><code data-trim class="javascript">var formatter = d3.format('.2s')</code></pre>	
+				<li class="fragment">Pass values to your formatter variable</li>
+				<pre class="fragment"><code data-trim class="javascript">var formatted = formatter (12.234) // returns 12</code></pre>	
+				<li class="fragment">Best understood through <a href="http://bl.ocks.org/zanarmstrong/05c1e95bf7aa16c4768e" target="_blank">example</a></li>
+			</ul>
+			
+		</section>
 		</section>
 		
 		
