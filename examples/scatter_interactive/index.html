@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="js/data.js"></script>
+	<link type="text/css" rel="stylesheet" href="css/map.css"></link>
+    <script type="text/javascript" src="lib/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" src="lib/poshytip-1.2/src/jquery.poshytip.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/poshytip.css"/>
+    <link type="text/css" rel="stylesheet" href="lib/jquery-ui/jquery-ui.css"/>
+</head>
+<body>
+	<div id="controls" style="display:inline-block;">
+	 	<label for="xvar">Select X Year</label>
+			<select  id="xvar">
+			  <option value="ex_1960">1960</option>
+			  <option value="ex_1970">1970</option>
+			  <option value="ex_1980">1980</option>
+			  <option value="ex_1990"  selected="selected">1990</option>
+			  <option value="ex_2000">2000</option>
+			</select>
+	</div>
+	<div id="controls">
+	 	<label for="xvar">Select Y Year</label>
+			<select  id="yvar">
+			  <option value="ex_1960">1960</option>
+			  <option value="ex_1970">1970</option>
+			  <option value="ex_1980">1980</option>
+			  <option value="ex_1990">1990</option>
+			  <option value="ex_2000" selected="selected">2000</option>
+			</select>
+	</div>
+	<div id="scatter-div">
+		<svg id="scatter-svg" height=900 width=900>
+		</svg>
+	</div>
+	<script src="js/scatter.js"></script>
+</html>

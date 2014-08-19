@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Lecture 8t</title>
+
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+		if( window.location.search.match( /print-pdf/gi ) ) {
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = 'css/print/pdf.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		}
+	</script>
+
+
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+			<h2>D3 layouts</h2>
+			</section>
+			
+			<section>
+			<h3>Outline</h3>
+				<ul>
+					<li class="fragment">Overview</li>				
+					<li class="fragment">Bar chart</li>
+					<li class="fragment">Stacked bar chart</li>
+					<li class="fragment">Exercise</li>
+				</ul>
+			</section>
+		<section>
+			<section>
+				<h3>Overview</h3>
+			</section>
+			<section>
+				<p>All charts are just rectangles, circles, and paths</p>
+				<ul>
+					<li class ="fragment">Advanced charts could be written in HTML</li>
+					<pre class="fragment"><code data-trim class="html">
+&lt;rect x=0 y=100 width=20 height = 70&gt;&lt;/rect&gt;
+&lt;rect x=0 y=170 width=20 height = 50&gt;&lt;/rect&gt;
+&lt;rect x=0 y=220 width=20 height = 70&gt;&lt;/rect&gt;
+</code></pre>		
+				</ul>	
+			</section>
+<section>
+				<iframe class="stretch" src="http://jsbin.com/kosec/1/embed?html,output"></iframe>
+			</section>			
+			<section>
+				<p>All charts are just rectangles, circles, and paths</p>
+				<ul>
+					<li class ="fragment">Advanced charts could be written using D3 (without layouts)</li>
+					<pre class="fragment"><code data-trim class="javascript">
+var rectFunction = function(rect) {
+	rect.attr('x', 0)
+		.attr('width', 20)
+		.attr('y', function(d) {return d.y})
+		.attr('height', function(d) {return d.height})
+}
+var data = [
+	{y:100, height:70},
+	{y:170, height:50},
+	{y:220, height:70},
+]
+d3.select('#my-svg').selectAll('rect')
+	.enter().append('rect')
+	.call(rectFunction)
+</code></pre>		
+				</ul>	
+			</section>
+			<section>
+				<iframe class="stretch" src="http://jsbin.com/goweto/1/embed?html,output"></iframe>
+			</section>
+			<section>
+				<p>D3 layouts help with data preparation</p>
+				<ul>
+					<li class ="fragment">Scales allow translation between data space and visual space</li>
+					<pre class="fragment"><code data-trim class="javascript">var scale = d3.scale.linear().domain([min,max]).range([0, 500])</code></pre>
+					<li class ="fragment">Layouts help reorganize data into aggregations of interest</li>
+					<ul>
+						<li class ="fragment">Organize data into hierarchies of interest</li>	
+						<li class ="fragment">Apply algorithms to estimate optimal spatial relationships</li>										
+						<li class ="fragment">Compute aggregate values for displaying</li>				
+					</ul>
+				</ul>
+			</section>
+			<section>
+				<iframe class="stretch" src="http://mbostock.github.io/d3/talk/20111116/bundle.html"></iframe>
+			</section>
+			<section>
+				<iframe class="stretch" src="http://bl.ocks.org/mbostock/4063582"></iframe>
+			</section>
+			<section>
+				<iframe class="stretch" src="http://bl.ocks.org/mbostock/3886208"></iframe>
+			</section>
+		</section>
+		</div>
+	</div>
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+
+
+	<script>
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, 
+			transition: Reveal.getQueryHash().transition || 'linear',
+			dependencies: [
+				{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>

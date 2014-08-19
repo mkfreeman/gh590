@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Lecture 7t</title>
+
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+		if( window.location.search.match( /print-pdf/gi ) ) {
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = 'css/print/pdf.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		}
+	</script>
+
+
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+			<h2>Buttons and dropdowns and sliders</h2>
+			<p class="fragment">(oh my)</p>
+			</section>
+			
+			<section>
+			<h3>Outline</h3>
+				<ul>
+					<li class="fragment">Reusable code</li>				
+					<li class="fragment">HTML Controls</li>				
+					<li class="fragment">jQuery</li>				
+					<li class="fragment">Styles</li>
+					<li class="fragment">Event binding</li>
+					<li class="fragment">Hover text</li>
+				</ul>
+			</section>
+		<section>
+			<section>
+				<h3>Reusable code</h3>
+			</section>
+			<section>
+				<p>Write functions that (re)position elements on your page</p>
+				<ul>
+					<li class="fragment">Functions should enter, exit, and update elements</li>
+					<pre class="fragment"><code data-trim class="javascript">
+var drawCircles = function(data) {
+  // Select svg
+  var mySvg = d3.select('#my-svg')
+  
+  // Bind data to selection of text elements
+  var circles = mySvg.selectAll('circle').data(data, function(d){return d.id})
+  
+  // Exit data that might be missing
+  circles.exit().remove()
+  
+  // Enter new data elements
+  circles.enter().append('circle').call(positionCircles)
+  
+  // Transition all circle elements
+  mySvg.selectAll('circle').transition().duration(500).call(positionCircles)
+  
+}
+
+</code></pre>		
+					<li class="fragment">Positioning should also rely on reusable functions</li>
+					<pre class="fragment"><code data-trim class="javascript">
+var positionCircles = function(circ){
+  circ.attr('cx', function(d){return Math.random()*100})
+      .attr('cy', function(d,i) {return (d.id)*40})
+      .attr('r', 15)
+      .style('fill', function(d){return d.color})
+}
+</code></pre>
+				</ul>	
+			</section>
+			<section>
+					<iframe class="stretch" src="http://jsbin.com/puneye/2/embed?js,output"></iframe>				
+			</section>
+			<section>
+				<p>Data preparation (high level)</p>
+				<ul>
+					<li class="fragment">Isolating the data preparation process can improve reusability</li>
+					<li class="fragment">Variable names should <u>not</u> be present in charting code</li>
+					<pre class="fragment"><code data-trim class="javascript">
+var draw = function() {
+	prepData()
+	setScales()
+	positionElements()
+}								
+</code></pre>
+				</ul>
+			</section>
+			<section>
+				<p>Data preparation</p>
+				<ul>
+					<li class="fragment">Your raw data can be an array of objects</li>
+					<pre class="fragment"><code data-trim class="javascript">
+var rawDraw =  {
+	{iso3: "ABW", region: "Latin America & Caribbean", ex_1960: 65.56936585, ex_1970: 69.08614634, ex_1980: 72.22014634}, 
+	{iso3: "AFG", region: "Sub-Saharan Africa", ex_1960: 31.58004878, ex_1970: 36.65943902, ex_1980: 41.23365854…}	
+}								
+</code></pre>
+					<li class="fragment">Write a prep data function to filter down to reusable structure</li>
+					<pre class="fragment"><code data-trim class="javascript">
+settings = {
+	xVar:'ex_1980',
+	yVar:'ex_1990'
+}
+var prepData = function() {
+	data = rawData.map(function(d) {
+	var obj = {}
+		obj.region = d.region
+		obj.x = d[settings.xVar]
+		obj.y = d[settings.yVar]
+	return obj
+})	
+}								
+</code></pre>
+					<li class="fragment">Reference standard variables in your code</li>
+					<pre class="fragment"><code data-trim class="javascript">
+var circleFunc = function(circ) {
+	circ
+	.attr('cx', function(d) {return xScale(d.x)})
+  	.attr('cy', function(d) {return yScale(d.y)})
+	.attr('r', settings.radius)
+} 							
+</code></pre>
+				</ul>
+			</section>
+			<section>
+				<h3><a href="mkfreeman.github.io/gh590/examples/scatter_interactive" target="_blank">Example</a></href>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h3>HTML Controls</h3>
+			</section>
+			<section>
+				<p>Controls consist of HTML elements</p>
+<ul>
+
+					<li class="fragment">HTML uses a <code>&lt;input&gt;</code> tag for buttons</li> 
+ 
+<pre class="fragment"><code data-trim class="html">
+&lt;input id="button1" type="button" value="Button Text!"&gt;&lt;/input&gt;
+</code></pre>
+				<div style="text-align:center;" class="fragment">	<input value="Button Text!" type="button"></input></div>
+				<li class="fragment">The "onclick" attribute indicates  function that gets executed on click</li>  
+<pre class="fragment"><code data-trim class="html">
+&lt;input id="button1" type="button" value="Button Text!" onclick="alert('clicked')"&gt;&lt;/input&gt;
+</code></pre>				
+				<div style="text-align:center;" class="fragment">	<input value="Button Text!" type="button" onclick="alert('clicked')"></input></div>
+				<li class="fragment">Onclick functions can(should) reference your JavaScript code</li>  
+
+				</ul>
+			</section>
+			
+			<section>
+					<iframe class="stretch" src="http://jsbin.com/biquwe/1/embed?html,output"></iframe>				
+			</section>
+			<section>
+				<p>HTML can also be used to make radios</p>
+				<pre class="fragment"><code data-trim class="html">
+&lt;div id="sex"&gt;
+    &lt;input type="radio" id="sex1" name="sex"&gt;&lt;label for="sex1"&gt;Males&lt;/label&gt;
+    &lt;input type="radio" id="sex2" name="sex" checked="checked"&gt;&lt;label for="sex2"&gt;Females&lt;/label&gt;
+    &lt;input type="radio" id="sex3" name="sex"&gt;&lt;label for="sex3"&gt;Both&lt;/label&gt;
+  &lt;/div&gt;				
+</code></pre>
+			<div class="fragment" style="font-size:.6em;" id="sex">
+				<input type="radio" id="sex1" name="sex"><label for="sex1">Males</label>
+				<input type="radio" id="sex2" name="sex" checked="checked"><label for="sex2">Females</label>
+				<input type="radio" id="sex3" name="sex"><label for="sex3">Both</label>
+			</div>
+			</section>
+			<section>
+					<iframe class="stretch" src="http://jsbin.com/vahen/4/embed?html,output"></iframe>							
+			</section>
+			<section>
+				<p>HTML can also be used to make select menus</p>
+				<pre class="fragment"><code data-trim class="html">
+ &lt;label for="speed"&gt;Select a speed&lt;/label&gt;
+    &lt;select name="speed" id="speed"&gt;
+      &lt;option&gt;Slower&lt;/option&gt;
+      &lt;option&gt;Slow&lt;/option&gt;
+      &lt;option selected="selected"&gt;Medium&lt;/option&gt;
+      &lt;option&gt;Fast&lt;/option&gt;
+      &lt;option&gt;Faster&lt;/option&gt;
+    &lt;/select&gt;
+</code></pre>
+			<div class="fragment">
+				 <label for="speed">Select a speed</label>
+				<select name="speed" id="speed">
+				  <option>Slower</option>
+				  <option>Slow</option>
+				  <option selected="selected">Medium</option>
+				  <option>Fast</option>
+				  <option>Faster</option>
+				</select>
+			</div>
+			</section>
+			<section>
+					<iframe class="stretch" src="http://jsbin.com/yijuno/1/embed?html,output"></iframe>							
+			</section>
+		</section>
+		<section>
+			<section>
+				<h3>jQuery</h3>
+			</section>
+			<section>
+				<p>jQuery is a JavaScript library (similar to D3)</p>
+				<ul>
+					<li class="fragment">Select using the "$" symbol instead of "d3.select"</li>
+					<pre class="fragment"><code data-trim class="javascript">
+d3.select('#my-svg')
+$('#my-svg')
+</code></pre>
+					<li class="fragment">Assign styles to HTML elements</li>
+					<pre class="fragment"><code data-trim class="javascript">
+$('#my-button').button()
+</code></pre>
+					<li class="fragment">Dynamically binding events to buttons</li>
+					<pre class="fragment"><code data-trim class="javascript">
+$('#my-button').on('click', function() {
+	// take actions here
+})		
+</code></pre>
+				</ul>		
+				</section>		
+				<section>
+					<p>Styling is done via jQuery's UI library</p>
+					<ul>
+						<li class="fragment">jQuery UI is an extension fo jQuery (for UI)</li>
+						<li class="fragment">Easily included in js.bin</li>
+						<pre class="fragment">Add library &gt; jQuery UI 1.11.1</pre>
+						<li class="fragment">Available for download <a href = "http://jqueryui.com/download/" target = "_blank" >here</a></li>
+						<li class="fragment">Include these files in your CSS (this include the jQuery library)</li>
+					<pre class="fragment"><code data-trim class="html">
+&lt;script src="lib/external/jquery.js"&gt;&lt;/script&gt;
+&lt;script src="lib/jquery-ui.js"&gt;&lt;/script&gt;
+&lt;link href="jquery-ui.css" rel="stylesheet"&gt;
+</code></pre>
+					</ul>
+				</section>
+			</section>	
+			<section>
+				<section>
+					<h3>Styles</h3>
+				</section>
+				<section>
+					<p>Button styles</p>
+					<ul>
+					<li class="fragment">Apply styles to buttons using <code>.button()</code></li>
+<pre class="fragment"><code data-trim class="html">
+&lt;input id="button1" type="button" value="Button Text!" onclick="alert('clicked')"&gt;&lt;/input&gt;
+</code></pre>
+<pre class="fragment"><code data-trim class="javascript">
+$('#button1').button()				
+</code></pre>		
+				</ul>
+				</section>
+				<section>
+						<iframe class="stretch" src="http://jsbin.com/vahen/4/embed?html,output"></iframe>							
+				</section>
+				<section>
+					<p>Radio styles</p>
+					<ul>
+						<li class="fragment">Apply styles to radios using <code>.buttonset()</code></li>
+						<pre class="fragment"><code data-trim class="html">
+&lt;div id="sex"&gt;
+    &lt;input type="radio" id="sex1" name="sex"&gt;&lt;label for="sex1"&gt;Males&lt;/label&gt;
+    &lt;input type="radio" id="sex2" name="sex" checked="checked"&gt;&lt;label for="sex2"&gt;Females&lt;/label&gt;
+    &lt;input type="radio" id="sex3" name="sex"&gt;&lt;label for="sex3"&gt;Both&lt;/label&gt;
+  &lt;/div&gt;				
+</code></pre>	
+<pre class="fragment"><code data-trim class="javascript">
+$('#sex').buttonset()				
+</code></pre>			
+				</ul>		
+				</section>		
+				<section>
+						<iframe class="stretch" src="http://jsbin.com/vahen/3/embed?html,output"></iframe>				
+				</section>	
+				<section>
+					<p>Select styles</p>
+					<ul>
+						<li class="fragment">Apply styles to radios using <code>.selectmenu()</code></li>
+				<pre class="fragment"><code data-trim class="html">
+ &lt;label for="speed"&gt;Select a speed&lt;/label&gt;
+    &lt;select name="speed" id="speed"&gt;
+      &lt;option&gt;Slower&lt;/option&gt;
+      &lt;option&gt;Slow&lt;/option&gt;
+      &lt;option selected="selected"&gt;Medium&lt;/option&gt;
+      &lt;option&gt;Fast&lt;/option&gt;
+      &lt;option&gt;Faster&lt;/option&gt;
+    &lt;/select&gt;
+</code></pre>	
+<pre class="fragment"><code data-trim class="javascript">
+$('#speed').selectmenu()				
+</code></pre>				
+				</section>
+				<section>
+					<iframe class="stretch" src="http://jsbin.com/yijuno/1/embed?html,output"></iframe>							
+			</section>
+		</section>
+		<section>
+			<section>
+				<h3>Event binding</h3>
+			</section>
+			<section>
+				<p>Event binding dictates the behavior of the page</p>
+				<ul>
+					<li class="fragment">Hover events</li>
+					<li class="fragment">Click events</li>
+					<li class="fragment">Change events</li>
+					<li class="fragment">Can be assigned with D3 or jQuery</li>
+<pre class="fragment"><code data-trim class="javascript">
+$('#sex').on('change', callback)				
+$('#sex').on('click', callback)				
+$('#sex').on('hover', callback)				
+</code></pre>					
+				</ul>
+			</section>
+			<section>
+				<p>Change events</p>
+				<ul>
+					<li class="fragment">You'll often want to call an event when a change occurs</li>
+<pre class="fragment"><code data-trim class="javascript">
+$('#sex').on('change', function() {
+	// Get value of radio
+	var sex = $('input[name="sex"]:checked').attr('id')
+	
+	// Do something about it
+	settings.sex = sex
+	draw()
+})	
+</code></pre>			
+<li class="fragment">Pass change events into the selectmenu() function</li>
+<pre class="fragment"><code data-trim class="javascript">
+$('#yvar').selectmenu({
+	change:function() {
+		settings.yVar = $(this).val()
+		draw()
+	}, 
+})		
+</code></pre>												
+				</ul>
+			</section>
+			<section>
+					<iframe class="stretch" src="http://jsbin.com/yijuno/1/embed?html,output"></iframe>							
+			</section>
+		</section>
+		<section>
+			<section>
+				<h3>Add hover text</h3>
+			</section>
+			<section>
+				<p>Use the jQuery poshytip library for hovers</p>
+				<ul>
+					<li class="fragment">Select each path using the jQuery library</li>
+					<pre class="fragment"><code data-trim class="javascript">$('#map-svg path')</code></pre>
+					<li class="fragment">Call the poshytip function on selected objects ( <a href="http://vadikom.com/files/?file=poshytip/poshytip-1.2.zip" target="_blank">download</a>)</li>	
+					<pre class="fragment"><code data-trim  class="javascript">$('#map-svg path').poshytip({arguments})</code></pre>
+					<li class="fragment">Include these files</li>
+					<pre class="fragment"><code data-trim class="html">
+&lt;script src="lib/external/jquery.js"&gt;&lt;/script&gt;
+&lt;script src="lib/poshytip-1.2/src/jquery.poshytip.js"&gt;&lt;/script&gt;
+&lt;link href="lib/poshytip-1.2/src/tip-twitter/tip-twitter.css" rel="stylesheet"&gt;
+</code></pre>	
+				</ul>
+			</section>
+			
+			<section>
+			<h3>Poshytip arguments</h3>
+<pre class="fragment"><code data-trim>
+$('#map-svg path').poshytip({
+	alignTo: 'cursor', // Align to cursor
+	followCursor: true, // follow cursor when it moves
+	showTimeout: 0, // No fade in
+	hideTimeout: 0,  // No fade out
+	alignX: 'center', // X alignment
+	alignY: 'inner-bottom', // Y alignment
+	className: 'tip-ihme', // Class for styling
+	offsetY: 10, // Offset vertically
+	slide: false, // No slide animation
+	content: function(d){
+		var obj = this.__data__ // Data associated with element
+		var name = obj.properties.brk_name // Name from properties
+		var iso3 = obj.properties.adm0_a3 // iso3
+		mean = data[iso3] == undefined ? '' : data[iso3].mean // Value
+		return name + ' ' + mean // String to return
+	}
+})
+</code></pre>
+			</section>
+		
+		</section>
+		
+		
+		</div>
+	</div>
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+
+
+	<script>
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, 
+			transition: Reveal.getQueryHash().transition || 'linear',
+			dependencies: [
+				{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>
