@@ -38,9 +38,9 @@
 			<h3>Outline</h3>
 				<ul>
 					<li class="fragment">Overview</li>				
-					<li class="fragment">Bar chart</li>
-					<li class="fragment">Stacked bar chart</li>
-					<li class="fragment">Exercise</li>
+					<li class="fragment">Role of d3.layout</li>
+					<li class="fragment">Data prep</li>
+					<li class="fragment">Implementations</li>
 				</ul>
 			</section>
 		<section>
@@ -59,7 +59,7 @@
 				</ul>	
 			</section>
 <section>
-				<iframe class="stretch" src="http://jsbin.com/kosec/1/embed?html,output"></iframe>
+				<iframe class="stretch" src="http://jsbin.com/kosec/2/embed?html,output"></iframe>
 			</section>			
 			<section>
 				<p>All charts are just rectangles, circles, and paths</p>
@@ -68,9 +68,9 @@
 					<pre class="fragment"><code data-trim class="javascript">
 var rectFunction = function(rect) {
 	rect.attr('x', 0)
-		.attr('width', 20)
-		.attr('y', function(d) {return d.y})
-		.attr('height', function(d) {return d.height})
+	    .attr('width', 20)
+	    .attr('y', function(d) {return d.y})
+	    .attr('height', function(d) {return d.height})
 }
 var data = [
 	{y:100, height:70},
@@ -84,14 +84,19 @@ d3.select('#my-svg').selectAll('rect')
 				</ul>	
 			</section>
 			<section>
-				<iframe class="stretch" src="http://jsbin.com/goweto/1/embed?html,output"></iframe>
+				<iframe class="stretch" src="http://jsbin.com/goweto/2/embed?html,output"></iframe>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h3>Role of D3 layouts</h3>
 			</section>
 			<section>
 				<p>D3 layouts help with data preparation</p>
 				<ul>
 					<li class ="fragment">Scales allow translation between data space and visual space</li>
 					<pre class="fragment"><code data-trim class="javascript">var scale = d3.scale.linear().domain([min,max]).range([0, 500])</code></pre>
-					<li class ="fragment">Layouts help reorganize data into aggregations of interest</li>
+					<li class ="fragment">Layouts help reorganize data</li>
 					<ul>
 						<li class ="fragment">Organize data into hierarchies of interest</li>	
 						<li class ="fragment">Apply algorithms to estimate optimal spatial relationships</li>										
@@ -99,14 +104,130 @@ d3.select('#my-svg').selectAll('rect')
 					</ul>
 				</ul>
 			</section>
-			<section>
+			<section data-background="white">
 				<iframe class="stretch" src="http://mbostock.github.io/d3/talk/20111116/bundle.html"></iframe>
 			</section>
-			<section>
+			<section data-background="white">
 				<iframe class="stretch" src="http://bl.ocks.org/mbostock/4063582"></iframe>
 			</section>
-			<section>
+			<section data-background="white">
 				<iframe class="stretch" src="http://bl.ocks.org/mbostock/3886208"></iframe>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h3>Data prep</h3>
+			</section>
+			<section>
+				<p>D3.nest groups elements by a common feature</p>
+				<ul>
+					<li class ="fragment">Data: array of objects with properties year, disease, rate</li>
+					
+					<pre class="fragment"><code data-trim class="javascript">
+var data = [
+	{year:1990, disease:'cancer', rate:.5},
+	{year:1990, disease:'hiv', rate:.3}, 
+	...
+]
+</code></pre>
+					<li class ="fragment">Nest elements by year</li>
+<pre class="fragment"><code data-trim class="javascript">
+var nest = d3.nest().key(function(d) {return d.year})
+var nestedData = nest.entries(data) // returns array of objects, by year
+</code></pre>			
+				<li class="fragment">More examples <a href="http://bl.ocks.org/phoebebright/raw/3176159/" target="_blank">here</a>		
+				</ul>
+			</section>
+			<section>
+				<iframe class="stretch" src="http://jsbin.com/givoc/2/embed?js,console"></iframe>			
+			</section>
+			<section>
+				<p>D3.stack computes starting/ending y-values if elements are placed on top of one another</p>
+				<ul>
+					<li class ="fragment">Data: array of objects nested by a given property</li>
+					
+					<pre class="fragment"><code data-trim class="javascript">
+var data = [
+	{year:1990, disease:'cancer', rate:.5},
+	{year:1990, disease:'hiv', rate:.3}, 
+	...
+]
+var nest = d3.nest().key(function(d) {return d.year})
+var nestedData = nest.entries(data) // returns array of objects, by year
+</code></pre>
+					<li class ="fragment">Stack elements by year (manipulates array)</li>
+<pre class="fragment"><code data-trim class="javascript">
+// Define stacking function
+var stack = d3.layout.stack()
+    .values(function(d) {return d.values}) // Where to retrieve values
+    .x(function(d){return (d.year)}) // What variable to use for x
+    .y(function(d){return (d.rate)}) // What variable to use for y
+    
+// Stack data    
+d3.stack(nestedData)
+</code></pre>			
+				</ul>
+			</section>
+			<section>
+				<iframe class="stretch" src="http://jsbin.com/feziz/1/embed?js,output"></iframe>			
+			</section>
+		</section>
+		<section>
+			<section>
+				<h3>Implementations</h3>
+			</section>
+			<section>
+				<p>Chart the data: stacked area</p>
+				<ul>
+					<li class ="fragment">D3 has a built in area interpolator (like with lines)</li>
+					
+					<pre class="fragment"><code data-trim class="javascript">
+var areaFunc = d3.svg.area()
+  .x(function(d){return xScale(d.year)})
+  .y0(function(d) {return yScale(d.y0)})
+  .y1(function(d) {return yScale(d.y0 + d.y)})
+  .interpolate('cardinal')
+</code></pre>
+					<li class ="fragment">Append path elements for area</li>
+<pre class="fragment"><code data-trim class="javascript">
+var areas = svg.selectAll(".area")
+    .data(nestedData, function(d){return d.key})
+    .enter().append("path")
+   	.attr("d", function(d) { return areaFunc(d.values)})
+ 	.style('fill', function(d){
+ 	   return colors(d.key)
+ 	 })
+</code></pre>			
+				</ul>
+			</section>
+			<section>
+				<iframe class="stretch" src="http://jsbin.com/yivesa/2/embed?js,output"></iframe>			
+			</section>
+			<section>
+				<p>Stacking the data is a similar approach to usual</p>
+				<ul>
+					<li class ="fragment">Append a group for each layer of the chart</li>
+					
+					<pre class="fragment"><code data-trim class="javascript">
+mySvg.selectAll('.layer').data(nestedData).enter().append('g').attr('class', 'layer')
+</code></pre>
+					<li class ="fragment">For each layer, use the values data to append rects</li>
+<pre class="fragment"><code data-trim class="javascript">
+var layers = svg.selectAll(".layer") // Select layer elements
+    .data(nestedData, function(d){return d.key}) // Bind data, identified by key of nestedData
+  	.enter().append("g") // Enter and append 'g' element
+    .attr("class", "layer") // Assign class
+
+var rects = d3.selectAll('.layer') // Select all elements of class "layer" (just created)
+	.selectAll("rect") // For each layer, select all child rect elements
+    .data(function(d) { return d.values; }) // Bind data to THIS selection: values of each object
+  	.enter().append("rect") // Enter rect
+  	.call(rectFunc) // Call rect function
+</code></pre>			
+				</ul>				
+			</section>
+			<section>
+				<iframe class="stretch" src="http://jsbin.com/hixiy/5/embed?js,console"></iframe>			
 			</section>
 		</section>
 		</div>
