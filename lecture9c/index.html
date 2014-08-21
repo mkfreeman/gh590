@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Lecture 9c</title>
+
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+		if( window.location.search.match( /print-pdf/gi ) ) {
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = 'css/print/pdf.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		}
+	</script>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+				<h2>Narrative Visualization</h2>
+			</section>
+			<section>
+				<h3>Outline</h3>
+				<ul>
+					<li class="fragment">Purpose of using narratives</li>
+					<li class="fragment">Narrative approaches</li>
+					<li class="fragment">Implementations</li>
+<!-- 
+					<li class="fragment">Telling stories with data</li>
+					<li class="fragment">Letting your data tell stories</li>
+ -->
+				</ul>
+			</section>
+			<section>
+				<section>
+					<h3>Purpose</h3>
+				</section>
+				<section>
+					<p>Data are stories about human experience</p>
+						<ul>
+							<li class="fragment">Relate arbitrary objects to reality</li>
+							<li class="fragment">Prevent confusion</li>					
+							<li class="fragment">Increase engagement</li>					
+							<li class="fragment">Enhance understanding</li>																			
+						</ul>	
+				</section>
+				<section>
+					<p>Common visualization feedback</p>
+					<ul>
+						<li class="fragment">What am I looking at?</li>
+						<li class="fragment">Where do I click?</li>					
+						<li class="fragment">Why does this matter?</li>					
+					</ul>	
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Approaches</h3>
+				</section>
+				<section>
+					<p>Addressing issues</p>
+						<ul>
+							<li class="fragment">Explicitly state relationship between observations and glyphs</li>
+							<li class="fragment">Reveal only 1 visual encoding at a time</li>					
+							<li class="fragment">Expose the data in stages</li>					
+							<li class="fragment">Expose interactivity methods in stages</li>																			
+						</ul>	
+				</section>
+				<section>
+					<iframe class="stretch" src="http://mkfreeman.github.io/human_cost/"></iframe>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Implementation</h3>
+				</section>
+				<section>
+					<p>Two classes of approach</p>
+					<ul>
+						<li class="fragment">Telling stories with data</li>
+						<li class="fragment">Letting your data tell stories</li>
+						<blockquote class="fragment">
+							&ldquo;They’re using this chart like a drunken man uses lampposts – for support rather than for illumination.&rdquo; -<a href="http://blow.blogs.nytimes.com/2010/07/28/chart-abuse/" target="_blank">Charles Blow</a>
+						</blockquote>
+					</ul>
+				</section>
+				<section>
+					<p>Telling stories with data</p>
+					<ul>
+						<li class="fragment"><a href = "http://www.bloomberg.com/dataview/2014-04-17/how-americans-die.html" target="_blank">How Americans die</a></li>
+						<li class="fragment"><a href = "http://vizhub.healthdata.org/mdg" target="_blank">MDG</a></li>
+					</ul>
+				</section>
+				<section>
+					<p>Letting data tell stories</p>
+					<ul>
+						<li class="fragment"><a href = "http://www.theguardian.com/uk/interactive/2011/dec/07/london-riots-twitter?guni=Article:in%20body%20link" target="_blank">Rumors spreading</a></li>
+						<li class="fragment"><a href = "http://vallandingham.me/racial_divide/#sl" target="_blank">Racial disparities</a></li>
+						<li class="fragment"><a href = "http://guns.periscopic.com/?year=2013" target="_blank">Gun deaths</a></li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<h3>Summary</h3>
+				<ul>
+					<li class="fragment">Narrative visualization is powerful</li>
+					<li class="fragment">Be careful</li>
+				</ul>
+			</section>
+			
+			
+		</div>
+	</div>
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+
+
+	<script>
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+			backgroundTransition: 'slide',
+
+			theme: Reveal.getQueryHash().theme, 
+			transition: Reveal.getQueryHash().transition || 'linear',
+			dependencies: [
+				{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+		Reveal.addEventListener('fragmentshown', function(event) {		
+			if(event.fragment.id.indexOf('viz')!=-1) d3.select('#viz_process1').attr('src', '../reveal/lib/imgs/' + event.fragment.id + '.png')
+		
+		})
+		Reveal.addEventListener('fragmenthidden', function(event) {
+			if(event.fragment.id.indexOf('viz')!=-1) {
+				var subtract =  Number(event.fragment.id.replace('viz_process', '')) == 7? 2 : 1
+				var value = 'viz_process' + (Number(event.fragment.id.replace('viz_process', '')) - subtract)
+				d3.select('#viz_process1').attr('src', '../reveal/lib/imgs/' + value + '.png')
+			}
+		
+		})
+	</script>
+
+</body>
+</html>

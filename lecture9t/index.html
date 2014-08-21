@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Lecture 9t</title>
+
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+		if( window.location.search.match( /print-pdf/gi ) ) {
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = 'css/print/pdf.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		}
+	</script>
+
+
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+			<h2>Towards advanced applications</h2>
+			</section>
+			
+			<section>
+			<h3>Outline</h3>
+				<ul>
+					<li class="fragment">Purpose</li>				
+					<li class="fragment">Conceptual approach</li>
+					<li class="fragment">Code structure</li>
+					<li class="fragment">Examples</li>
+				</ul>
+			</section>
+		<section>
+			<section>
+				<h3>Purpose</h3>
+			</section>
+			<section>
+				<p>Quickly and easily build integrated systems of charts</p>
+				<ul>
+					<li class ="fragment">Charts that interact with any other charts</li>
+					<li class ="fragment">Charts that handle different datasets</li>					
+					<li class ="fragment">Charts produce multiple glyph types</li>				
+				</ul>	
+			</section>
+		</section>
+		<section>
+			<section>
+				<h3>Conceptual approach</h3>
+			</section>
+			<section>
+				<p>Write reusable, scalable, flexible code</p>
+				<ul>
+					<li class ="fragment">Charts are abstracted from specific data</li>
+					<li class ="fragment">Charts are abstracted from interactions</li>					
+					<li class ="fragment">Charts can be assembled into collections of charts</li>				
+				</ul>				
+			</section>
+			<section>
+				<p>Reconsider charts</p>
+				<ul>
+					<li class ="fragment">Code that positions HTML elements in a given structure</li>
+					<li class ="fragment">Defined set of inputs for the chart</li>
+					<li class ="fragment">You should be able to specify:</li>
+					<ul>
+						<li class ="fragment">Data</li>
+						<li class ="fragment">Chart size</li>
+						<li class ="fragment">Colors</li>
+						<li class ="fragment">Interactivity</li>
+					</ul>	
+				</ul>	
+			</section>
+			<section>
+				<img class="stretch" src = "../reveal/lib/imgs/chart.png"></img>
+			</section>
+			<section>
+				<p>Consider views</p>
+				<ul>
+					<li class ="fragment">A view is a specific collection of charts and controls</li>
+					<li class ="fragment">Manages settings for charts via controls</li>					
+					<li class ="fragment">Views pass settings to charts</li>
+					<li class ="fragment">The view defines relationships between charts</li>
+				</ul>	
+			</section>
+			<section>
+				<img class="stretch" src = "../reveal/lib/imgs/view1.png"></img>
+			</section>
+			<section>
+				<img class="stretch" src = "../reveal/lib/imgs/view_diagram.png"></img>
+			</section>
+			<section>
+				<p>Consider applications (apps)</p>
+				<ul>
+					<li class ="fragment">An application is a set of views</li>
+					<li class ="fragment">Manages data and settings for views</li>
+					<li class ="fragment">Handels transitions between views</li>					
+					<li class ="fragment">Is your entire site</li>
+				</ul>							
+			</section>
+			<section>
+				<img class="stretch" src = "../reveal/lib/imgs/tobacco.png"></img>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h3>Code structure</h3>
+			</section>
+			<section>
+				<p>Separate files for each chart, view, and the app</p>
+				<img class="stretch fragment" src = "../reveal/lib/imgs/js.png"></img>	
+			</section>
+			<section>
+				<p>Objects (functions) can refer to themselves in JavaScript using <code>this</code></p>
+				<pre class="fragment"><code data-trim class="javascript">
+var person = {
+	name:'Alan', 
+	age:55, 
+	statement:function() {
+	    alert('Hello my name is ' + this.name + ' and I am ' + this.age + ' years old ')
+	}
+}
+</code></pre>
+			<p class="fragment">Because the context of "this" changes, define another variable for "this"</p>
+				<pre class="fragment"><code class="javascript">
+var person = {
+	name:'Alan', 
+	age:55, 
+	statement:function() {
+	    var self = this
+	    alert('Hello my name is ' + self.name + ' and I am ' + self.age + ' years old ')
+	}
+}
+</code></pre>						
+			</section>
+			<section>
+				<iframe class="stretch" src="http://jsbin.com/peloxi/1/embed?js,console"></iframe>
+			</section>
+			<section>
+				<p>Functions in JavaScript are actually objects</p>
+				<pre class="fragment"><code class="javascript">
+var PersonMaker = function(name,age){
+    this.name = name
+    this.age = age
+}
+</code></pre>	
+			<p class="fragment">JavaScript allows extensions (prototypes) of functions</p>
+				<pre class="fragment"><code class="javascript">
+PersonMaker.prototype.statement = function() {
+	alert('Hello my name is ' + this.name + ' and I am ' + this.age + ' years old ')
+}
+</code></pre>	
+			<p class="fragment">Create instantiations of a function-object by using the <code>new</code> syntax</p>	
+				<pre class="fragment"><code class="javascript">
+var jim = new PersonMaker('jim', 44)
+</code></pre>						
+			</section>
+			<section>
+				<iframe class="stretch" src="http://jsbin.com/mikoke/1/embed?js,console"></iframe>
+			</section>
+			<section>
+				<p>Each element (app, view, chart) is a function</p>
+				<pre class="fragment"><code data-trim class="javascript">
+var BarChart = function(data) {
+	// Code that makes a new bar chart
+}	
+</code></pre>
+<p class="fragment">JavaScript allows extensions (prototypes) of functions</p>
+				<pre class="fragment"><code data-trim class="javascript">
+var BarChart = function(settings) {
+	// Code that makes a new bar chart
+}
+BarChart.prototype.draw = function() {
+	// Draws chart
+}
+</code></pre>
+<p class="fragment">Instantiate a new instance of a chart with <code>new</code></p>
+				<pre class="fragment"><code data-trim class="javascript">
+var myChart = new BarChart(settings)
+</code></pre>
+			</section>
+			<section>
+				<iframe class="stretch" src="http://jsbin.com/tijuce/2/embed?js,output"></iframe>
+			</section>
+			<section>
+				<p>Each view is also a function (object)</p>
+<p class="fragment">JavaScript allows extensions (prototypes) of functions</p>
+				<pre class="fragment"><code data-trim class="javascript">
+var BarView = function(chartNum) {
+  var self = this
+  self.chartNumber = chartNum
+  self.build()
+}
+
+// Builf function
+BarView.prototype.build = function() {
+  var self = this
+  self.makeData()
+  self.makeCharts()
+  self.makeInteractive()
+}
+</code></pre>
+<p class="fragment">Instantiate a new instance of a view with <code>new</code></p>
+				<pre class="fragment"><code data-trim class="javascript">
+var myView = new BarView(settings)
+</code></pre>
+			</section>
+			<section>
+				<iframe class="stretch" src="http://jsbin.com/hejar/1/embed?js,output"></iframe>
+			</section>
+		</section>
+		<section>
+			<h3>Summary</h3>
+			<ul>
+				<li class="fragment">You've learned an incredible amount in 10 days</li>
+				<li class="fragment">Platform for independently expanding skills</li>
+				<li class="fragment">Strive for reusable code</li>
+				<li class="fragment">Let me know if you have any trouble</li>
+			</ul>
+		</section>
+		<section>
+			<h3>Presentations</h3>
+			<ul>
+				<li class="fragment">Presenting to IHME staff (IT, communications, professors)</li>			
+				<li class="fragment">10 minutes to present and field questions</li>
+				<li class="fragment">Clearly describe:</li>
+				<ul>
+					<li class="fragment">Persona that you designed the visualization for</li>						
+					<li class="fragment">Questions that you attempted to answer with the visualization</li>
+					<li class="fragment">Interesting insights provided through the visualization</li>
+					<li class="fragment">Elements of interactivity</li>
+				</ul>
+			</ul>
+		</section>
+		<section>
+			<h3>Logistics</h3>
+			<ul>
+				<li class="fragment">Presentations tomorrow at <a href="https://www.google.com/maps/place/University+of+Washington+-+Institute+for+Health+Metrics+and+Evaluation/@47.616176,-122.343973,17z/data=!3m1!4b1!4m2!3m1!1s0x54901549533e5aab:0x458ec7e047955ba" target="_blank">IHME</a></li>
+				<li class="fragment">Please arrive prior to 1:00</li>
+				<li class="fragment">Enter 6th floor, directed to Magnolia Conference Room 448</li>
+				<li class="fragment">Please upload a link to your final project tonight (you can update it)</li>
+				<li class="fragment">Final project and write up due this weekend (<a href="https://canvas.uw.edu/courses/912211/assignments/2564574" target="_blank">link</a>)</li>
+			</ul>
+		</section>
+		<section>
+			<h3>Thank you</h3>
+		</section>
+		</div>
+	</div>
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+
+
+	<script>
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, 
+			transition: Reveal.getQueryHash().transition || 'linear',
+			dependencies: [
+				{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+</body>
+</html>
